@@ -47,7 +47,7 @@ extends Camera2D
 # Public functions
 #func update_target(new_target: Node2D) -> void:
 #	target = new_target
-	# TODO: change this to tween smoothly if desired; consider making a setter
+	# TODO: Change this to tween smoothly if desired; consider making a setter
 
 
 # Private functions

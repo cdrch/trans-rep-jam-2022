@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity.slide(collision.normal)
 				return
 			elif groups.has("bullet") and not groups.has("player"):
-				# TODO: oh no boom
+				# TODO: Add bullet collision to player ship
 				return
 
 

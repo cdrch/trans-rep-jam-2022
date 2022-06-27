@@ -1,0 +1,11 @@
+{
+	"title": "TODO: Add bullet collision to player ship",
+	"category": 1,
+	"assigned": 0,
+	"timestamp": 1656352478,
+	"hash": "46d77000c67f141165ca1cf4378dd8c9cd361cd48c9d3868095bd58b9cd20109",
+	"description": "\n\n(File: res://scripts/player_ship.gd - Last known line: 73)",
+	"todos": [
+
+	]
+}

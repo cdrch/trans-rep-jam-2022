@@ -26,7 +26,7 @@ extends Node2D
 
 func _input(event) -> void:
 	if event.is_action_pressed("fire"):
-		pass # TODO: shoot bullet
+		pass # TODO: Add ability to shoot bullets
 
 #func _unhandled_input(event) -> void:
 
