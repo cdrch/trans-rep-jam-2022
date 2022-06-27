@@ -1,6 +1,6 @@
 #class_name 
 extends KinematicBody2D
-# Script description goes here
+# Controller for the player ship.
 
 # Signals
 
