@@ -24,6 +24,10 @@ config/name="Trans Rep Jam 2022"
 run/main_scene="res://game_manager.tscn"
 config/icon="res://icon.png"
 
+[global]
+
+ges=false
+
 [input]
 
 ui_left={
