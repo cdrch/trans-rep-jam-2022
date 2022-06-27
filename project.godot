@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Camera2D",
+"class": "GameCamera",
+"language": "GDScript",
+"path": "res://game_camera.gd"
+} ]
+_global_script_class_icons={
+"GameCamera": ""
+}
+
 [application]
 
 config/name="Trans Rep Jam 2022"
