@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/ninepatchbutton/custom_theme.tres" type="Theme" id=1]
+[ext_resource path="res://addons/ninepatchbutton/ninepatchbutton.gd" type="Script" id=2]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 585.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_right = 994.0
+margin_bottom = 570.0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 286.0
+margin_right = 486.0
+margin_bottom = 570.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 490.0
+margin_right = 504.0
+margin_bottom = 570.0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 272.0
+margin_right = 14.0
+margin_bottom = 286.0
+
+[node name="PlayButton" type="NinePatchRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 290.0
+margin_right = 14.0
+margin_bottom = 290.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="OptionsButton" type="NinePatchRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 294.0
+margin_right = 14.0
+margin_bottom = 294.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="QuitButton" type="NinePatchRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 298.0
+margin_right = 14.0
+margin_bottom = 298.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 508.0
+margin_right = 708.0
+margin_bottom = 570.0
+rect_min_size = Vector2( 200, 0 )
