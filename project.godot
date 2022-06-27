@@ -34,9 +34,14 @@ config/icon="res://art/icon.png"
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/NbPM/plugin.cfg", "res://addons/SceneFactory/plugin.cfg", "res://addons/easy_velocity_vector_display/plugin.cfg", "res://addons/ninepatchbutton/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/NbPM/plugin.cfg", "res://addons/ProjectResolution/plugin.cfg", "res://addons/SceneFactory/plugin.cfg", "res://addons/easy_velocity_vector_display/plugin.cfg", "res://addons/ninepatchbutton/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
 
 [global]
 
