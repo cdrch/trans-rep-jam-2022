@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://art/prototype/arrow_ship.png" type="Texture" id=1]
 [ext_resource path="res://player_ship.gd" type="Script" id=2]
 [ext_resource path="res://game_camera.gd" type="Script" id=3]
 [ext_resource path="res://player_firing_point.gd" type="Script" id=4]
+[ext_resource path="res://debug_prefabs/vector_display_velocity_as_child.tscn" type="PackedScene" id=5]
 
 [node name="Game Manager" type="Node"]
 
@@ -21,6 +22,8 @@ polygon = PoolVector2Array( 32, -5.7, 32, 5, 7.3, 24, -32, 24, -32, -24, 6, -24 
 
 [node name="PlayerFiringPoint" type="Node2D" parent="Level/PlayerShip"]
 script = ExtResource( 4 )
+
+[node name="VectorDisplayVelocityAsChild" parent="Level/PlayerShip" instance=ExtResource( 5 )]
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 current = true
