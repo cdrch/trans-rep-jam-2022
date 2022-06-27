@@ -26,7 +26,7 @@ config/icon="res://art/icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/NbPM/plugin.cfg", "res://addons/easy_velocity_vector_display/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/NbPM/plugin.cfg", "res://addons/easy_velocity_vector_display/plugin.cfg", "res://addons/ninepatchbutton/plugin.cfg" )
 
 [global]
 
