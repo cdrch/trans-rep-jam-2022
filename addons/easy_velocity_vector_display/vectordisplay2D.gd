@@ -14,7 +14,8 @@ func _draw():
 	draw_line(Vector2(0,0), b * vector_scale, Color(0.9,0,0.9), 2, true)
 
 func _ready():
-	target_node = get_node(target)
+	if target:
+		target_node = get_node(target)
 
 func _physics_process(delta):
 	b = target_node.get(target_property)
