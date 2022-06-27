@@ -24,6 +24,10 @@ config/name="Trans Rep Jam 2022"
 run/main_scene="res://scenes/game_manager.tscn"
 config/icon="res://art/icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/NbPM/plugin.cfg", "res://addons/easy_velocity_vector_display/plugin.cfg" )
+
 [global]
 
 ges=false
