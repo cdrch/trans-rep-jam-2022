@@ -45,6 +45,7 @@ func _ready() -> void:
 
 
 # Public functions
+# TODO: Improve animations and add non-linear motion curves
 func toggle_on_enemy_dialogue_box():
 	enemy_dialogue_box_anim.play("move_dialogue_up")
 	pass
