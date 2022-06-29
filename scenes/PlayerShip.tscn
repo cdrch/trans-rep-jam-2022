@@ -6,6 +6,7 @@
 [ext_resource path="res://art/prototype/player_ship.png" type="Texture" id=4]
 
 [node name="PlayerShip" type="KinematicBody2D" groups=["player", "player_ship"]]
+z_index = 100
 script = ExtResource( 2 )
 speed = 500.0
 
