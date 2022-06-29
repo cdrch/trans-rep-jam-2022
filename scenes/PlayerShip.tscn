@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/easy_velocity_vector_display/vector_display_velocity_as_child.gd" type="Script" id=1]
+[ext_resource path="res://scripts/player_ship.gd" type="Script" id=2]
+[ext_resource path="res://scripts/player_firing_point.gd" type="Script" id=3]
+[ext_resource path="res://art/prototype/player_ship.png" type="Texture" id=4]
+
+[node name="PlayerShip" type="KinematicBody2D" groups=["player", "player_ship"]]
+script = ExtResource( 2 )
+speed = 500.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 1.4, -5, 9.1, -5, 29, -3, 29, 8, 18, 11, 13.7, 12, -29, 12, -29, -12, -16, -12 )
+
+[node name="PlayerFiringPoint" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="VectorDisplay2DVelocityAsChild" type="Node2D" parent="."]
+script = ExtResource( 1 )
