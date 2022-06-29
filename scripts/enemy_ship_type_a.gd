@@ -3,7 +3,7 @@ extends KinematicBody2D
 # The controller for enemy ships.
 
 # Signals
-
+signal enemy_ship_destroyed
 
 # Member variables
 
