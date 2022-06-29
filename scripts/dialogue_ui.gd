@@ -67,7 +67,7 @@ func toggle_off_player_dialogue_box():
 
 # Private functions
 func test_dialogue_toggles():
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(5.0), "timeout")
 	toggle_on_enemy_dialogue_box()
 	yield(get_tree().create_timer(1.0), "timeout")
 	toggle_on_player_dialogue_box()
