@@ -21,7 +21,7 @@ func _process(delta):
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
-
+	
 func hurt(type, damage):
 	if dying:
 		return
