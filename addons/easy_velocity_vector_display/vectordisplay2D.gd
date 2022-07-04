@@ -18,7 +18,7 @@ func _ready():
 		target_node = get_node(target)
 
 func _physics_process(delta):
-	b = target_node.get(target_property)
+	# b = target_node.get(target_property)
 	update()
 
 func _unhandled_key_input(event):

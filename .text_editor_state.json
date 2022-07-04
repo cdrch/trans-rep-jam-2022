@@ -1,0 +1,332 @@
+{
+	"save_version": "1",
+	"font_size": 12,
+	"font_size_ui": 12,
+	"tabs": {
+		"_PM/tasks/todo.md": {
+			"hscroll": 0,
+			"vscroll": 0,
+			"cursor": [
+				6,
+				0
+			]
+		}
+	},
+	"selected": "res://_PM/tasks/todo.md",
+	"word_wrap": false,
+	"ignore_head_numbers": true,
+	"show_tab_color": true,
+	"show": {
+		"dir": {
+			"empty": true,
+			"hidden": true,
+			"gdignore": true,
+			"addons": false,
+			"git": false,
+			"import": false,
+			"trash": false
+		},
+		"file": {
+			"hidden": false,
+			"extensionless": false
+		}
+	},
+	"tags": {
+
+	},
+	"tags_enabled": [
+
+	],
+	"exts_enabled": {
+		"txt": true,
+		"md": true,
+		"json": true,
+		"csv": true,
+		"cfg": true,
+		"ini": true,
+		"yaml": true,
+		"rpy": true,
+		"gd": false,
+		"tres": false,
+		"tscn": false,
+		"import": false,
+		"gdignore": false,
+		"gitignore": false
+	},
+	"shortcuts": {
+
+	},
+	"file_list": {
+		"": {
+			"file_path": "res://",
+			"all": {
+				"art": {
+					"file_path": "res://art",
+					"all": {
+						"prototype": {
+							"file_path": "res://art/prototype",
+							"all": {
+								"Note.txt": "res://art/prototype/Note.txt"
+							},
+							"files": [
+								"res://art/prototype/Note.txt"
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						}
+					},
+					"files": [
+
+					],
+					"dirs": [
+						"prototype"
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"enemies": {
+					"file_path": "res://enemies",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"README.md": "res://README.md",
+				"scenes": {
+					"file_path": "res://scenes",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"scripts": {
+					"file_path": "res://scripts",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"script_templates": {
+					"file_path": "res://script_templates",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"settings": {
+					"file_path": "res://settings",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"ships": {
+					"file_path": "res://ships",
+					"all": {
+						"projectiles": {
+							"file_path": "res://ships/projectiles",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						}
+					},
+					"files": [
+
+					],
+					"dirs": [
+						"projectiles"
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
+				"_PM": {
+					"file_path": "res://_PM",
+					"all": {
+						"project.cfg": "res://_PM/project.cfg",
+						"tasks": {
+							"file_path": "res://_PM/tasks",
+							"all": {
+								"todo.md": "res://_PM/tasks/todo.md"
+							},
+							"files": [
+								"res://_PM/tasks/todo.md"
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						}
+					},
+					"files": [
+						"res://_PM/project.cfg"
+					],
+					"dirs": [
+						"tasks"
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				}
+			},
+			"files": [
+				"res://README.md"
+			],
+			"dirs": [
+				"_PM",
+				"art",
+				"enemies",
+				"scenes",
+				"script_templates",
+				"scripts",
+				"settings",
+				"ships"
+			],
+			"show": true,
+			"open": true,
+			"tint": "1,1,1,1"
+		}
+	},
+	"file_data": {
+		"res://README.md": {
+			"icon": "",
+			"tint": "",
+			"open": false,
+			"symbols": {
+				"-1": {
+					"deep": 0,
+					"name": "",
+					"tags": [
+
+					]
+				},
+				"0": {
+					"deep": 0,
+					"name": "trans-rep-jam-2022",
+					"tags": [
+
+					]
+				}
+			},
+			"tags": {
+
+			}
+		},
+		"res://_PM/project.cfg": {
+			"icon": "",
+			"tint": "",
+			"open": false,
+			"symbols": {
+				"-1": {
+					"deep": 0,
+					"name": "",
+					"tags": [
+
+					]
+				}
+			},
+			"tags": {
+
+			}
+		},
+		"res://_PM/tasks/todo.md": {
+			"icon": "",
+			"tint": "",
+			"open": false,
+			"symbols": {
+				"-1": {
+					"deep": 0,
+					"name": "",
+					"tags": [
+
+					]
+				},
+				"0": {
+					"deep": 0,
+					"name": "Things that would be handy to get done",
+					"tags": [
+
+					]
+				}
+			},
+			"tags": {
+
+			}
+		},
+		"res://art/prototype/Note.txt": {
+			"icon": "",
+			"tint": "",
+			"open": false,
+			"symbols": {
+
+			},
+			"tags": {
+
+			}
+		}
+	},
+	"div1": -300,
+	"div2": -80,
+	"div3": 100,
+	"div4": 180,
+	"window_size": [
+		1920,
+		1017
+	]
+}

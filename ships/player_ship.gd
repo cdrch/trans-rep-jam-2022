@@ -1,4 +1,5 @@
-#class_name 
+class_name PlayerShip
+
 extends KinematicBody2D
 # Controller for the player ship.
 
@@ -6,9 +7,10 @@ extends KinematicBody2D
 
 
 # Member variables
-export(float) var speed: float
-var velocity: Vector2
+export(NodePath) var bullets_node: NodePath
 
+var speed: float = 180
+var velocity: Vector2
 
 # onready variables
 
@@ -23,14 +25,11 @@ var velocity: Vector2
 #func _init() -> void:
 
 
-#func _ready() -> void:
-
-
-#func _input(event) -> void:
-
+func _ready() -> void:
+	# Slighly awkard on account of wanting to be editor-friendly
+	$Gunpoint.bullets_node = $Gunpoint.get_path_to(get_node(bullets_node))
 
 #func _unhandled_input(event) -> void:
-
 
 func _process(delta: float) -> void:
 	velocity = Vector2()
@@ -42,6 +41,7 @@ func _process(delta: float) -> void:
 		velocity.y += 1
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
+	
 	velocity = velocity.normalized() * speed
 
 
@@ -56,9 +56,6 @@ func _physics_process(delta: float) -> void:
 			var groups = collision_node.get_groups()
 			if groups.has("solid"):
 				velocity = velocity.slide(collision.normal)
-				return
-			elif groups.has("bullet") and not groups.has("player"):
-				# TODO: Add bullet collision to player ship
 				return
 
 

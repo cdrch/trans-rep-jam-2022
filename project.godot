@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "EnemyShip",
 "language": "GDScript",
 "path": "res://scripts/enemy_ship_type_a.gd"
@@ -18,6 +18,11 @@ _global_script_classes=[ {
 "class": "GameCamera",
 "language": "GDScript",
 "path": "res://scripts/game_camera.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerShip",
+"language": "GDScript",
+"path": "res://ships/player_ship.gd"
 }, {
 "base": "Object",
 "class": "SceneManagerConstants",
@@ -47,6 +52,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "EnemyShip": "",
 "GameCamera": "",
+"PlayerShip": "",
 "SceneManagerConstants": "",
 "TE_Editor": "",
 "TE_ExtensionHelper": "",
@@ -57,12 +63,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Trans Rep Jam 2022"
-run/main_scene="res://scenes/game_manager.tscn"
+run/main_scene="res://levels/level1/level_1.tscn"
 config/icon="res://art/icon.png"
 
 [autoload]
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+DialogManager="*res://scripts/dialog_manager.gd"
 
 [display]
 
@@ -75,11 +82,35 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/NbPM/plugin.cfg", "res://addons/ProjectResolution/plugin.cfg", "res://addons/SceneFactory/plugin.cfg", "res://addons/easy_velocity_vector_display/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/ninepatchbutton/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/text_editor/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/ProjectResolution/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/text_editor/plugin.cfg" )
 
 [global]
 
 ges=false
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [input]
 
@@ -117,6 +148,12 @@ fire={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Bullets"
 
 [physics]
 

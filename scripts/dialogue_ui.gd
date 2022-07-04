@@ -23,11 +23,11 @@ var player_dialogue_box_anim: AnimationPlayer
 
 
 func _ready() -> void:
-	enemy_dialogue_box_anim = get_node("EnemyDialogueBox/AnimationPlayer")
-	player_dialogue_box_anim = get_node("PlayerDialogueBox/AnimationPlayer")
+	enemy_dialogue_box_anim = $EnemyDialogueBox/AnimationPlayer
+	player_dialogue_box_anim = $PlayerDialogueBox/AnimationPlayer
 	
 	# TODO: Be sure to remove dialogue debug tests
-	test_dialogue_toggles()
+	#test_dialogue_toggles()
 
 #func _input(event) -> void:
 
@@ -65,14 +65,16 @@ func toggle_off_player_dialogue_box():
 	player_dialogue_box_anim.play_backwards("move_dialogue_up")
 	pass
 
+func wait(time: float):
+	return get_tree().create_timer(time)
 
 # Private functions
 func test_dialogue_toggles():
-	yield(get_tree().create_timer(5.0), "timeout")
+	yield(wait(5.0), "timeout")
 	toggle_on_enemy_dialogue_box()
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(wait(1.0), "timeout")
 	toggle_on_player_dialogue_box()
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(wait(2.0), "timeout")
 	toggle_off_enemy_dialogue_box()
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(wait(1.0), "timeout")
 	toggle_off_player_dialogue_box()

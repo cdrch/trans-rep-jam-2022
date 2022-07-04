@@ -1,0 +1,222 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemies/basic_enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/prototype/dark_dialogue_box.png" type="Texture" id=3]
+[ext_resource path="res://art/prototype/trans_dialogue_box.png" type="Texture" id=4]
+[ext_resource path="res://levels/level1/Wave-End.png" type="Texture" id=5]
+[ext_resource path="res://art/prototype/trans_stars_bg.png" type="Texture" id=6]
+[ext_resource path="res://levels/level1/Wave-End.gd" type="Script" id=7]
+[ext_resource path="res://scripts/dialogue_ui.gd" type="Script" id=8]
+[ext_resource path="res://scripts/game_camera.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 17, 191.5 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "move_dialogue_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 180 ), Vector2( 0, 80 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "move_dialogue_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PlayerDialogueBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -320, 180 ), Vector2( -320, 80 ) ]
+}
+
+[node name="Game Manager" type="Node"]
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="PlayerShip" parent="Level" instance=ExtResource( 1 )]
+position = Vector2( -100, 0 )
+bullets_node = NodePath("../BulletDump")
+
+[node name="Background" type="Node2D" parent="Level"]
+
+[node name="Sprite" type="Sprite" parent="Level/Background"]
+modulate = Color( 0.235294, 0.235294, 0.235294, 1 )
+texture = ExtResource( 6 )
+
+[node name="BulletDump" type="Node2D" parent="Level"]
+
+[node name="Wave1" type="Node2D" parent="Level"]
+
+[node name="EnemyShipTypeA" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 155, -21 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA2" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 409, -41 )
+collision_layer = 2
+collision_mask = 5
+speed = 70.0
+
+[node name="EnemyShipTypeA4" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 343, 17 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA5" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 738, 10 )
+collision_layer = 2
+collision_mask = 5
+speed = 45.0
+
+[node name="EnemyShipTypeA6" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 784, -33 )
+collision_layer = 2
+collision_mask = 5
+speed = 45.0
+
+[node name="EnemyShipTypeA7" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 785, 59 )
+collision_layer = 2
+collision_mask = 5
+speed = 45.0
+
+[node name="EnemyShipTypeA8" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 752, 109 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA9" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 835, 11 )
+collision_layer = 2
+collision_mask = 5
+speed = 45.0
+
+[node name="EnemyShipTypeA17" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1104, 122 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA18" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1232, -117 )
+collision_layer = 2
+collision_mask = 5
+speed = 60.0
+
+[node name="EnemyShipTypeA19" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1347, -69 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA14" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1766, -57 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA15" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 2291, -13 )
+collision_layer = 2
+collision_mask = 5
+speed = 90.0
+
+[node name="EnemyShipTypeA16" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1807, -65 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA10" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1815, 70 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA11" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1715, 29 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA13" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1743, 33 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA12" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 1780, 45 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="EnemyShipTypeA3" parent="Level/Wave1" instance=ExtResource( 2 )]
+position = Vector2( 745, -78 )
+collision_layer = 2
+collision_mask = 5
+
+[node name="Player Bullet Sweeper" type="Area2D" parent="Level" groups=["sweep"]]
+position = Vector2( 33, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player Bullet Sweeper"]
+position = Vector2( 294, 9 )
+shape = SubResource( 3 )
+
+[node name="Wave-End" type="Sprite" parent="Level"]
+position = Vector2( 2159, 0 )
+texture = ExtResource( 5 )
+script = ExtResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+current = true
+script = ExtResource( 9 )
+
+[node name="DialogueUI" type="Control" parent="."]
+script = ExtResource( 8 )
+
+[node name="EnemyDialogueBox" type="NinePatchRect" parent="DialogueUI"]
+anchor_left = 8.0
+anchor_top = 4.5
+anchor_right = 8.0
+anchor_bottom = 4.5
+margin_top = 180.0
+margin_right = 320.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 320, 100 )
+texture = ExtResource( 3 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI/EnemyDialogueBox"]
+anims/move_dialogue_up = SubResource( 1 )
+
+[node name="PlayerDialogueBox" type="NinePatchRect" parent="DialogueUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -320.0
+margin_top = 180.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 320, 100 )
+texture = ExtResource( 4 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI/PlayerDialogueBox"]
+root_node = NodePath("../../EnemyDialogueBox")
+anims/move_dialogue_up = SubResource( 2 )
