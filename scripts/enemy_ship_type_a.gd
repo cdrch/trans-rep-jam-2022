@@ -7,6 +7,13 @@ onready var dead_tex = preload("res://enemies/enemy-1-death.png")
 var hit_points = 30
 var dying = false
 
+var TOP_ROTATION_LIMIT = deg2rad(45)
+var BOTTOM_ROTATION_LIMIT = deg2rad(-45)
+var direction = 1
+var lerp_weight = 0.5
+var zig_zag_time = 1 # seconds
+var zig_zag_vertical_stretch = 1
+
 func _ready():
 	pass
 
@@ -19,6 +26,7 @@ func _process(delta):
 	modulate = Color(1, o, o)
 
 func _physics_process(delta):
+	zig_zag(delta)
 	var collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
 	
@@ -42,3 +50,22 @@ func die():
 		visible = seen
 	yield(wait(0.25), "timeout")
 	queue_free()
+
+func zig_zag(delta):
+	# Looped lerp to get an angle
+	var angle = 0
+	if direction == 1:
+		angle = lerp_angle(TOP_ROTATION_LIMIT, BOTTOM_ROTATION_LIMIT, lerp_weight)
+		if lerp_weight >= 1.0:
+			direction = -1
+	else:
+		angle = lerp_angle(TOP_ROTATION_LIMIT, BOTTOM_ROTATION_LIMIT, lerp_weight)
+		if lerp_weight <= 0.0:
+			direction = 1
+	# Convert to vector2
+	velocity.x = -cos(angle)
+	velocity.y = -sin(angle) * zig_zag_vertical_stretch
+	# TODO: Remove if vertical stretch is never used
+	velocity = velocity.normalized()
+	# Adjusts lerp_weight for next time
+	lerp_weight += delta * direction / zig_zag_time
