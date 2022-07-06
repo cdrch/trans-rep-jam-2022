@@ -26,7 +26,7 @@ var velocity: Vector2
 
 
 func _ready() -> void:
-	# Slighly awkard on account of wanting to be editor-friendly
+	# Slightly awkard on account of wanting to be editor-friendly
 	$Gunpoint.bullets_node = $Gunpoint.get_path_to(get_node(bullets_node))
 
 #func _unhandled_input(event) -> void:
