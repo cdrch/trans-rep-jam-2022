@@ -37,4 +37,9 @@ func _on_Area2D_area_entered(area):
 
 func _on_Area2D_body_entered(body):
 	on_collide(body)
+	
 
+
+func _on_Timer_timeout():
+	spent = true
+	queue_free()

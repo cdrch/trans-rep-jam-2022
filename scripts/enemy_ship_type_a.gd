@@ -12,6 +12,7 @@ onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 
 var bullets_parent: Node
 var hit_points = 30
+var can_shoot = false
 var dying = false
 
 var TOP_ROTATION_LIMIT = deg2rad(45)
@@ -66,13 +67,13 @@ func _on_gun_timer_timeout():
 			$gun_timer.start(mode_time())
 		"Vertical": 
 			$gun_timer.start(mode_time())
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, -1).rotated(deg2rad(rand_range(-5, 5))), 45)
+			fire($BulletSpawnPos.global_position, Vector2(-0.5, -1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
 			yield(wait(0.2), "timeout")
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, -0.25).rotated(deg2rad(rand_range(-5, 5))), 45)
+			fire($BulletSpawnPos.global_position, Vector2(-0.5, -0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
 			yield(wait(0.2), "timeout")
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, 0.25).rotated(deg2rad(rand_range(-5, 5))), 45)
+			fire($BulletSpawnPos.global_position, Vector2(-0.5, 0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
 			yield(wait(0.2), "timeout")
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, 1).rotated(deg2rad(rand_range(-5, 5))), 45)
+			fire($BulletSpawnPos.global_position, Vector2(-0.5, 1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
 		_: return -1
 	
 	
