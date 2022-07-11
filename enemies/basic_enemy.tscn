@@ -25,3 +25,10 @@ polygon = PoolVector2Array( 14, 14, 9, 16, 4, 16, -2, 10, -6, 8, -13, 2, -13, -2
 
 [node name="VectorDisplay2DVelocityAsChild" type="Node2D" parent="."]
 script = ExtResource( 1 )
+
+[node name="gun_timer" type="Timer" parent="."]
+
+[node name="BulletSpawnPos" type="Node2D" parent="."]
+position = Vector2( -17, 0 )
+
+[connection signal="timeout" from="gun_timer" to="." method="_on_gun_timer_timeout"]

@@ -89,6 +89,35 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
+				"audio": {
+					"file_path": "res://audio",
+					"all": {
+						"projects": {
+							"file_path": "res://audio/projects",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						}
+					},
+					"files": [
+
+					],
+					"dirs": [
+						"projects"
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
 				"enemies": {
 					"file_path": "res://enemies",
 					"all": {
@@ -104,22 +133,36 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
-				"README.md": "res://README.md",
-				"scenes": {
-					"file_path": "res://scenes",
+				"levels": {
+					"file_path": "res://levels",
 					"all": {
+						"level1": {
+							"file_path": "res://levels/level1",
+							"all": {
 
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						}
 					},
 					"files": [
 
 					],
 					"dirs": [
-
+						"level1"
 					],
 					"show": true,
 					"open": true,
 					"tint": "1,1,1,1"
 				},
+				"README.md": "res://README.md",
 				"scripts": {
 					"file_path": "res://scripts",
 					"all": {
@@ -168,6 +211,21 @@
 				"ships": {
 					"file_path": "res://ships",
 					"all": {
+						"barrier": {
+							"file_path": "res://ships/barrier",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						},
 						"projectiles": {
 							"file_path": "res://ships/projectiles",
 							"all": {
@@ -188,6 +246,7 @@
 
 					],
 					"dirs": [
+						"barrier",
 						"projectiles"
 					],
 					"show": true,
@@ -231,8 +290,9 @@
 			"dirs": [
 				"_PM",
 				"art",
+				"audio",
 				"enemies",
-				"scenes",
+				"levels",
 				"script_templates",
 				"scripts",
 				"settings",

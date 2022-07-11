@@ -1,14 +1,7 @@
+#class_name 
+extends Node
+# Script description goes here
 
-const LayerBits = Dictionary()
-
-func _init():
-	LayerBits["Player"] = 1
-	LayerBits["Enemies"] = 2
-	LayerBits["Bullets"] = 3
-	LayerBits["Shield"] = 4
-	LayerBits["Interaction"] = 5
-	LayerBits["Interaction Watcher"] = 6
-	
 # Signals
 
 

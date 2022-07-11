@@ -9,6 +9,9 @@ extends KinematicBody2D
 # Member variables
 export(NodePath) var bullets_node: NodePath
 
+onready var ded_tex = preload("res://ships/ded.png")
+
+var alive = true
 var speed: float = 180
 var velocity: Vector2
 
@@ -29,10 +32,10 @@ func _ready() -> void:
 	# Slightly awkard on account of wanting to be editor-friendly
 	$Gunpoint.bullets_node = $Gunpoint.get_path_to(get_node(bullets_node))
 
-#func _unhandled_input(event) -> void:
-
 func _process(delta: float) -> void:
 	velocity = Vector2()
+	if not alive:
+		return
 	if Input.is_action_pressed('ui_right'):
 		velocity.x += 1
 	if Input.is_action_pressed('ui_left'):
@@ -44,6 +47,15 @@ func _process(delta: float) -> void:
 	
 	velocity = velocity.normalized() * speed
 
+func hurt(type, amount):
+	if not alive:
+		return
+	alive = false
+	collision_mask = 0
+	collision_layer = 0
+	$Gunpoint.equipped = false
+	$Sprite.texture = ded_tex
+	position = Vector2(0, 0)
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)

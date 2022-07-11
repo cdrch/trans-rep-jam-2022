@@ -24,7 +24,7 @@ func on_collide(other: CollisionObject2D):
 		return
 		
 	var groups = other.get_groups()
-	if groups.has("sweep"):
+	if groups.has("sweep") or groups.has("shield"):
 		queue_free()
 		spent = true
 	if groups.has(target_group):

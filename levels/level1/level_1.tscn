@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemies/basic_enemy.tscn" type="PackedScene" id=2]
@@ -9,9 +9,19 @@
 [ext_resource path="res://levels/level1/Wave-End.gd" type="Script" id=7]
 [ext_resource path="res://scripts/dialogue_ui.gd" type="Script" id=8]
 [ext_resource path="res://scripts/game_camera.gd" type="Script" id=9]
+[ext_resource path="res://ships/barrier/barrier.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 17, 191.5 )
+extents = Vector2( 10.5, 191.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 451.5, 120 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 451.5, 120 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 168.75, 369 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_dialogue_up"
@@ -65,105 +75,103 @@ texture = ExtResource( 6 )
 
 [node name="EnemyShipTypeA" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 155, -21 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA2" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 409, -41 )
-collision_layer = 2
-collision_mask = 5
 speed = 70.0
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA4" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 343, 17 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA5" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 738, 10 )
-collision_layer = 2
-collision_mask = 5
 speed = 45.0
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA6" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 784, -33 )
-collision_layer = 2
-collision_mask = 5
 speed = 45.0
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA7" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 785, 59 )
-collision_layer = 2
-collision_mask = 5
 speed = 45.0
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA8" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 752, 109 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA9" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 835, 11 )
-collision_layer = 2
-collision_mask = 5
 speed = 45.0
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA17" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1104, 122 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA18" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1232, -117 )
-collision_layer = 2
-collision_mask = 5
 speed = 60.0
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA19" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1347, -69 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA14" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1766, -57 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA15" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 2291, -13 )
-collision_layer = 2
-collision_mask = 5
 speed = 90.0
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA16" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1807, -65 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA10" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1815, 70 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA11" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1715, 29 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Vertical"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA13" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1743, 33 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA12" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 1780, 45 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="EnemyShipTypeA3" parent="Level/Wave1" instance=ExtResource( 2 )]
 position = Vector2( 745, -78 )
-collision_layer = 2
-collision_mask = 5
+shot_mode = "Horizontal"
+bullets_node = NodePath("../../BulletDump")
 
 [node name="Player Bullet Sweeper" type="Area2D" parent="Level" groups=["sweep"]]
 position = Vector2( 33, 0 )
@@ -174,10 +182,40 @@ collision_mask = 2
 position = Vector2( 294, 9 )
 shape = SubResource( 3 )
 
+[node name="Player Bullet Sweeper2" type="Area2D" parent="Level" groups=["sweep"]]
+position = Vector2( -34, -256 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player Bullet Sweeper2"]
+position = Vector2( 31, -76 )
+shape = SubResource( 4 )
+
+[node name="Player Bullet Sweeper3" type="Area2D" parent="Level" groups=["sweep"]]
+position = Vector2( -34, -256 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player Bullet Sweeper3"]
+position = Vector2( 51, 674 )
+shape = SubResource( 5 )
+
+[node name="Player Bullet Sweeper4" type="Area2D" parent="Level" groups=["sweep"]]
+position = Vector2( -34, -256 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player Bullet Sweeper4"]
+position = Vector2( -617, 305 )
+shape = SubResource( 6 )
+
 [node name="Wave-End" type="Sprite" parent="Level"]
 position = Vector2( 2159, 0 )
 texture = ExtResource( 5 )
 script = ExtResource( 7 )
+
+[node name="Barrier" parent="Level" instance=ExtResource( 10 )]
+position = Vector2( -39, -19 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 current = true
