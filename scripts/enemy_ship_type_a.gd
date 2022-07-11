@@ -26,7 +26,7 @@ func _process(delta):
 	modulate = Color(1, o, o)
 
 func _physics_process(delta):
-	zig_zag(delta)
+	# zig_zag(delta)
 	var collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
 	
