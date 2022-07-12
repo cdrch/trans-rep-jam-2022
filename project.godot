@@ -75,7 +75,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Trans Rep Jam 2022"
-run/main_scene="res://levels/level1/level_1.tscn"
+run/main_scene="res://levels/level1StreamBaseed/level_1.tscn"
 config/icon="res://art/icon.png"
 
 [autoload]
