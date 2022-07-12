@@ -7,12 +7,9 @@ export(float) var damage: float = 10
 export(Vector2) var velocity = Vector2(1, 0)
 var spent: bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -38,8 +35,6 @@ func _on_Area2D_area_entered(area):
 func _on_Area2D_body_entered(body):
 	on_collide(body)
 	
-
-
 func _on_Timer_timeout():
 	spent = true
 	queue_free()

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/scene_manager/SceneManagerConstants.gd"
 }, {
+"base": "Node2D",
+"class": "Starfield",
+"language": "GDScript",
+"path": "res://levels/backgrounds/Background.gd"
+}, {
 "base": "Control",
 "class": "TE_Editor",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_class_icons={
 "GameCamera": "",
 "PlayerShip": "",
 "SceneManagerConstants": "",
+"Starfield": "",
 "TE_Editor": "",
 "TE_ExtensionHelper": "",
 "TE_StopWords": "",
