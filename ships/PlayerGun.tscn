@@ -3,7 +3,6 @@
 [ext_resource path="res://scripts/player_firing_point.gd" type="Script" id=1]
 
 [node name="PlayerFiringPoint" type="Node2D"]
-position = Vector2( 23, 2 )
 script = ExtResource( 1 )
 target_group = "enemy"
 
