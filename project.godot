@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ships/player_ship.gd"
 }, {
+"base": "Node2D",
+"class": "RectZone",
+"language": "GDScript",
+"path": "res://levels/level1WaveBased/DiveZoneExtents.gd"
+}, {
 "base": "Object",
 "class": "SceneManagerConstants",
 "language": "GDScript",
@@ -58,24 +63,31 @@ _global_script_classes=[ {
 "class": "TE_Util",
 "language": "GDScript",
 "path": "res://addons/text_editor/TE_Util.gd"
+}, {
+"base": "Node2D",
+"class": "wave1",
+"language": "GDScript",
+"path": "res://levels/level1WaveBased/wave.gd"
 } ]
 _global_script_class_icons={
 "Barrier": "",
 "EnemyShip": "",
 "GameCamera": "",
 "PlayerShip": "",
+"RectZone": "",
 "SceneManagerConstants": "",
 "Starfield": "",
 "TE_Editor": "",
 "TE_ExtensionHelper": "",
 "TE_StopWords": "",
-"TE_Util": ""
+"TE_Util": "",
+"wave1": ""
 }
 
 [application]
 
 config/name="Trans Rep Jam 2022"
-run/main_scene="res://levels/level1StreamBaseed/level_1.tscn"
+run/main_scene="res://levels/level1WaveBased/level1WaveBased.tscn"
 config/icon="res://art/icon.png"
 
 [autoload]

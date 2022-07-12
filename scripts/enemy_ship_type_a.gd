@@ -6,7 +6,6 @@ export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 export(NodePath) var bullets_node: NodePath
 
-
 onready var dead_tex = preload("res://enemies/enemy-1-death.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 
@@ -14,6 +13,8 @@ var bullets_parent: Node
 var hit_points = 30
 var can_shoot = false
 var dying = false
+
+var target: Vector2
 
 var TOP_ROTATION_LIMIT = deg2rad(45)
 var BOTTOM_ROTATION_LIMIT = deg2rad(-45)
@@ -44,7 +45,16 @@ func _process(delta):
 
 func _physics_process(delta):
 	# zig_zag(delta)
-	var collision = move_and_collide(velocity * speed * delta, true)
+	if target:
+		var dir = (target - position) 
+		if dir.length() > speed/10:
+			var collision = move_and_collide(dir.normalized() * speed * delta, true)
+			look_at(target)
+			rotate(PI)
+		else:
+			look_at(position + Vector2(1, 0))
+	else:
+		var collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
 	
 func fire(from: Vector2, velocity: Vector2, speed: float):
@@ -102,6 +112,9 @@ func die():
 func add_bullets_node(path: NodePath):
 	bullets_parent = get_node(path)
 	assert(bullets_parent, "Invalid path to bullets_parent:" + path.get_as_property_path())
+
+func go_to_(point: Vector2):
+	pass
 
 func zig_zag(delta):
 	# Looped lerp to get an angle

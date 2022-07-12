@@ -136,8 +136,38 @@
 				"levels": {
 					"file_path": "res://levels",
 					"all": {
-						"level1": {
-							"file_path": "res://levels/level1",
+						"backgrounds": {
+							"file_path": "res://levels/backgrounds",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						},
+						"level1StreamBaseed": {
+							"file_path": "res://levels/level1StreamBaseed",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						},
+						"level1WaveBased": {
+							"file_path": "res://levels/level1WaveBased",
 							"all": {
 
 							},
@@ -156,7 +186,9 @@
 
 					],
 					"dirs": [
-						"level1"
+						"backgrounds",
+						"level1StreamBaseed",
+						"level1WaveBased"
 					],
 					"show": true,
 					"open": true,
