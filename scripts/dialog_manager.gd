@@ -1,3 +1,4 @@
+extends Node # TODO: reduce this to the most minimal
 
 const LayerBits = Dictionary()
 

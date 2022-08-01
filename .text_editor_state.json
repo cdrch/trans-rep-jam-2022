@@ -303,10 +303,12 @@
 							"show": true,
 							"open": true,
 							"tint": "1,1,1,1"
-						}
+						},
+						"user.cfg": "res://_PM/user.cfg"
 					},
 					"files": [
-						"res://_PM/project.cfg"
+						"res://_PM/project.cfg",
+						"res://_PM/user.cfg"
 					],
 					"dirs": [
 						"tasks"
@@ -351,6 +353,23 @@
 				"0": {
 					"deep": 0,
 					"name": "trans-rep-jam-2022",
+					"tags": [
+
+					]
+				}
+			},
+			"tags": {
+
+			}
+		},
+		"res://_PM/user.cfg": {
+			"icon": "",
+			"tint": "",
+			"open": false,
+			"symbols": {
+				"-1": {
+					"deep": 0,
+					"name": "",
 					"tags": [
 
 					]
