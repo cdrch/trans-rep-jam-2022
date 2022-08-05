@@ -43,7 +43,7 @@ theme = SubResource( 2 )
 script = ExtResource( 1 )
 year = 2022
 month = 8
-day = 18
+day = 19
 hour = 18
 minute = 0
 
@@ -61,8 +61,8 @@ __meta__ = {
 }
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer"]
-margin_left = 58.0
-margin_right = 126.0
+margin_left = 5.0
+margin_right = 73.0
 margin_bottom = 22.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
@@ -74,14 +74,15 @@ __meta__ = {
 }
 
 [node name="CountdownLabel" type="Label" parent="HBoxContainer"]
-margin_left = 130.0
-margin_right = 130.0
+margin_left = 77.0
+margin_right = 183.0
 margin_bottom = 22.0
 grow_horizontal = 0
 size_flags_horizontal = 5
 size_flags_vertical = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 4 )
+text = "13d 7h 2m 14s"
 __meta__ = {
 "_edit_use_anchors_": false
 }
