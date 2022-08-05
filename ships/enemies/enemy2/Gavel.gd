@@ -1,4 +1,4 @@
-class_name WindsorShip
+class_name GavelShip
 extends KinematicBody2D
 
 export(float) var speed = 50
@@ -10,7 +10,7 @@ onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 
 var bullets_parent: Node
-var hit_points = 30
+var hit_points = 90
 var can_shoot = false
 var dying = false
 
@@ -62,21 +62,6 @@ func fire(from: Vector2, velocity: Vector2, speed: float):
 func _on_gun_timer_timeout():
 	if dying:
 		return
-	match shot_mode:
-		"None": return
-		"Horizontal": 
-			fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
-			$gun_timer.start(mode_time())
-		"Vertical": 
-			$gun_timer.start(mode_time())
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, -1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "timeout")
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, -0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "timeout")
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, 0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "timeout")
-			fire($BulletSpawnPos.global_position, Vector2(-0.5, 1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-		_: return -1
 	
 	
 func hurt(type, damage):

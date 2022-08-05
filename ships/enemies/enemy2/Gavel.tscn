@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ships/enemies/enemy2/Gavel.gd" type="Script" id=1]
+[ext_resource path="res://ships/enemies/enemy2/sprite1.png" type="Texture" id=2]
+
+[node name="Gavel" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+
+[node name="tex" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -14, -10, -11, -14, 0, -14, 5, -10, 9, -16, 15, -16, 21, -11, 21, 10, 15, 16, 10, 16, 4, 11, 1, 14, -11, 14, -14, 11, -18, 13, -20, 13, -25, 5, -26, -5, -20, -13, -17, -13 )
