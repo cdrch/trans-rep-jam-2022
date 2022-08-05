@@ -68,6 +68,11 @@ _global_script_classes=[ {
 "class": "wave1",
 "language": "GDScript",
 "path": "res://levels/level1WaveBased/wave.gd"
+}, {
+"base": "Node2D",
+"class": "waveStarter",
+"language": "GDScript",
+"path": "res://levels/level1WaveBased/waveStarter.gd"
 } ]
 _global_script_class_icons={
 "Barrier": "",
@@ -81,7 +86,8 @@ _global_script_class_icons={
 "TE_ExtensionHelper": "",
 "TE_StopWords": "",
 "TE_Util": "",
-"wave1": ""
+"wave1": "",
+"waveStarter": ""
 }
 
 [application]
@@ -94,6 +100,9 @@ config/icon="res://art/icon.png"
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 DialogManager="*res://scripts/dialog_manager.gd"
+D="*res://Autoloads/D.tscn"
+T="*res://Autoloads/T.tscn"
+Bullets="*res://Autoloads/Bullets.tscn"
 
 [display]
 

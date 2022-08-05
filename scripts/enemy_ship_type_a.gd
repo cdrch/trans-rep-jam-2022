@@ -6,7 +6,7 @@ export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 export(NodePath) var bullets_node: NodePath
 
-onready var dead_tex = preload("res://enemies/enemy-1-death.png")
+onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 
 var bullets_parent: Node
@@ -33,7 +33,6 @@ func mode_time():
 func _ready():
 	$gun_timer.start(mode_time())
 	add_bullets_node(bullets_node)
-	
 
 func wait(time: float):
 	return get_tree().create_timer(time)
@@ -58,14 +57,7 @@ func _physics_process(delta):
 	# TODO: handle collision
 	
 func fire(from: Vector2, velocity: Vector2, speed: float):
-	var b = bullet_scn.instance()
-	b.speed = speed
-	b.target_group = "player"
-	b.damage_type = "bullet"
-	b.velocity = velocity.normalized()
-	bullets_parent.add_child(b)
-	b.global_position = from
-	b.rotation = velocity.angle()
+	Bullets.fire(bullet_scn, "bullet", "player", from, velocity, speed)
 
 func _on_gun_timer_timeout():
 	if dying:

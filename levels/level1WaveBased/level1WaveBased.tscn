@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://levels/level1WaveBased/level1WaveBased.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/wave1.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://art/prototype/trans_dialogue_box.png" type="Texture" id=10]
 [ext_resource path="res://levels/level1StreamBaseed/FPS.gd" type="Script" id=11]
 [ext_resource path="res://levels/level1StreamBaseed/Wave-End.gd" type="Script" id=12]
+[ext_resource path="res://levels/level1WaveBased/Level.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.25, 191.25 )
@@ -60,6 +61,7 @@ tracks/0/keys = {
 [node name="Game Manager" type="Node"]
 
 [node name="Level" type="Node2D" parent="."]
+script = ExtResource( 13 )
 
 [node name="PlayerShip" parent="Level" instance=ExtResource( 4 )]
 position = Vector2( -100, 0 )

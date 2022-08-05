@@ -1,8 +1,9 @@
 tool
-class_name wave1 extends Node2D
+class_name waveStarter
+extends Node2D
 # Script description goes here
 
-onready var enemy = preload("res://ships/enemies/basic_enemy.tscn")
+onready var enemy = preload("res://ships/enemies/enemy1/basic_enemy.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -14,17 +15,14 @@ func _ready():
 
 func _process(delta):
 	pass
-
-func wait(time: float):
-	return get_tree().create_timer(time)
-
+	
 func run_basic_wave():
-	yield(wait(3), "timeout")
+	yield(T.wait(3), D.o)
 	for t in $GruntFormationPoints.get_children():
 		spawn_basic(t)
 	
 func spawn_basic(target: Node2D):
-	yield(wait(rand_range(0, 5)), "timeout")
+	yield(T.wait(rand_range(0, 5)), D.o)
 	var e = enemy.instance()
 	e.bullets_node = $BulletsDump.get_path()
 	$EnemyDump.add_child(e)
