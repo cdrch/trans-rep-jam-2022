@@ -1,6 +1,9 @@
 class_name WindsorShip
 extends KinematicBody2D
 
+signal dying()
+signal dead()
+
 export(float) var speed = 50
 export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
@@ -16,12 +19,8 @@ var dying = false
 
 var target: Vector2
 
-var TOP_ROTATION_LIMIT = deg2rad(45)
-var BOTTOM_ROTATION_LIMIT = deg2rad(-45)
 var direction = 1
 var lerp_weight = 0.5
-var zig_zag_time = 1 # seconds
-var zig_zag_vertical_stretch = 1
 
 func mode_time():
 	match shot_mode:
@@ -59,6 +58,9 @@ func _physics_process(delta):
 func fire(from: Vector2, velocity: Vector2, speed: float):
 	Bullets.fire(bullet_scn, "bullet", "player", from, velocity, speed)
 
+func fire_horizontal():
+	fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
+
 func _on_gun_timer_timeout():
 	if dying:
 		return
@@ -84,8 +86,7 @@ func hurt(type, damage):
 		return
 	hit_points -= damage
 	if hit_points <= 0:
-		die()
-		
+		die()		
 		
 func die():
 	$tex.texture = dead_tex
@@ -93,40 +94,16 @@ func die():
 	collision_layer = 0
 	collision_mask = 0
 	dying = true
+	emit_signal("dying")
 	visible = false
 	
 	for seen in [false, true, false, true, false, true, false, true,]:
 		yield(wait(0.05), "timeout")
 		visible = seen
 	yield(wait(0.25), "timeout")
+	emit_signal("dead")
 	queue_free()
 	
 func add_bullets_node(path: NodePath):
 	bullets_parent = get_node(path)
 	assert(bullets_parent, "Invalid path to bullets_parent:" + path.get_as_property_path())
-
-func go_to_(point: Vector2):
-	pass
-
-func zig_zag(delta):
-	# Looped lerp to get an angle
-	var angle = 0
-	if direction == 1:
-		angle = lerp_angle(TOP_ROTATION_LIMIT, BOTTOM_ROTATION_LIMIT, lerp_weight)
-		if lerp_weight >= 1.0:
-			direction = -1
-	else:
-		angle = lerp_angle(TOP_ROTATION_LIMIT, BOTTOM_ROTATION_LIMIT, lerp_weight)
-		if lerp_weight <= 0.0:
-			direction = 1
-	# Convert to vector2
-	velocity.x = -cos(angle)
-	velocity.y = -sin(angle) * zig_zag_vertical_stretch
-	# TODO: Remove if vertical stretch is never used
-	velocity = velocity.normalized()
-	# Adjusts lerp_weight for next time
-	lerp_weight += delta * direction / zig_zag_time
-	look_at(position - velocity)
-
-
-

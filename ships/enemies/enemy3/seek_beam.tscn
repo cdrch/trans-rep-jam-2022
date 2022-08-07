@@ -4,7 +4,7 @@
 
 [node name="seek_beam" type="Polygon2D"]
 unique_name_in_owner = true
-color = Color( 0.968627, 1, 0, 0.203922 )
+color = Color( 0.968627, 1, 0, 0.560784 )
 polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0 )
 script = ExtResource( 1 )
 

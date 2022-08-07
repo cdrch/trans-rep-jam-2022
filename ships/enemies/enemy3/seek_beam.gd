@@ -22,8 +22,6 @@ func check_location(point):
 func _physics_process(delta):
 	$"%detector".polygon = polygon
 	
-	#$"%raycast".cast_to = Vector2(2, 0) * beam_length
-
 func _on_light_area_area_entered(area):
 	var hit = $"%raycast".get_collider() as Area2D
 	if hit and "player" in hit.get_groups():

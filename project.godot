@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "AsyncSemaphore",
+"language": "GDScript",
+"path": "res://scripts/AsyncSemaphore.gd"
+}, {
 "base": "Area2D",
 "class": "Barrier",
 "language": "GDScript",
 "path": "res://ships/barrier/barrier.gd"
+}, {
+"base": "Reference",
+"class": "Deferred",
+"language": "GDScript",
+"path": "res://scripts/Deferred.gd"
 }, {
 "base": "Camera2D",
 "class": "GameCamera",
@@ -82,15 +92,17 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "wave1",
 "language": "GDScript",
-"path": "res://levels/level1WaveBased/wave.gd"
+"path": "res://levels/level1WaveBased/Waves/wave1.gd"
 }, {
 "base": "Node2D",
-"class": "waveStarter",
+"class": "wave2",
 "language": "GDScript",
-"path": "res://levels/level1WaveBased/waveStarter.gd"
+"path": "res://levels/level1WaveBased/Waves/wave2.gd"
 } ]
 _global_script_class_icons={
+"AsyncSemaphore": "",
 "Barrier": "",
+"Deferred": "",
 "GameCamera": "",
 "GavelShip": "",
 "PlayerShip": "",
@@ -105,7 +117,7 @@ _global_script_class_icons={
 "TE_Util": "",
 "WindsorShip": "",
 "wave1": "",
-"waveStarter": ""
+"wave2": ""
 }
 
 [application]
@@ -126,8 +138,8 @@ Bullets="*res://Autoloads/Bullets.tscn"
 
 window/size/width=640
 window/size/height=360
-window/size/test_width=1920
-window/size/test_height=1080
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
