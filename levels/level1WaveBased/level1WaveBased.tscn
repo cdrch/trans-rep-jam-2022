@@ -68,6 +68,7 @@ position = Vector2( -100, 0 )
 bullets_node = NodePath("../BulletDump")
 
 [node name="Background" parent="Level" instance=ExtResource( 5 )]
+width = 640
 height = 360.0
 
 [node name="BulletDump" type="Node2D" parent="Level"]

@@ -30,6 +30,11 @@ func _ready():
 	visual_target = Vector2(-10, 0)
 	$"%seek_beam".visible = false
 	$"%seek_beam".beam_length = 0
+	$"%seek_beam".connect("found_player", self, "_on_found_player")
+
+func _on_found_player(p):
+	print(p)
+	emit_signal("rot_mode", "FOUND PLAYER")
 
 var checking = false
 func check_location():

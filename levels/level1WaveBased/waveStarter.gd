@@ -50,38 +50,3 @@ func spawn_basic(target: Node2D):
 func rand_child(node: Node2D) -> Node2D: 
 	var children = node.get_children()
 	return children[randi() % children.size()]
-# onready variables
-
-
-# Constants
-
-
-# Enums
-
-
-# Core functions
-#func _init():
-
-
-#func _ready():
-
-
-#func _input(event):
-
-
-#func _unhandled_input(event):
-
-
-#func _process(delta):
-
-
-#func _physics_process(delta):
-
-
-# Getters/Setters
-
-
-# Public functions
-
-
-# Private functions
