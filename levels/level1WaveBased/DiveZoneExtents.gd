@@ -31,7 +31,7 @@ func _process(delta):
 		_editor_process()
 
 func point_in_zone():
-	return Vector2(rand_range(TopLeft.x, BottomRight.x), rand_range(TopLeft.y, BottomRight.y))
+	return global_position + Vector2(rand_range(TopLeft.x, BottomRight.x), rand_range(TopLeft.y, BottomRight.y))
 		
 func _draw():
 	if Engine.editor_hint:

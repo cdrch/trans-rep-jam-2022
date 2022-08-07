@@ -12,6 +12,21 @@ func _ready():
 	if not Engine.editor_hint:
 		$viewport_hint.queue_free()
 		run_basic_wave()
+	
+	var eye = $EnemyDump/SpaceEye
+	eye.move_target = $EyeZone.point_in_zone()
+	eye.visual_target = $DiveZoneExtents.point_in_zone()
+	eye.connect("arrived", self, "eye_arrived", [eye])
+	eye.connect("attuned", self, "eye_attuned", [eye])
+	eye.connect("rot_mode", $Debug, "set_text")
+
+func eye_arrived(eye: SpaceEye):
+	eye.move_target = $EyeZone.point_in_zone()
+
+func eye_attuned(eye: SpaceEye):
+	var t = $DiveZoneExtents.point_in_zone()
+	print("new target: ", t)
+	eye.visual_target = t
 
 func _process(delta):
 	pass

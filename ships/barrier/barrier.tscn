@@ -18,7 +18,7 @@ shape = SubResource( 1 )
 
 [node name="Barrier" type="KinematicBody2D" parent="." groups=["shield"]]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 79
 
 [node name="Barrier" type="Sprite" parent="Barrier"]
 position = Vector2( 3, 0 )

@@ -9,8 +9,6 @@ const held_mask = [1,1,1,1]
 const free_layers = [0,0,0,1]
 const free_mask = [1,1,1,1]
 
-# TODO: "Charge" the barrier by shooting it
-# So that it can attack enemies?
 
 func grab():
 	var barrier = $Barrier
@@ -18,8 +16,6 @@ func grab():
 		barrier.set_collision_layer_bit(i, held_layers[i] == 1)
 		barrier.set_collision_mask_bit(i, held_mask[i] == 1)
 		
-		
-	
 func drop():
 	var barrier = $Barrier
 	for i in 4:

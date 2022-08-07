@@ -4,12 +4,10 @@ extends KinematicBody2D
 export(float) var speed = 50
 export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
-export(NodePath) var bullets_node: NodePath
 
 onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 
-var bullets_parent: Node
 var hit_points = 90
 var can_shoot = false
 var dying = false
@@ -31,8 +29,8 @@ func mode_time():
 		_: return -1
 
 func _ready():
-	$gun_timer.start(mode_time())
-	add_bullets_node(bullets_node)
+	pass
+	#$gun_timer.start(mode_time())
 
 func wait(time: float):
 	return get_tree().create_timer(time)
@@ -85,10 +83,6 @@ func die():
 		visible = seen
 	yield(wait(0.25), "timeout")
 	queue_free()
-	
-func add_bullets_node(path: NodePath):
-	bullets_parent = get_node(path)
-	assert(bullets_parent, "Invalid path to bullets_parent:" + path.get_as_property_path())
 
 func go_to_(point: Vector2):
 	pass

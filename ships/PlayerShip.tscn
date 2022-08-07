@@ -30,7 +30,7 @@ frame_5/delay_sec = 0.0
 
 [node name="PlayerShip" type="KinematicBody2D" groups=["player", "player_ship"]]
 z_index = 100
-collision_mask = 2
+collision_mask = 66
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

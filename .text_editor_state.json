@@ -118,8 +118,8 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
-				"enemies": {
-					"file_path": "res://enemies",
+				"Autoloads": {
+					"file_path": "res://Autoloads",
 					"all": {
 
 					},
@@ -258,6 +258,67 @@
 							"open": true,
 							"tint": "1,1,1,1"
 						},
+						"enemies": {
+							"file_path": "res://ships/enemies",
+							"all": {
+								"enemy1": {
+									"file_path": "res://ships/enemies/enemy1",
+									"all": {
+
+									},
+									"files": [
+
+									],
+									"dirs": [
+
+									],
+									"show": true,
+									"open": true,
+									"tint": "1,1,1,1"
+								},
+								"enemy2": {
+									"file_path": "res://ships/enemies/enemy2",
+									"all": {
+
+									},
+									"files": [
+
+									],
+									"dirs": [
+
+									],
+									"show": true,
+									"open": true,
+									"tint": "1,1,1,1"
+								},
+								"enemy3": {
+									"file_path": "res://ships/enemies/enemy3",
+									"all": {
+
+									},
+									"files": [
+
+									],
+									"dirs": [
+
+									],
+									"show": true,
+									"open": true,
+									"tint": "1,1,1,1"
+								}
+							},
+							"files": [
+
+							],
+							"dirs": [
+								"enemy1",
+								"enemy2",
+								"enemy3"
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						},
 						"projectiles": {
 							"file_path": "res://ships/projectiles",
 							"all": {
@@ -279,6 +340,7 @@
 					],
 					"dirs": [
 						"barrier",
+						"enemies",
 						"projectiles"
 					],
 					"show": true,
@@ -303,12 +365,10 @@
 							"show": true,
 							"open": true,
 							"tint": "1,1,1,1"
-						},
-						"user.cfg": "res://_PM/user.cfg"
+						}
 					},
 					"files": [
-						"res://_PM/project.cfg",
-						"res://_PM/user.cfg"
+						"res://_PM/project.cfg"
 					],
 					"dirs": [
 						"tasks"
@@ -322,10 +382,10 @@
 				"res://README.md"
 			],
 			"dirs": [
+				"Autoloads",
 				"_PM",
 				"art",
 				"audio",
-				"enemies",
 				"levels",
 				"script_templates",
 				"scripts",
@@ -353,23 +413,6 @@
 				"0": {
 					"deep": 0,
 					"name": "trans-rep-jam-2022",
-					"tags": [
-
-					]
-				}
-			},
-			"tags": {
-
-			}
-		},
-		"res://_PM/user.cfg": {
-			"icon": "",
-			"tint": "",
-			"open": false,
-			"symbols": {
-				"-1": {
-					"deep": 0,
-					"name": "",
 					"tags": [
 
 					]

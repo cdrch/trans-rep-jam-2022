@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ships/enemies/enemy3/seek_beam.gd" type="Script" id=1]
+
+[node name="seek_beam" type="Polygon2D"]
+unique_name_in_owner = true
+color = Color( 0.968627, 1, 0, 0.203922 )
+polygon = PoolVector2Array( 0, 0, 64.3652, -4.82739, 64.3652, 4.82739 )
+script = ExtResource( 1 )
+beam_length = 64.546
+
+[node name="light_area" type="Area2D" parent="."]
+
+[node name="raycast" type="RayCast2D" parent="light_area"]
+unique_name_in_owner = true
+enabled = true
+cast_to = Vector2( -129.092, 0 )
+collision_mask = 9
+collide_with_areas = true
+
+[node name="detector" type="CollisionPolygon2D" parent="light_area"]
+unique_name_in_owner = true
+polygon = PoolVector2Array( 0, 0, 64.3652, -4.82739, 64.3652, 4.82739 )
+
+[connection signal="area_entered" from="light_area" to="." method="_on_light_area_area_entered"]

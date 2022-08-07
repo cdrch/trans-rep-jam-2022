@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/scene_manager/SceneManagerConstants.gd"
 }, {
+"base": "Polygon2D",
+"class": "SeekBeam",
+"language": "GDScript",
+"path": "res://ships/enemies/enemy3/seek_beam.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "SpaceEye",
+"language": "GDScript",
+"path": "res://ships/enemies/enemy3/SpaceEyes.gd"
+}, {
 "base": "Node2D",
 "class": "Starfield",
 "language": "GDScript",
@@ -86,6 +96,8 @@ _global_script_class_icons={
 "PlayerShip": "",
 "RectZone": "",
 "SceneManagerConstants": "",
+"SeekBeam": "",
+"SpaceEye": "",
 "Starfield": "",
 "TE_Editor": "",
 "TE_ExtensionHelper": "",
@@ -202,6 +214,7 @@ interaction={
 2d_physics/layer_4="Shield"
 2d_physics/layer_5="Interaction"
 2d_physics/layer_6="Interaction Watcher"
+2d_physics/layer_7="Detection"
 
 [physics]
 
