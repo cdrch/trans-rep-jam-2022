@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://levels/level1WaveBased/level1WaveBased.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/Waves/waveIntro.tscn" type="PackedScene" id=2]
@@ -10,9 +10,10 @@
 [ext_resource path="res://art/prototype/dark_dialogue_box.png" type="Texture" id=8]
 [ext_resource path="res://levels/level1WaveBased/Waves/wave1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://art/prototype/trans_dialogue_box.png" type="Texture" id=10]
-[ext_resource path="res://levels/level1StreamBaseed/FPS.gd" type="Script" id=11]
+[ext_resource path="res://levels/level1WaveBased/FPS.gd" type="Script" id=11]
 [ext_resource path="res://levels/level1WaveBased/Waves/wave2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/level1WaveBased/Level.gd" type="Script" id=13]
+[ext_resource path="res://levels/level1WaveBased/Waves/wave3.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.25, 191.25 )
@@ -70,6 +71,7 @@ bullets_node = NodePath("../BulletDump")
 [node name="Background" parent="Level" instance=ExtResource( 5 )]
 width = 640
 height = 360.0
+scroll_speed = -20
 
 [node name="BulletDump" type="Node2D" parent="Level"]
 
@@ -123,11 +125,15 @@ visible = false
 [node name="wave2" parent="Level/Waves" instance=ExtResource( 12 )]
 visible = false
 
+[node name="wave3" parent="Level/Waves" instance=ExtResource( 14 )]
+visible = false
+
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 current = true
 script = ExtResource( 7 )
 
 [node name="DialogueUI" type="Control" parent="."]
+visible = false
 script = ExtResource( 6 )
 
 [node name="EnemyDialogueBox" type="NinePatchRect" parent="DialogueUI"]
@@ -135,9 +141,9 @@ anchor_left = 8.0
 anchor_top = 4.5
 anchor_right = 8.0
 anchor_bottom = 4.5
-margin_top = 180.0
+margin_top = 80.0
 margin_right = 320.0
-margin_bottom = 280.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 320, 100 )
 texture = ExtResource( 8 )
 patch_margin_left = 10

@@ -2,10 +2,11 @@ extends Node
 
 var bullets_parent: Node2D
 
+var fire_amt = 1
 var weapon
 
 func upgrade():
-	weapon.upgrade()
+	fire_amt += 1
 
 func fire(
 		scene: PackedScene, 

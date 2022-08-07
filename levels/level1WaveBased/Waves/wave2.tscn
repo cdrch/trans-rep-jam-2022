@@ -12,66 +12,70 @@ color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -320, -180, -320, 180, 320, 180, 320, -180 )
 
 [node name="GruntFormationPoints" type="Node2D" parent="."]
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color( 1, 0.913725, 0, 1 )
 
 [node name="C" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 97, -60 )
+position = Vector2( 262, 0 )
 
-[node name="C2" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 135, -126 )
+[node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C"]
+position = Vector2( -252, 91 )
+script = ExtResource( 2 )
+TopLeft = Vector2( 227, -145 )
+BottomRight = Vector2( 257, -119 )
 
-[node name="C3" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 115, -96 )
+[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C/UpperZone"]
+position = Vector2( 227, -145 )
 
-[node name="C4" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 71, -19 )
+[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C/UpperZone"]
+position = Vector2( 257, -119 )
 
-[node name="C8" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 67, 37 )
+[node name="LowerZone" type="Node2D" parent="GruntFormationPoints/C"]
+position = Vector2( -252, 91 )
+script = ExtResource( 2 )
+TopLeft = Vector2( 226, -72 )
+BottomRight = Vector2( 257, -40 )
 
-[node name="C9" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 90, 75 )
+[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C/LowerZone"]
+position = Vector2( 226, -72 )
 
-[node name="M" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 111, 108 )
+[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C/LowerZone"]
+position = Vector2( 257, -40 )
 
-[node name="M2" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 136, 134 )
+[node name="rally" type="Node2D" parent="GruntFormationPoints/C"]
+position = Vector2( -7, 1 )
+
+[node name="C2" type="Position2D" parent="GruntFormationPoints/C/rally"]
+position = Vector2( -91, -23 )
+
+[node name="C3" type="Position2D" parent="GruntFormationPoints/C/rally"]
+position = Vector2( -88, 17 )
+
+[node name="C4" type="Position2D" parent="GruntFormationPoints/C/rally"]
+position = Vector2( -65, 44 )
+
+[node name="C5" type="Position2D" parent="GruntFormationPoints/C/rally"]
+position = Vector2( -67, -48 )
 
 [node name="DiveZoneExtents" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
 script = ExtResource( 2 )
 TopLeft = Vector2( -297, -168 )
-BottomRight = Vector2( -70, 181 )
+BottomRight = Vector2( -66, 174 )
 
 [node name="TopLeft" type="Position2D" parent="DiveZoneExtents"]
 position = Vector2( -297, -168 )
 
 [node name="BottomRight" type="Position2D" parent="DiveZoneExtents"]
-position = Vector2( -70, 181 )
-
-[node name="EyeZone" type="Node2D" parent="."]
-script = ExtResource( 2 )
-TopLeft = Vector2( 142, -180 )
-BottomRight = Vector2( 320, 183 )
-
-[node name="TopLeft" type="Position2D" parent="EyeZone"]
-position = Vector2( 142, -180 )
-
-[node name="BottomRight" type="Position2D" parent="EyeZone"]
-position = Vector2( 320, 183 )
+position = Vector2( -66, 174 )
 
 [node name="Spawners" type="Node2D" parent="."]
 modulate = Color( 0.992157, 0.0823529, 1, 1 )
 
-[node name="Position2D3" type="Position2D" parent="Spawners"]
-position = Vector2( 228, -134 )
+[node name="C" type="Position2D" parent="Spawners"]
+position = Vector2( 237, -145 )
 
-[node name="Position2D5" type="Position2D" parent="Spawners"]
-position = Vector2( 229, -27 )
-
-[node name="Position2D4" type="Position2D" parent="Spawners"]
-position = Vector2( 225, 63 )
+[node name="D" type="Position2D" parent="Spawners"]
+position = Vector2( 250, 154 )
 
 [node name="EnemyDump" type="Node2D" parent="."]
 
@@ -82,8 +86,10 @@ anchor_left = -0.488
 anchor_top = -0.486
 anchor_right = -0.488
 anchor_bottom = -0.486
-margin_left = 161.0
-margin_top = -169.0
-margin_right = 290.0
-margin_bottom = -155.0
+margin_left = 178.0
+margin_top = -177.0
+margin_right = 307.0
+margin_bottom = -163.0
 script = ExtResource( 3 )
+
+[node name="shot_timer" type="Timer" parent="."]

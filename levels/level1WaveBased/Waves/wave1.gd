@@ -59,7 +59,6 @@ func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore)
 	yield(T.wait(rand_range(0, 5)), D.o)
 	var e = enemy.instance()
 	enemies.push_back(weakref(e))
-	e.bullets_node = $BulletsDump.get_path()
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
 	var start = rand_child($Spawners)

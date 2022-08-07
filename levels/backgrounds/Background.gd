@@ -5,6 +5,7 @@ extends Node2D
 
 export(float) var width = 640 setget set_width
 export(float) var height = 320 setget set_height
+export(float, -40, 40) var scroll_speed = -20
 
 func set_width(new_width: float):
 	width = new_width
@@ -19,6 +20,7 @@ var points: PoolVector2Array
 var enabled: PoolByteArray
 var pool_size = 500
 var offset = Vector2(0, 0)
+var warp = 1
 
 
 func point_in_screen():
@@ -46,17 +48,16 @@ func _init():
 func _process(delta):
 	$Position2D.position = Vector2(width/2, -(height/2))
 	
-	offset += Vector2(-20 * delta, 0)
+	offset += Vector2(scroll_speed * delta, 0)
 	for i in pool_size:
-		if (offset.x + points[i].x) < -(width/2):
-			points[i].x += width
+		if (offset.x + points[i].x) < (-(width/2) - warp):
+			points[i].x += width + warp
 			points[i].y = rand_range(-(height/2), (height/2))
 			colors[i] = color_rand()
 	update()
-	
 
 func _draw():
-	var rr = Rect2(points[0], Vector2(1,1))
+	var rr = Rect2(points[0], Vector2(warp, 1))
 	draw_rect(Rect2(-(width/2), -(height/2), width, height), Color.black, true)
 	for i in pool_size:
 		rr.position = points[i] + offset

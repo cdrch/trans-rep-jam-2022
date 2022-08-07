@@ -43,8 +43,8 @@ var enemies = []
 func shot_timer(onDie):
 	while onDie.value > 0:
 		yield(T.wait(rand_range(3, 5)), D.o)
+		enemies = D.clear_freed(enemies)
 		if enemies.size() > 0:
-			enemies = D.clear_freed(enemies)
 			var e = enemies[randi() % enemies.size()]
 			if e.get_ref():
 				e.get_ref().fire_horizontal()
@@ -53,7 +53,6 @@ func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore)
 	yield(T.wait(rand_range(0, 5)), D.o)
 	var e = enemy.instance()
 	enemies.push_back(weakref(e))
-	e.bullets_node = $BulletsDump.get_path()
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
 	var start = rand_child($Spawners)

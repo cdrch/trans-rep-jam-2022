@@ -15,28 +15,13 @@ var chambered = true
 func wait(time: float):
 	return get_tree().create_timer(time)
 
-var burst_num = 1
-
-var upgrade_idx = 0
-
-func upgrade():
-	upgrade_idx += 1
-	
-	match upgrade_idx:
-		1: burst_num += 1
-		2: burst_num += 1
-		3: burst_num += 2
-		_: 
-			pass
-
 func fire(from):
 	if not equipped:
 		return
-	for i in burst_num:
+	for i in Bullets.fire_amt:
 		var dir = Vector2(1, 0).rotated(deg2rad(rand_range(-i, i)))
-		
 		Bullets.fire(bullet, "bullet", "enemy", from, dir, 400)
-		yield(wait(0.05), "timeout")
+		yield(wait(0.15 / Bullets.fire_amt), "timeout")
 
 func _process(delta: float):
 	if Input.is_action_pressed("fire") and chambered:

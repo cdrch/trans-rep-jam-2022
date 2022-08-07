@@ -85,9 +85,14 @@ _global_script_classes=[ {
 "path": "res://addons/text_editor/TE_Util.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "WindsorOfficerShip",
+"language": "GDScript",
+"path": "res://ships/enemies/enemy1/basic_officer.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "WindsorShip",
 "language": "GDScript",
-"path": "res://scripts/enemy_ship_type_a.gd"
+"path": "res://ships/enemies/enemy1/enemy_ship_type_a.gd"
 }, {
 "base": "Node2D",
 "class": "wave1",
@@ -98,6 +103,11 @@ _global_script_classes=[ {
 "class": "wave2",
 "language": "GDScript",
 "path": "res://levels/level1WaveBased/Waves/wave2.gd"
+}, {
+"base": "Node2D",
+"class": "wave3",
+"language": "GDScript",
+"path": "res://levels/level1WaveBased/Waves/wave3.gd"
 } ]
 _global_script_class_icons={
 "AsyncSemaphore": "",
@@ -115,9 +125,11 @@ _global_script_class_icons={
 "TE_ExtensionHelper": "",
 "TE_StopWords": "",
 "TE_Util": "",
+"WindsorOfficerShip": "",
 "WindsorShip": "",
 "wave1": "",
-"wave2": ""
+"wave2": "",
+"wave3": ""
 }
 
 [application]

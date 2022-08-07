@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Controller for the player ship.
 
 # Signals
-
+signal velocity_changed(velocity)
 
 # Member variables
 export(NodePath) var bullets_node: NodePath
@@ -40,14 +40,17 @@ func _process(delta: float) -> void:
 	if velocity.x > 0:
 		$particles3.emitting = false
 		$particles2.emitting = true
+		emit_signal("velocity_changed", "forward")
 	elif velocity.x < 0:
 		$particles3.emitting = false
 		$particles2.emitting = false
 		$particles.emitting = false
+		emit_signal("velocity_changed", "backward")
 	else:
 		$particles3.emitting = false
 		$particles2.emitting = false
 		$particles.emitting = true
+		emit_signal("velocity_changed", "static")
 	
 
 func hurt(type, amount):
@@ -57,6 +60,9 @@ func hurt(type, amount):
 	collision_mask = 0
 	collision_layer = 0
 	$Gunpoint.equipped = false
+	$particles.emitting = false
+	$particles1.emitting = false
+	$particles2.emitting = false
 	$Sprite.texture = ded_tex
 	position = Vector2(0, 0)
 
