@@ -15,22 +15,12 @@ var alive = true
 var speed: float = 180
 var velocity: Vector2
 
-# onready variables
-
-
-# Constants
-
-
-# Enums
-
-
-# Core functions
-#func _init() -> void:
-
+var particles_amount 
 
 func _ready() -> void:
 	# Slightly awkard on account of wanting to be editor-friendly
 	$Gunpoint.bullets_node = $Gunpoint.get_path_to(get_node(bullets_node))
+	particles_amount = $particles.amount
 
 func _process(delta: float) -> void:
 	velocity = Vector2()
@@ -46,6 +36,19 @@ func _process(delta: float) -> void:
 		velocity.y -= 1
 	
 	velocity = velocity.normalized() * speed
+	
+	if velocity.x > 0:
+		$particles3.emitting = false
+		$particles2.emitting = true
+	elif velocity.x < 0:
+		$particles3.emitting = false
+		$particles2.emitting = false
+		$particles.emitting = false
+	else:
+		$particles3.emitting = false
+		$particles2.emitting = false
+		$particles.emitting = true
+	
 
 func hurt(type, amount):
 	if not alive:
@@ -69,12 +72,3 @@ func _physics_process(delta: float) -> void:
 			if groups.has("solid"):
 				velocity = velocity.slide(collision.normal)
 				return
-
-
-# Getters/Setters
-
-
-# Public functions
-
-
-# Private functions

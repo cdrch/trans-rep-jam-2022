@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/easy_velocity_vector_display/vector_display_velocity_as_child.gd" type="Script" id=1]
 [ext_resource path="res://ships/player_ship.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ships/DolphinShipLit1.png" type="Texture" id=8]
 [ext_resource path="res://ships/DolphinShipLit3.png" type="Texture" id=9]
 [ext_resource path="res://ships/ShieldGrabPoint.gd" type="Script" id=10]
+[ext_resource path="res://ships/projectiles/particle.png" type="Texture" id=11]
 
 [sub_resource type="AnimatedTexture" id=1]
 frames = 6
@@ -27,6 +28,22 @@ frame_5/texture = ExtResource( 7 )
 frame_5/delay_sec = 0.0
 
 [sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.432787 )
+colors = PoolColorArray( 0.969238, 1, 0.015625, 1, 1, 0, 0, 0 )
+
+[sub_resource type="Curve" id=5]
+max_value = 4.0
+_data = [ Vector2( 0.0579268, 0.748182 ), 0.0, 0.0, 0, 0, Vector2( 0.990854, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.154098, 0.793443, 1 )
+colors = PoolColorArray( 0.905998, 1, 0.0117188, 1, 0.640918, 0.153867, 0.0250359, 0.846844, 1, 0.231265, 0, 0.211409, 1, 1, 1, 0 )
+
+[sub_resource type="Curve" id=6]
+max_value = 4.0
+_data = [ Vector2( 0.0457317, 0.978636 ), 0.0, 0.0, 0, 0, Vector2( 0.972561, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="PlayerShip" type="KinematicBody2D" groups=["player", "player_ship"]]
 z_index = 100
@@ -54,6 +71,61 @@ script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGrabPoint"]
 shape = SubResource( 2 )
+
+[node name="particles" type="CPUParticles2D" parent="."]
+position = Vector2( -17, 0 )
+amount = 140
+lifetime = 2.1
+local_coords = false
+texture = ExtResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 2 )
+direction = Vector2( -1, 0 )
+spread = 3.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 174.42
+damping = 44.19
+scale_amount = 1.5
+scale_amount_random = 0.54
+color_ramp = SubResource( 3 )
+
+[node name="particles2" type="CPUParticles2D" parent="."]
+position = Vector2( -17, 1 )
+scale = Vector2( 1, -1 )
+amount = 125
+lifetime = 0.5
+local_coords = false
+texture = ExtResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 2 )
+direction = Vector2( -1, 0 )
+spread = 3.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 174.42
+damping = 47.68
+scale_amount = 4.0
+scale_amount_random = 0.09
+scale_amount_curve = SubResource( 5 )
+color_ramp = SubResource( 4 )
+
+[node name="particles3" type="CPUParticles2D" parent="."]
+position = Vector2( -17, -1 )
+amount = 125
+lifetime = 0.5
+local_coords = false
+texture = ExtResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 2 )
+direction = Vector2( -1, 0 )
+spread = 3.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 174.42
+angular_velocity = 108.84
+damping = 47.68
+scale_amount = 4.0
+scale_amount_random = 0.09
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
 
 [connection signal="area_entered" from="ShieldGrabPoint" to="ShieldGrabPoint" method="_on_ShieldGrabPoint_area_entered"]
 [connection signal="area_exited" from="ShieldGrabPoint" to="ShieldGrabPoint" method="_on_ShieldGrabPoint_area_exited"]
