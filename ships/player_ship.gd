@@ -61,8 +61,8 @@ func hurt(type, amount):
 	collision_layer = 0
 	$Gunpoint.equipped = false
 	$particles.emitting = false
-	$particles1.emitting = false
 	$particles2.emitting = false
+	$particles3.emitting = false
 	$Sprite.texture = ded_tex
 	position = Vector2(0, 0)
 
