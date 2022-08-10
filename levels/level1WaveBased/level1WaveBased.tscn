@@ -134,6 +134,7 @@ current = true
 script = ExtResource( 7 )
 
 [node name="DialogueUI" type="Control" parent="."]
+visible = false
 script = ExtResource( 6 )
 
 [node name="EnemyDialogueBox" type="NinePatchRect" parent="DialogueUI"]
