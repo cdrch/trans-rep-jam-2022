@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://levels/level1WaveBased/level1WaveBased.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/Waves/waveIntro.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://levels/level1WaveBased/Waves/wave2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/level1WaveBased/Level.gd" type="Script" id=13]
 [ext_resource path="res://levels/level1WaveBased/Waves/wave3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://fonts/Main Text Font.tres" type="DynamicFont" id=15]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.25, 191.25 )
@@ -69,6 +70,7 @@ position = Vector2( -100, 0 )
 bullets_node = NodePath("../BulletDump")
 
 [node name="Background" parent="Level" instance=ExtResource( 5 )]
+width = 640
 height = 360.0
 scroll_speed = -20
 
@@ -163,6 +165,9 @@ margin_bottom = -7.0
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/EnemyDialogueBox/MarginContainer"]
 margin_right = 306.0
 margin_bottom = 86.0
+rect_clip_content = false
+custom_fonts/normal_font = ExtResource( 15 )
+text = "This is a test text box. I wonder how good it looks in-game?"
 
 [node name="PlayerDialogueBox" type="NinePatchRect" parent="DialogueUI"]
 anchor_left = 1.0
