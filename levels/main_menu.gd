@@ -45,3 +45,19 @@ func _on_Continue_pressed():
 
 func _on_Credits_pressed():
 	pass # Replace with function body.
+
+
+const PRIDE_RED = Color(228, 3, 3)
+const PRIDE_ORANGE = Color(255, 140, 0)
+const PRIDE_YELLOW = Color(255, 237, 0)
+const PRIDE_GREEN = Color(0, 128, 38)
+const PRIDE_INDIGO = Color(36, 64, 142)
+const PRIDE_VIOLET = Color(115, 41, 130)
+var rainbow_colors = [PRIDE_RED, PRIDE_ORANGE, PRIDE_YELLOW, PRIDE_GREEN, PRIDE_INDIGO, PRIDE_VIOLET]
+var current_rainbow_color_index = 5 # Starts at 5 so first call ends up at 0
+
+
+func get_current_rainbow_color() -> Color:
+	current_rainbow_color_index += 1
+	current_rainbow_color_index %= 6
+	return current_rainbow_color_index

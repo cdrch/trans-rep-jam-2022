@@ -60,6 +60,21 @@
 		"": {
 			"file_path": "res://",
 			"all": {
+				"animations": {
+					"file_path": "res://animations",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
 				"art": {
 					"file_path": "res://art",
 					"all": {
@@ -133,7 +148,21 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
-				"export_presets.cfg": "res://export_presets.cfg",
+				"fonts": {
+					"file_path": "res://fonts",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
 				"levels": {
 					"file_path": "res://levels",
 					"all": {
@@ -362,6 +391,21 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
+				"styles": {
+					"file_path": "res://styles",
+					"all": {
+
+					},
+					"files": [
+
+					],
+					"dirs": [
+
+					],
+					"show": true,
+					"open": true,
+					"tint": "1,1,1,1"
+				},
 				"_PM": {
 					"file_path": "res://_PM",
 					"all": {
@@ -380,10 +424,12 @@
 							"show": true,
 							"open": true,
 							"tint": "1,1,1,1"
-						}
+						},
+						"user.cfg": "res://_PM/user.cfg"
 					},
 					"files": [
-						"res://_PM/project.cfg"
+						"res://_PM/project.cfg",
+						"res://_PM/user.cfg"
 					],
 					"dirs": [
 						"tasks"
@@ -394,19 +440,21 @@
 				}
 			},
 			"files": [
-				"res://export_presets.cfg",
 				"res://README.md"
 			],
 			"dirs": [
 				"Autoloads",
 				"_PM",
+				"animations",
 				"art",
 				"audio",
+				"fonts",
 				"levels",
 				"script_templates",
 				"scripts",
 				"settings",
-				"ships"
+				"ships",
+				"styles"
 			],
 			"show": true,
 			"open": true,
@@ -438,7 +486,7 @@
 
 			}
 		},
-		"res://export_presets.cfg": {
+		"res://_PM/user.cfg": {
 			"icon": "",
 			"tint": "",
 			"open": false,
@@ -446,20 +494,6 @@
 				"-1": {
 					"deep": 0,
 					"name": "",
-					"tags": [
-
-					]
-				},
-				"0": {
-					"deep": 0,
-					"name": "preset.0",
-					"tags": [
-
-					]
-				},
-				"13": {
-					"deep": 0,
-					"name": "preset.0.options",
 					"tags": [
 
 					]
