@@ -1,39 +1,54 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://levels/main_menu_2.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/level1WaveBased.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=4]
 
-[node name="Menu" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Basis" type="Node2D"]
 script = ExtResource( 1 )
 scene_on_start = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Background" parent="." instance=ExtResource( 3 )]
+position = Vector2( 320, 180 )
+width = 640
+height = 360
+
+[node name="Menu" type="Control" parent="."]
+margin_top = 360.0
+margin_bottom = 360.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -68.0
 margin_right = 63.0
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
 margin_right = 63.0
 margin_bottom = 20.0
 focus_neighbour_top = NodePath("../QuitButton")
 text = "Start"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 63.0
 margin_bottom = 44.0
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 48.0
 margin_right = 63.0
 margin_bottom = 68.0
 focus_neighbour_bottom = NodePath("../StartButton")
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[node name="PlayerShip" parent="." instance=ExtResource( 4 )]
+position = Vector2( -81, 194 )
+
+[node name="End position" type="Node2D" parent="."]
+position = Vector2( 87, 194 )
+
+[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

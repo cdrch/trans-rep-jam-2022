@@ -6,20 +6,20 @@ extends KinematicBody2D
 # Signals
 signal velocity_changed(velocity)
 
-# Member variables
-export(NodePath) var bullets_node: NodePath
-
 onready var ded_tex = preload("res://ships/ded.png")
 
 var alive = true
 var speed: float = 180
 var velocity: Vector2
+var gun_equipped: bool = false setget set_gun_equipped
+
+func set_gun_equipped(value):
+	$Gunpoint.equipped = value
 
 var particles_amount 
 
 func _ready() -> void:
 	# Slightly awkard on account of wanting to be editor-friendly
-	$Gunpoint.bullets_node = $Gunpoint.get_path_to(get_node(bullets_node))
 	particles_amount = $particles.amount
 
 func _process(delta: float) -> void:

@@ -1,11 +1,12 @@
 tool
-class_name Starfield
+# class_name Starfield
 extends Node2D
 # Script description goes here
 
 export(float) var width = 640 setget set_width
-export(float) var height = 320 setget set_height
+export(float) var height = 360 setget set_height
 export(float, -40, 40) var scroll_speed = -20
+export(int, 1, 20) var warp = 1
 
 func set_width(new_width: float):
 	width = new_width
@@ -20,7 +21,7 @@ var points: PoolVector2Array
 var enabled: PoolByteArray
 var pool_size = 500
 var offset = Vector2(0, 0)
-var warp = 1
+
 
 
 func point_in_screen():

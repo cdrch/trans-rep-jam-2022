@@ -2,12 +2,16 @@ extends Node2D
 
 func _ready():
 	randomize()
+	if Globals.Starfield != null:
+		var backgroundPos = $Background.position
+		$Background.replace_by(Globals.Starfield, true)
+		$Background.position = backgroundPos
 	Bullets.bullets_parent = $BulletDump
 	Bullets.weapon = $PlayerShip/Gunpoint
 	$Barrier.hide()
 	$Barrier.global_position = Vector2(-5000, -5000)
 	$PlayerShip.connect("velocity_changed", self, "_on_player_velocity_changed")
-	start_waves()
+	call_deferred("start_waves")
 
 var player_velocity = "static"
 

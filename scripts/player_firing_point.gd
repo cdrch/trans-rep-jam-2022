@@ -2,8 +2,6 @@ extends Node2D
 
 export(String, "player", "enemy") var target_group: String
 export(float) var reload_time: float = 0.8
-export(NodePath) var bullets_node: NodePath setget add_bullets_node
-
 
 var equipped = true
 

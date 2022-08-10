@@ -133,6 +133,7 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
+				"export_presets.cfg": "res://export_presets.cfg",
 				"levels": {
 					"file_path": "res://levels",
 					"all": {
@@ -379,12 +380,10 @@
 							"show": true,
 							"open": true,
 							"tint": "1,1,1,1"
-						},
-						"user.cfg": "res://_PM/user.cfg"
+						}
 					},
 					"files": [
-						"res://_PM/project.cfg",
-						"res://_PM/user.cfg"
+						"res://_PM/project.cfg"
 					],
 					"dirs": [
 						"tasks"
@@ -395,6 +394,7 @@
 				}
 			},
 			"files": [
+				"res://export_presets.cfg",
 				"res://README.md"
 			],
 			"dirs": [
@@ -438,7 +438,7 @@
 
 			}
 		},
-		"res://_PM/user.cfg": {
+		"res://export_presets.cfg": {
 			"icon": "",
 			"tint": "",
 			"open": false,
@@ -446,6 +446,20 @@
 				"-1": {
 					"deep": 0,
 					"name": "",
+					"tags": [
+
+					]
+				},
+				"0": {
+					"deep": 0,
+					"name": "preset.0",
+					"tags": [
+
+					]
+				},
+				"13": {
+					"deep": 0,
+					"name": "preset.0.options",
 					"tags": [
 
 					]
