@@ -38,42 +38,42 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
-margin_right = 126.0
-margin_bottom = 26.0
+margin_right = 116.0
+margin_bottom = 19.0
 focus_neighbour_top = NodePath("../QuitButton")
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = ExtResource( 8 )
 text = "Start"
 
 [node name="Continue" type="Button" parent="Menu/VBoxContainer"]
-margin_top = 30.0
-margin_right = 126.0
-margin_bottom = 56.0
+margin_top = 23.0
+margin_right = 116.0
+margin_bottom = 42.0
 focus_neighbour_top = NodePath("../QuitButton")
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = ExtResource( 6 )
 text = "Continue"
 
 [node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
-margin_top = 60.0
-margin_right = 126.0
-margin_bottom = 86.0
+margin_top = 46.0
+margin_right = 116.0
+margin_bottom = 65.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = ExtResource( 7 )
 text = "Options"
 
 [node name="Credits" type="Button" parent="Menu/VBoxContainer"]
-margin_top = 90.0
-margin_right = 126.0
-margin_bottom = 116.0
+margin_top = 69.0
+margin_right = 116.0
+margin_bottom = 88.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = ExtResource( 6 )
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
-margin_top = 120.0
-margin_right = 126.0
-margin_bottom = 146.0
+margin_top = 92.0
+margin_right = 116.0
+margin_bottom = 111.0
 focus_neighbour_bottom = NodePath("../StartButton")
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = ExtResource( 8 )

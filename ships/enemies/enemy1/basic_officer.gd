@@ -4,6 +4,7 @@ extends KinematicBody2D
 signal dying()
 signal dead()
 signal arrived()
+signal on_hit(msg)
 
 export(float) var speed = 70
 export(Vector2) var velocity = Vector2(-1, 0)

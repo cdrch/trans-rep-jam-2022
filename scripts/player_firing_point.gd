@@ -25,7 +25,6 @@ func _process(delta: float):
 	if Input.is_action_pressed("fire") and chambered:
 		chambered = false
 		time.start(reload_time)
-		print(global_position)
 		fire(global_position)
 		
 func _on_chambered():

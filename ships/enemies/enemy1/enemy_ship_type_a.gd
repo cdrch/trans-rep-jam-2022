@@ -10,6 +10,7 @@ export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 
 onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
+onready var pellet_scn = preload("res://ships/projectiles/pellet.tscn")
 
 var hit_points = 30
 var can_shoot = false
@@ -68,8 +69,12 @@ func _physics_process(delta):
 func fire(from: Vector2, velocity: Vector2, speed: float):
 	Bullets.fire(bullet_scn, "bullet", "player", from, velocity, speed)
 
+func fire_pellet_horizontal(from: Vector2, velocity: Vector2, speed: float):
+	Bullets.fire(pellet_scn, "bullet", "player", from, velocity, speed)
+
 func fire_horizontal():
 	fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
+
 
 func _on_gun_timer_timeout():
 	if dying:

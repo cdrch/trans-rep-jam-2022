@@ -61,8 +61,7 @@ func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore)
 	enemies.push_back(weakref(e))
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
-	var start = rand_child($Spawners)
-	e.global_position = start.global_position
+	e.global_position = $SpawnZone.point_in_zone()
 	e.target = target.position
 	e.connect("dead", onDie, "done")
 	onSpawn.done()

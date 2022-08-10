@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://levels/level1WaveBased/Waves/wave3.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/DiveZoneExtents.gd" type="Script" id=2]
 [ext_resource path="res://levels/level1WaveBased/Debug.gd" type="Script" id=3]
+[ext_resource path="res://fonts/Main Text Font.tres" type="DynamicFont" id=4]
 
 [node name="waveStarter" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,20 +15,68 @@ polygon = PoolVector2Array( -320, -180, -320, 180, 320, 180, 320, -180 )
 [node name="GruntFormationPoints" type="Node2D" parent="."]
 modulate = Color( 1, 0.913725, 0, 1 )
 
-[node name="C" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 262, 0 )
+[node name="C2" type="Position2D" parent="GruntFormationPoints"]
+position = Vector2( 192, -112 )
 
-[node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C"]
+[node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C2"]
 position = Vector2( -252, 91 )
 script = ExtResource( 2 )
 TopLeft = Vector2( 227, -145 )
 BottomRight = Vector2( 257, -119 )
 
-[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C/UpperZone"]
+[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C2/UpperZone"]
 position = Vector2( 227, -145 )
 
-[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C/UpperZone"]
+[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C2/UpperZone"]
 position = Vector2( 257, -119 )
+
+[node name="LowerZone" type="Node2D" parent="GruntFormationPoints/C2"]
+position = Vector2( -252, 91 )
+script = ExtResource( 2 )
+TopLeft = Vector2( 236, 108 )
+BottomRight = Vector2( 267, 140 )
+
+[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C2/LowerZone"]
+position = Vector2( 236, 108 )
+
+[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C2/LowerZone"]
+position = Vector2( 267, 140 )
+
+[node name="rally" type="Node2D" parent="GruntFormationPoints/C2"]
+position = Vector2( -7, 1 )
+
+[node name="C2" type="Position2D" parent="GruntFormationPoints/C2/rally"]
+position = Vector2( -52, 196 )
+
+[node name="C3" type="Position2D" parent="GruntFormationPoints/C2/rally"]
+position = Vector2( -57, 8 )
+
+[node name="C4" type="Position2D" parent="GruntFormationPoints/C2/rally"]
+position = Vector2( -56, 33 )
+
+[node name="C5" type="Position2D" parent="GruntFormationPoints/C2/rally"]
+position = Vector2( -51, 251 )
+
+[node name="C7" type="Position2D" parent="GruntFormationPoints/C2/rally"]
+position = Vector2( -59, 119 )
+
+[node name="C6" type="Position2D" parent="GruntFormationPoints/C2/rally"]
+position = Vector2( -58, 68 )
+
+[node name="C" type="Position2D" parent="GruntFormationPoints"]
+position = Vector2( 204, 103 )
+
+[node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C"]
+position = Vector2( -252, 91 )
+script = ExtResource( 2 )
+TopLeft = Vector2( 215, -331 )
+BottomRight = Vector2( 245, -305 )
+
+[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C/UpperZone"]
+position = Vector2( 215, -331 )
+
+[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C/UpperZone"]
+position = Vector2( 245, -305 )
 
 [node name="LowerZone" type="Node2D" parent="GruntFormationPoints/C"]
 position = Vector2( -252, 91 )
@@ -45,100 +94,22 @@ position = Vector2( 257, -40 )
 position = Vector2( -7, 1 )
 
 [node name="C2" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -91, -23 )
+position = Vector2( -67, -43 )
 
 [node name="C3" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -88, 17 )
+position = Vector2( -63, 8 )
 
 [node name="C4" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -65, 44 )
+position = Vector2( -72, -257 )
 
 [node name="C5" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -67, -48 )
+position = Vector2( -71, -235 )
 
-[node name="C2" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 157, -117 )
+[node name="C6" type="Position2D" parent="GruntFormationPoints/C/rally"]
+position = Vector2( -69, -118 )
 
-[node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C2"]
-position = Vector2( -252, 91 )
-script = ExtResource( 2 )
-TopLeft = Vector2( 227, -145 )
-BottomRight = Vector2( 257, -119 )
-
-[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C2/UpperZone"]
-position = Vector2( 227, -145 )
-
-[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C2/UpperZone"]
-position = Vector2( 257, -119 )
-
-[node name="LowerZone" type="Node2D" parent="GruntFormationPoints/C2"]
-position = Vector2( -252, 91 )
-script = ExtResource( 2 )
-TopLeft = Vector2( 226, -72 )
-BottomRight = Vector2( 257, -40 )
-
-[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C2/LowerZone"]
-position = Vector2( 226, -72 )
-
-[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C2/LowerZone"]
-position = Vector2( 257, -40 )
-
-[node name="rally" type="Node2D" parent="GruntFormationPoints/C2"]
-position = Vector2( -7, 1 )
-
-[node name="C2" type="Position2D" parent="GruntFormationPoints/C2/rally"]
-position = Vector2( -91, -23 )
-
-[node name="C3" type="Position2D" parent="GruntFormationPoints/C2/rally"]
-position = Vector2( -88, 17 )
-
-[node name="C4" type="Position2D" parent="GruntFormationPoints/C2/rally"]
-position = Vector2( -65, 44 )
-
-[node name="C5" type="Position2D" parent="GruntFormationPoints/C2/rally"]
-position = Vector2( -67, -48 )
-
-[node name="C3" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 174, 103 )
-
-[node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C3"]
-position = Vector2( -252, 91 )
-script = ExtResource( 2 )
-TopLeft = Vector2( 227, -145 )
-BottomRight = Vector2( 257, -119 )
-
-[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C3/UpperZone"]
-position = Vector2( 227, -145 )
-
-[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C3/UpperZone"]
-position = Vector2( 257, -119 )
-
-[node name="LowerZone" type="Node2D" parent="GruntFormationPoints/C3"]
-position = Vector2( -252, 91 )
-script = ExtResource( 2 )
-TopLeft = Vector2( 226, -72 )
-BottomRight = Vector2( 257, -40 )
-
-[node name="TopLeft" type="Position2D" parent="GruntFormationPoints/C3/LowerZone"]
-position = Vector2( 226, -72 )
-
-[node name="BottomRight" type="Position2D" parent="GruntFormationPoints/C3/LowerZone"]
-position = Vector2( 257, -40 )
-
-[node name="rally" type="Node2D" parent="GruntFormationPoints/C3"]
-position = Vector2( -7, 1 )
-
-[node name="C2" type="Position2D" parent="GruntFormationPoints/C3/rally"]
-position = Vector2( -91, -23 )
-
-[node name="C3" type="Position2D" parent="GruntFormationPoints/C3/rally"]
-position = Vector2( -88, 17 )
-
-[node name="C4" type="Position2D" parent="GruntFormationPoints/C3/rally"]
-position = Vector2( -65, 44 )
-
-[node name="C5" type="Position2D" parent="GruntFormationPoints/C3/rally"]
-position = Vector2( -67, -48 )
+[node name="C7" type="Position2D" parent="GruntFormationPoints/C/rally"]
+position = Vector2( -70, -70 )
 
 [node name="B1" type="Node2D" parent="GruntFormationPoints"]
 modulate = Color( 1, 0, 0, 1 )
@@ -208,7 +179,7 @@ position = Vector2( -66, 174 )
 modulate = Color( 0.992157, 0.0823529, 1, 1 )
 
 [node name="C" type="Position2D" parent="Spawners"]
-position = Vector2( 122, -4 )
+position = Vector2( 97, -2 )
 
 [node name="EnemyDump" type="Node2D" parent="."]
 
@@ -223,6 +194,7 @@ margin_left = 178.0
 margin_top = -177.0
 margin_right = 307.0
 margin_bottom = -163.0
+custom_fonts/font = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="shot_timer" type="Timer" parent="."]

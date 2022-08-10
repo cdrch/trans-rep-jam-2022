@@ -3,7 +3,7 @@ extends Area2D
 export(float) var speed: float = 500
 export(String, "player", "enemy") var target_group: String
 export(String, "bullet", "laser", "explosion") var damage_type = "bullet"
-export(float) var damage: float = 10
+export(float) var damage: float = 5
 export(Vector2) var velocity = Vector2(1, 0)
 var spent: bool = false
 

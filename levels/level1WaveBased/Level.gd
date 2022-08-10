@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var next_level = load("res://levels/Level2/level2WaveBased.tscn")
+
 func _ready():
 	randomize()
 	$Camera2D.current = true
@@ -92,5 +94,6 @@ func wave2_done():
 	$Waves/wave3.run_wave()
 	
 func wave3_done():
-	yield(warp(), "done")
-	get_tree().quit(0)
+	Globals.Ship_Pos = $PlayerShip.global_position
+	Globals.stash()
+	get_tree().change_scene_to(next_level)

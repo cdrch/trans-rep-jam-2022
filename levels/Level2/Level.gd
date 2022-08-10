@@ -1,13 +1,18 @@
 extends Node2D
 
 func _ready():
-	randomize()
 	if Globals.Starfield != null:
-		var backgroundPos = $Background.position
-		$Background.replace_by(Globals.Starfield, true)
-		$Background.position = backgroundPos
+		var b_pos = $Background.global_position
+		Globals.replace_node($Background, Globals.Starfield)
+		$Background.global_position = b_pos
+		
+	if Globals.Ship != null:
+		Globals.replace_node($PlayerShip, Globals.Ship)
+		$PlayerShip.global_position = Globals.Ship_Pos
+		
 	Bullets.bullets_parent = $BulletDump
 	Bullets.weapon = $PlayerShip/Gunpoint
+	Bullets.fire_amt = 5
 	$Barrier.hide()
 	$Barrier.global_position = Vector2(-5000, -5000)
 	$PlayerShip.connect("velocity_changed", self, "_on_player_velocity_changed")
@@ -58,32 +63,36 @@ func start_waves():
 	$Waves/introWave.connect("wave_complete", self, "waveIntro_done")
 	$Waves/introWave.run_wave()
 
+onready var main_menu_scn = load("res://levels/main_menu.tscn")
+
 func waveIntro_done():
 	yield(warp(), "done")
 	warping = false
 	Bullets.upgrade()
-	$Waves/introWave.queue_free()
-	$Waves/wave1.show()
-	$Waves/wave1.connect("wave_complete", self, "wave1_done")
-	$Waves/wave1.run_wave()
+	get_tree().change_scene_to(main_menu_scn)
+	#$Waves/introWave.queue_free()
+	#$Waves/wave1.show()
+	#$Waves/wave1.connect("wave_complete", self, "wave1_done")
+	#$Waves/wave1.run_wave()
 	
 func wave1_done():
 	yield(warp(), "done")
 	warping = false
 	Bullets.upgrade()
-	$Waves/wave1.hide()
-	$Waves/wave2.show()
-	$Waves/wave2.connect("wave_complete", self, "wave2_done")
-	$Waves/wave2.run_wave()
+
+	#$Waves/wave1.hide()
+	#$Waves/wave2.show()
+	#$Waves/wave2.connect("wave_complete", self, "wave2_done")
+	#$Waves/wave2.run_wave()
 	
 func wave2_done():
 	yield(warp(), "done")
 	warping = false
 	Bullets.upgrade()
-	$Waves/wave2.hide()
-	$Waves/wave3.show()
-	$Waves/wave3.connect("wave_complete", self, "wave3_done")
-	$Waves/wave3.run_wave()
+	#$Waves/wave2.hide()
+	#$Waves/wave3.show()
+	#$Waves/wave3.connect("wave_complete", self, "wave3_done")
+	#$Waves/wave3.run_wave()
 	
 func wave3_done():
 	yield(warp(), "done")

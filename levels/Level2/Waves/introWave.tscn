@@ -84,14 +84,14 @@ position = Vector2( 187, 131 )
 [node name="DiveZoneExtents" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
 script = ExtResource( 2 )
-TopLeft = Vector2( -317, -171 )
-BottomRight = Vector2( -91, 186 )
+TopLeft = Vector2( -319, -172 )
+BottomRight = Vector2( -190, 186 )
 
 [node name="TopLeft" type="Position2D" parent="DiveZoneExtents"]
-position = Vector2( -317, -171 )
+position = Vector2( -319, -172 )
 
 [node name="BottomRight" type="Position2D" parent="DiveZoneExtents"]
-position = Vector2( -91, 186 )
+position = Vector2( -190, 186 )
 
 [node name="Spawners" type="Node2D" parent="."]
 modulate = Color( 0.992157, 0.0823529, 1, 1 )

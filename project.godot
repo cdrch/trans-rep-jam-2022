@@ -158,6 +158,10 @@ enabled=PoolStringArray( "res://addons/ProjectResolution/plugin.cfg", "res://add
 
 ges=false
 
+[gui]
+
+theme/custom_font="res://fonts/Main Text Font.tres"
+
 [importer_defaults]
 
 texture={

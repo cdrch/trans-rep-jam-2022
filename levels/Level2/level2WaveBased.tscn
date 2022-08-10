@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://levels/Level2/level1WaveBased.gd" type="Script" id=1]
-[ext_resource path="res://levels/level1WaveBased/Waves/waveIntro.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/Level2/Waves/introWave.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/barrier/barrier.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=5]
@@ -66,8 +65,8 @@ script = ExtResource( 9 )
 position = Vector2( -100, 0 )
 
 [node name="Background" parent="Level" instance=ExtResource( 5 )]
-width = 640
-height = 360
+width = 640.0
+height = 360.0
 
 [node name="BulletDump" type="Node2D" parent="Level"]
 
@@ -112,8 +111,7 @@ position = Vector2( -39, -19 )
 
 [node name="Waves" type="Node2D" parent="Level"]
 
-[node name="introWave2" parent="Level/Waves" instance=ExtResource( 2 )]
-visible = false
+[node name="introWave" parent="Level/Waves" instance=ExtResource( 2 )]
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 current = true
@@ -195,6 +193,3 @@ margin_top = 0.960007
 margin_right = 54.32
 margin_bottom = 14.96
 script = ExtResource( 11 )
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource( 1 )

@@ -1,6 +1,5 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://levels/Level2/level1WaveBased.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/Waves/waveIntro.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/barrier/barrier.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=4]
@@ -205,7 +204,5 @@ margin_left = -0.679993
 margin_top = 0.960007
 margin_right = 54.32
 margin_bottom = 14.96
+custom_fonts/font = ExtResource( 15 )
 script = ExtResource( 11 )
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource( 1 )

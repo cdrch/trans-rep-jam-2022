@@ -11,6 +11,7 @@ export(PackedScene) var scene_on_options
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$PlayerShip.velocity_override = Vector2(0, 0)
 	# Grab focus to enable keyboard control
 	$Menu/VBoxContainer/StartButton.grab_focus()
 	$PlayerShip.gun_equipped = false
@@ -28,10 +29,9 @@ func _on_StartButton_pressed():
 	$PlayerShip.velocity_override = null
 	$PlayerShip.gun_equipped = true
 	Globals.Starfield = $Background
-	remove_child($Background)
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.Ship = $PlayerShip
-	remove_child($PlayerShip)
+	Globals.stash()
 	get_tree().change_scene_to(scene_on_start)
 
 

@@ -148,6 +148,7 @@
 					"open": true,
 					"tint": "1,1,1,1"
 				},
+				"export_presets.cfg": "res://export_presets.cfg",
 				"fonts": {
 					"file_path": "res://fonts",
 					"all": {
@@ -224,12 +225,42 @@
 							"show": true,
 							"open": true,
 							"tint": "1,1,1,1"
+						},
+						"Level2": {
+							"file_path": "res://levels/Level2",
+							"all": {
+								"Waves": {
+									"file_path": "res://levels/Level2/Waves",
+									"all": {
+
+									},
+									"files": [
+
+									],
+									"dirs": [
+
+									],
+									"show": true,
+									"open": true,
+									"tint": "1,1,1,1"
+								}
+							},
+							"files": [
+
+							],
+							"dirs": [
+								"Waves"
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
 						}
 					},
 					"files": [
 
 					],
 					"dirs": [
+						"Level2",
 						"backgrounds",
 						"level1StreamBaseed",
 						"level1WaveBased"
@@ -424,12 +455,10 @@
 							"show": true,
 							"open": true,
 							"tint": "1,1,1,1"
-						},
-						"user.cfg": "res://_PM/user.cfg"
+						}
 					},
 					"files": [
-						"res://_PM/project.cfg",
-						"res://_PM/user.cfg"
+						"res://_PM/project.cfg"
 					],
 					"dirs": [
 						"tasks"
@@ -440,6 +469,7 @@
 				}
 			},
 			"files": [
+				"res://export_presets.cfg",
 				"res://README.md"
 			],
 			"dirs": [
@@ -486,7 +516,7 @@
 
 			}
 		},
-		"res://_PM/user.cfg": {
+		"res://export_presets.cfg": {
 			"icon": "",
 			"tint": "",
 			"open": false,
@@ -494,6 +524,20 @@
 				"-1": {
 					"deep": 0,
 					"name": "",
+					"tags": [
+
+					]
+				},
+				"0": {
+					"deep": 0,
+					"name": "preset.0",
+					"tags": [
+
+					]
+				},
+				"13": {
+					"deep": 0,
+					"name": "preset.0.options",
 					"tags": [
 
 					]

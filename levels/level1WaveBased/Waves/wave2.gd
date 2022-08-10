@@ -22,19 +22,25 @@ func shot_timer(onDie):
 		$shot_timer.start(rand_range(1, 3))
 
 
+var boss_list = []
 func _process(delta):
-	pass
-
+	$Debug.text = ""
+	for b in boss_list:
+		if b.get_ref():
+			$Debug.text += "HP: %d" % b.get_ref().hit_points
+		
 func run_wave():
-	run_officer_wave($GruntFormationPoints/C)
+	run_officer_wave($GruntFormationPoints/C, boss_list)
 	
-func run_officer_wave(from):
+func run_officer_wave(from, officer_list):
 	var up = from.get_node("UpperZone")
 	var down = from.get_node("LowerZone")
 	var spawns = from.get_node("rally").get_children()
 	
 	yield(T.wait(0.5), D.o)
 	var officer: WindsorOfficerShip = spawn_officer(from, from)
+	
+	officer_list.push_back(weakref(officer))
 	
 	toggle_moves(officer, from)
 	
@@ -65,11 +71,16 @@ func spawn_officer(target: Node2D, start) -> WindsorOfficerShip:
 	e.target = target.global_position
 	return e
 
+func hit_officer(officer: WeakRef):
+	var o = officer.get_ref()
+	if o and not o.dying:
+		o.hurt("bullet", 1)
+	
+
 func reinforce(target, start, officer: WeakRef):
+	yield(T.wait(rand_range(0.75, 3)), D.o)
 	var o = officer.get_ref()
 	if o and not o.dying and o.hit_points > 20:
-		o.hurt("bullet", 1)
-		yield(T.wait(rand_range(0.75, 3)), D.o)
 		spawn_minion(target, start, o)
 		
 
@@ -80,6 +91,7 @@ func spawn_minion(target: Node2D, start, boss: WindsorOfficerShip):
 	e.global_position = start.global_position
 	e.target = target.global_position
 	boss.connect("dying", e, "die")
+	e.connect("dying", self, "hit_officer", [weakref(boss)])
 	e.connect("dead", self, "reinforce", [target, start, weakref(boss)])
 	enemies.push_back(weakref(e))
 	

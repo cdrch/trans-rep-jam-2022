@@ -29,9 +29,6 @@ func _process(delta: float) -> void:
 	if not alive:
 		return
 	
-	if Input.is_action_just_pressed("fire"):
-		print(global_position)
-	
 	if Input.is_action_pressed('ui_right'):
 		velocity.x += 1
 	if Input.is_action_pressed('ui_left'):
