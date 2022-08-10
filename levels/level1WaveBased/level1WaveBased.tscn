@@ -69,7 +69,6 @@ position = Vector2( -100, 0 )
 bullets_node = NodePath("../BulletDump")
 
 [node name="Background" parent="Level" instance=ExtResource( 5 )]
-width = 640
 height = 360.0
 scroll_speed = -20
 
@@ -133,7 +132,6 @@ current = true
 script = ExtResource( 7 )
 
 [node name="DialogueUI" type="Control" parent="."]
-visible = false
 script = ExtResource( 6 )
 
 [node name="EnemyDialogueBox" type="NinePatchRect" parent="DialogueUI"]
@@ -154,6 +152,18 @@ patch_margin_bottom = 10
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI/EnemyDialogueBox"]
 anims/move_dialogue_up = SubResource( 1 )
 
+[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/EnemyDialogueBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = -7.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/EnemyDialogueBox/MarginContainer"]
+margin_right = 306.0
+margin_bottom = 86.0
+
 [node name="PlayerDialogueBox" type="NinePatchRect" parent="DialogueUI"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -170,6 +180,18 @@ patch_margin_bottom = 10
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI/PlayerDialogueBox"]
 root_node = NodePath("../../EnemyDialogueBox")
 anims/move_dialogue_up = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/PlayerDialogueBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = -7.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/PlayerDialogueBox/MarginContainer"]
+margin_right = 306.0
+margin_bottom = 86.0
 
 [node name="FPS" type="Label" parent="."]
 anchor_left = -0.488
