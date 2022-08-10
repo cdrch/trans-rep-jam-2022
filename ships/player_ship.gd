@@ -10,10 +10,12 @@ onready var ded_tex = preload("res://ships/ded.png")
 
 var alive = true
 var speed: float = 180
+var velocity_override = null
 var velocity: Vector2
 var gun_equipped: bool = false setget set_gun_equipped
 
 func set_gun_equipped(value):
+	print("Gun Equipped: ", value)
 	$Gunpoint.equipped = value
 
 var particles_amount 
@@ -26,6 +28,10 @@ func _process(delta: float) -> void:
 	velocity = Vector2()
 	if not alive:
 		return
+	
+	if Input.is_action_just_pressed("fire"):
+		print(global_position)
+	
 	if Input.is_action_pressed('ui_right'):
 		velocity.x += 1
 	if Input.is_action_pressed('ui_left'):
@@ -35,7 +41,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
 	
-	velocity = velocity.normalized() * speed
+	if velocity_override == null:
+		velocity = velocity.normalized() * speed
+	else:
+		velocity = velocity_override.normalized() * speed
 	
 	if velocity.x > 0:
 		$particles3.emitting = false

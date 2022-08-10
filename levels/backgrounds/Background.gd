@@ -22,8 +22,6 @@ var enabled: PoolByteArray
 var pool_size = 500
 var offset = Vector2(0, 0)
 
-
-
 func point_in_screen():
 	# TODO: Pluck these off 
 	return Vector2(rand_range(-(width/2), (width/2)), rand_range(-(height/2), (height/2)))

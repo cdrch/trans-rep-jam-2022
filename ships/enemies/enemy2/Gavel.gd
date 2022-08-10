@@ -5,21 +5,15 @@ export(float) var speed = 50
 export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 
-onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
+onready var dead_tex = preload("res://ships/enemies/enemy2/sprite7.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 
-var hit_points = 90
+var diving = false
+var hit_points = 180.0
 var can_shoot = false
 var dying = false
 
 var target: Vector2
-
-var TOP_ROTATION_LIMIT = deg2rad(45)
-var BOTTOM_ROTATION_LIMIT = deg2rad(-45)
-var direction = 1
-var lerp_weight = 0.5
-var zig_zag_time = 1 # seconds
-var zig_zag_vertical_stretch = 1
 
 func mode_time():
 	match shot_mode:
@@ -30,7 +24,6 @@ func mode_time():
 
 func _ready():
 	pass
-	#$gun_timer.start(mode_time())
 
 func wait(time: float):
 	return get_tree().create_timer(time)
@@ -39,9 +32,10 @@ func _process(delta):
 	var modulate_factor = 1 - (clamp(hit_points, 0, 30) / 30)
 	var o = lerp(1, 0.5, modulate_factor)
 	modulate = Color(1, o, o)
+	
+	
 
 func _physics_process(delta):
-	# zig_zag(delta)
 	if target:
 		var dir = (target - position) 
 		if dir.length() > speed/10:
@@ -61,14 +55,14 @@ func _on_gun_timer_timeout():
 	if dying:
 		return
 	
-	
 func hurt(type, damage):
 	if dying:
 		return
+	if diving:
+		damage = damage / 10.0
 	hit_points -= damage
 	if hit_points <= 0:
 		die()
-		
 		
 func die():
 	$tex.texture = dead_tex
@@ -79,33 +73,9 @@ func die():
 	visible = false
 	
 	for seen in [false, true, false, true, false, true, false, true,]:
-		yield(wait(0.05), "timeout")
+		yield(T.wait(0.05), D.o)
 		visible = seen
-	yield(wait(0.25), "timeout")
+	yield(T.wait(0.25), D.o)
 	queue_free()
-
-func go_to_(point: Vector2):
-	pass
-
-func zig_zag(delta):
-	# Looped lerp to get an angle
-	var angle = 0
-	if direction == 1:
-		angle = lerp_angle(TOP_ROTATION_LIMIT, BOTTOM_ROTATION_LIMIT, lerp_weight)
-		if lerp_weight >= 1.0:
-			direction = -1
-	else:
-		angle = lerp_angle(TOP_ROTATION_LIMIT, BOTTOM_ROTATION_LIMIT, lerp_weight)
-		if lerp_weight <= 0.0:
-			direction = 1
-	# Convert to vector2
-	velocity.x = -cos(angle)
-	velocity.y = -sin(angle) * zig_zag_vertical_stretch
-	# TODO: Remove if vertical stretch is never used
-	velocity = velocity.normalized()
-	# Adjusts lerp_weight for next time
-	lerp_weight += delta * direction / zig_zag_time
-	look_at(position - velocity)
-
 
 

@@ -23,11 +23,15 @@ func _process(delta):
 
 
 func _on_StartButton_pressed():
-	Input.action_press("ui_right")
+	$PlayerShip.velocity_override = Vector2(1, 0)
 	yield(shipArrived, "done")
-	Input.action_release("ui_right")
+	$PlayerShip.velocity_override = null
+	$PlayerShip.gun_equipped = true
 	Globals.Starfield = $Background
 	remove_child($Background)
+	Globals.Ship_Pos = $PlayerShip.global_position
+	Globals.Ship = $PlayerShip
+	remove_child($PlayerShip)
 	get_tree().change_scene_to(scene_on_start)
 
 

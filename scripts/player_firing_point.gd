@@ -25,11 +25,8 @@ func _process(delta: float):
 	if Input.is_action_pressed("fire") and chambered:
 		chambered = false
 		time.start(reload_time)
+		print(global_position)
 		fire(global_position)
 		
-func add_bullets_node(path: NodePath):
-	bullets_parent = get_node(path)
-	assert(bullets_parent, "Invalid path to bullets_parent:" + path.get_as_property_path())
-
 func _on_chambered():
 	chambered = true

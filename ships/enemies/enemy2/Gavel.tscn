@@ -1,15 +1,47 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ships/enemies/enemy2/Gavel.gd" type="Script" id=1]
 [ext_resource path="res://ships/enemies/enemy2/sprite1.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("tex:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "moving"
+tracks/0/type = "value"
+tracks/0/path = NodePath("tex:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
 
 [node name="Gavel" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/moving = SubResource( 2 )
 
 [node name="tex" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -14, -10, -11, -14, 0, -14, 5, -10, 9, -16, 15, -16, 21, -11, 21, 10, 15, 16, 10, 16, 4, 11, 1, 14, -11, 14, -14, 11, -18, 13, -20, 13, -25, 5, -26, -5, -20, -13, -17, -13 )
+polygon = PoolVector2Array( -14, -10, -11, -14, 0, -14, 4, -10, 9, -16, 15, -16, 21, -11, 21, 10, 15, 16, 10, 16, 4, 11, 1, 14, -11, 14, -14, 11, -18, 13, -20, 13, -26, 5, -26, -5, -20, -13, -17, -13 )

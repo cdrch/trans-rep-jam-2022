@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://levels/Level2/level1WaveBased.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/Waves/waveIntro.tscn" type="PackedScene" id=2]
@@ -8,12 +8,9 @@
 [ext_resource path="res://scripts/dialogue_ui.gd" type="Script" id=6]
 [ext_resource path="res://scripts/game_camera.gd" type="Script" id=7]
 [ext_resource path="res://art/prototype/dark_dialogue_box.png" type="Texture" id=8]
-[ext_resource path="res://levels/level1WaveBased/Waves/wave1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://levels/Level2/Level.gd" type="Script" id=9]
 [ext_resource path="res://art/prototype/trans_dialogue_box.png" type="Texture" id=10]
 [ext_resource path="res://levels/level1WaveBased/FPS.gd" type="Script" id=11]
-[ext_resource path="res://levels/level1WaveBased/Waves/wave2.tscn" type="PackedScene" id=12]
-[ext_resource path="res://levels/level1WaveBased/Level.gd" type="Script" id=13]
-[ext_resource path="res://levels/level1WaveBased/Waves/wave3.tscn" type="PackedScene" id=14]
 [ext_resource path="res://fonts/Main Text Font.tres" type="DynamicFont" id=15]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -63,14 +60,14 @@ tracks/0/keys = {
 [node name="Game Manager" type="Node"]
 
 [node name="Level" type="Node2D" parent="."]
-script = ExtResource( 13 )
+script = ExtResource( 9 )
 
 [node name="PlayerShip" parent="Level" instance=ExtResource( 4 )]
 position = Vector2( -100, 0 )
 
 [node name="Background" parent="Level" instance=ExtResource( 5 )]
-width = 640.0
-height = 360.0
+width = 640
+height = 360
 
 [node name="BulletDump" type="Node2D" parent="Level"]
 
@@ -113,22 +110,14 @@ shape = SubResource( 6 )
 [node name="Barrier" parent="Level" instance=ExtResource( 3 )]
 position = Vector2( -39, -19 )
 
-[node name="Camera2D" type="Camera2D" parent="Level" groups=["camera"]]
-script = ExtResource( 7 )
-
 [node name="Waves" type="Node2D" parent="Level"]
 
-[node name="introWave" parent="Level/Waves" instance=ExtResource( 2 )]
+[node name="introWave2" parent="Level/Waves" instance=ExtResource( 2 )]
 visible = false
 
-[node name="wave1" parent="Level/Waves" instance=ExtResource( 9 )]
-visible = false
-
-[node name="wave2" parent="Level/Waves" instance=ExtResource( 12 )]
-visible = false
-
-[node name="wave3" parent="Level/Waves" instance=ExtResource( 14 )]
-visible = false
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+current = true
+script = ExtResource( 7 )
 
 [node name="DialogueUI" type="Control" parent="."]
 visible = false

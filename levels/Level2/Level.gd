@@ -2,16 +2,10 @@ extends Node2D
 
 func _ready():
 	randomize()
-	$Camera2D.current = true
 	if Globals.Starfield != null:
-		var b_pos = $Background.global_position
-		Globals.replace_node($Background, Globals.Starfield)
-		$Background.global_position = b_pos
-		
-	if Globals.Ship != null:
-		Globals.replace_node($PlayerShip, Globals.Ship)
-		$PlayerShip.global_position = Globals.Ship_Pos
-	
+		var backgroundPos = $Background.position
+		$Background.replace_by(Globals.Starfield, true)
+		$Background.position = backgroundPos
 	Bullets.bullets_parent = $BulletDump
 	Bullets.weapon = $PlayerShip/Gunpoint
 	$Barrier.hide()

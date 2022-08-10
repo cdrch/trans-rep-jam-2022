@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/level1WaveBased/level1WaveBased.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=2]
@@ -8,21 +8,20 @@
 [ext_resource path="res://styles/pink_button_style.tres" type="StyleBox" id=6]
 [ext_resource path="res://styles/white_button_style.tres" type="StyleBox" id=7]
 [ext_resource path="res://styles/blue_button_style.tres" type="StyleBox" id=8]
-[ext_resource path="res://scripts/menu_button.gd" type="Script" id=9]
-[ext_resource path="res://styles/white_button_focus_style.tres" type="StyleBox" id=10]
-[ext_resource path="res://animations/button_rainbow_animation.tres" type="Animation" id=11]
-[ext_resource path="res://styles/pink_button_focus_style.tres" type="StyleBox" id=12]
-[ext_resource path="res://styles/blue_button_focus_style.tres" type="StyleBox" id=13]
-
-[sub_resource type="Animation" id=2]
-length = 0.001
 
 [node name="Basis" type="Node2D"]
+position = Vector2( -320, -180 )
 script = ExtResource( 4 )
 scene_on_start = ExtResource( 1 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 320, 180 )
+current = true
+
 [node name="Background" parent="." instance=ExtResource( 2 )]
 position = Vector2( 320, 180 )
+width = 640.0
+height = 360.0
 
 [node name="Menu" type="Control" parent="."]
 margin_top = 360.0
@@ -31,88 +30,61 @@ margin_bottom = 360.0
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = -171.0
-margin_right = 155.0
+margin_left = 25.0
+margin_top = -111.0
+margin_right = 141.0
 margin_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
-margin_right = 140.0
+margin_right = 126.0
 margin_bottom = 26.0
 focus_neighbour_top = NodePath("../QuitButton")
 custom_fonts/font = ExtResource( 5 )
-custom_styles/hover = ExtResource( 13 )
-custom_styles/focus = ExtResource( 13 )
-custom_styles/disabled = ExtResource( 7 )
 custom_styles/normal = ExtResource( 8 )
 text = "Start"
-script = ExtResource( 9 )
 
-[node name="ContinueButton" type="Button" parent="Menu/VBoxContainer"]
+[node name="Continue" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 30.0
-margin_right = 140.0
+margin_right = 126.0
 margin_bottom = 56.0
+focus_neighbour_top = NodePath("../QuitButton")
 custom_fonts/font = ExtResource( 5 )
-custom_styles/hover = ExtResource( 12 )
-custom_styles/focus = ExtResource( 12 )
 custom_styles/normal = ExtResource( 6 )
 text = "Continue"
-script = ExtResource( 9 )
 
 [node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 60.0
-margin_right = 140.0
+margin_right = 126.0
 margin_bottom = 86.0
 custom_fonts/font = ExtResource( 5 )
-custom_styles/hover = ExtResource( 10 )
-custom_styles/focus = ExtResource( 10 )
 custom_styles/normal = ExtResource( 7 )
 text = "Options"
-script = ExtResource( 9 )
 
-[node name="CreditsButton" type="Button" parent="Menu/VBoxContainer"]
+[node name="Credits" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 90.0
-margin_right = 140.0
+margin_right = 126.0
 margin_bottom = 116.0
 custom_fonts/font = ExtResource( 5 )
-custom_styles/hover = ExtResource( 12 )
-custom_styles/focus = ExtResource( 12 )
 custom_styles/normal = ExtResource( 6 )
 text = "Credits"
-script = ExtResource( 9 )
 
 [node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 120.0
-margin_right = 140.0
+margin_right = 126.0
 margin_bottom = 146.0
 focus_neighbour_bottom = NodePath("../StartButton")
 custom_fonts/font = ExtResource( 5 )
-custom_styles/hover = ExtResource( 13 )
-custom_styles/focus = ExtResource( 13 )
 custom_styles/normal = ExtResource( 8 )
 text = "Quit"
-script = ExtResource( 9 )
-
-[node name="RainbowAnimator" type="AnimationPlayer" parent="Menu"]
-autoplay = "button_rainbow"
-anims/RESET = SubResource( 2 )
-anims/button_rainbow = ExtResource( 11 )
 
 [node name="PlayerShip" parent="." instance=ExtResource( 3 )]
-position = Vector2( -81, 194 )
+position = Vector2( -84, 147 )
 
 [node name="End position" type="Node2D" parent="."]
-position = Vector2( 87, 194 )
+position = Vector2( 223, 150 )
 
-[connection signal="mouse_entered" from="Menu/VBoxContainer/StartButton" to="Menu/VBoxContainer/StartButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="mouse_entered" from="Menu/VBoxContainer/ContinueButton" to="Menu/VBoxContainer/ContinueButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="Menu/VBoxContainer/ContinueButton" to="." method="_on_Continue_pressed"]
-[connection signal="mouse_entered" from="Menu/VBoxContainer/OptionsButton" to="Menu/VBoxContainer/OptionsButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="mouse_entered" from="Menu/VBoxContainer/CreditsButton" to="Menu/VBoxContainer/CreditsButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="Menu/VBoxContainer/CreditsButton" to="." method="_on_Credits_pressed"]
-[connection signal="mouse_entered" from="Menu/VBoxContainer/QuitButton" to="Menu/VBoxContainer/QuitButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
