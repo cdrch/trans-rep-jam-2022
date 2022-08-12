@@ -1,6 +1,7 @@
 class_name WindsorShip
 extends KinematicBody2D
 
+signal arrived()
 signal dying()
 signal dead()
 
@@ -52,16 +53,22 @@ func _process(delta):
 	var o = lerp(1, 0.5, modulate_factor)
 	modulate = Color(1, o, o)
 
+var arrived = false
 func _physics_process(delta):
 	# zig_zag(delta)
 	if target:
 		var dir = (target - position) 
 		if dir.length() > speed/10:
+			arrived = false
 			var collision = move_and_collide(dir.normalized() * speed * delta, true)
 			look_at(target)
 			rotate(PI)
 		else:
 			look_at(position + Vector2(1, 0))
+			if not arrived:
+				arrived = true
+				emit_signal("arrived")
+				
 	else:
 		var collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision

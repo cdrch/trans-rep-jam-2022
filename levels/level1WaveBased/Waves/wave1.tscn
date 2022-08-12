@@ -24,10 +24,10 @@ position = Vector2( 62, -104 )
 position = Vector2( 91, -133 )
 
 [node name="C7" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 157, 18 )
+position = Vector2( 190, 32 )
 
 [node name="C8" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 190, 49 )
+position = Vector2( 223, 63 )
 
 [node name="C14" type="Position2D" parent="GruntFormationPoints"]
 position = Vector2( 64, 78 )
@@ -47,14 +47,14 @@ position = Vector2( 219, -72 )
 [node name="DiveZoneExtents" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
 script = ExtResource( 1 )
-TopLeft = Vector2( -297, -168 )
-BottomRight = Vector2( -70, 181 )
+TopLeft = Vector2( -52, -170 )
+BottomRight = Vector2( 47, 183 )
 
 [node name="TopLeft" type="Position2D" parent="DiveZoneExtents"]
-position = Vector2( -297, -168 )
+position = Vector2( -52, -170 )
 
 [node name="BottomRight" type="Position2D" parent="DiveZoneExtents"]
-position = Vector2( -70, 181 )
+position = Vector2( 47, 183 )
 
 [node name="SpawnZone" type="Node2D" parent="."]
 script = ExtResource( 1 )
@@ -71,7 +71,7 @@ position = Vector2( 320, 183 )
 modulate = Color( 0.992157, 0.0823529, 1, 1 )
 
 [node name="Position2D3" type="Position2D" parent="Spawners"]
-position = Vector2( 159, 74 )
+position = Vector2( 192, 88 )
 
 [node name="Position2D4" type="Position2D" parent="Spawners"]
 position = Vector2( 188, -47 )

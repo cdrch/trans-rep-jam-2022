@@ -25,15 +25,27 @@ func eye_attuned(eye: SpaceEye):
 
 func _process(delta):
 	pass
-	
+
+func reinforce(t, e: WindsorShip, after_spawns, after_deaths: AsyncSemaphore):
+	after_deaths.enter()
+	yield(e, "dead")
+	yield(T.wait(rand_range(0.1, 0.5)), D.o)
+	var re = enemy.instance()
+	spawn_basic(re, t, after_spawns, after_deaths)
+	after_deaths.done()
+
 func run_basic_wave():
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints.get_children()
-	var after_spawns = AsyncSemaphore.new(len(points))
-	var after_deaths = AsyncSemaphore.new(len(points))
+	var after_spawns = AsyncSemaphore.new(0)
+	var after_deaths = AsyncSemaphore.new(0)
 	shot_timer(after_deaths)
+	
 	for t in points:
-		spawn_basic(t, after_spawns, after_deaths)
+		var e = enemy.instance()
+		spawn_basic(e, t, after_spawns, after_deaths)
+		reinforce(t, e, after_spawns, after_deaths)
+	
 	yield(after_spawns, "done")
 	yield(after_deaths, "done")
 	emit_signal("wave_complete")
@@ -48,10 +60,12 @@ func shot_timer(onDie):
 			var e = enemies[randi() % enemies.size()]
 			if e.get_ref():
 				e.get_ref().fire_horizontal()
+ 
 
-func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
+func spawn_basic(e, target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
+	onSpawn.enter()
+	onDie.enter()
 	yield(T.wait(rand_range(0, 5)), D.o)
-	var e = enemy.instance()
 	enemies.push_back(weakref(e))
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
@@ -60,6 +74,7 @@ func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore)
 	e.target = target.position
 	e.connect("dying", onDie, "done")
 	onSpawn.done()
+
 
 func rand_child(node: Node2D) -> Node2D: 
 	var children = node.get_children()

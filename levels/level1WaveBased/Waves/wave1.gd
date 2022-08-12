@@ -41,28 +41,54 @@ func shot_timer(onDie):
 func run_wave():
 	run_basic_wave()
 
+func spawn_floater(onDie: AsyncSemaphore):
+	yield(T.wait(rand_range(1, 4)), D.o)
+	var e = enemy.instance()
+	$EnemyDump.add_child(e)
+	e.shot_mode = "None"
+	e.speed = 75
+	e.hit_points = 20
+	e.modulate = Color(0, 1, 1, 0.7)
+	e.global_position = $SpawnZone.point_in_zone()
+	e.target = $DiveZoneExtents.point_in_zone()
+	onDie.connect("done", e, "die")
+	var e_ref = weakref(e)
+	while e_ref.get_ref():
+		yield(e, "arrived")
+		if e_ref.get_ref():
+			e.target = $DiveZoneExtents.point_in_zone()
+	
 func run_basic_wave():
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints.get_children()
-	var after_spawns = AsyncSemaphore.new(len(points))
-	var after_deaths = AsyncSemaphore.new(len(points))
+	var after_spawns = AsyncSemaphore.new(0)
+	var after_deaths = AsyncSemaphore.new(0)
 	shot_timer(after_deaths)
+	for i in 7:
+		spawn_floater(after_deaths)
 	for t in points:
-		spawn_basic(t, after_spawns, after_deaths)
+		spawn_basic(t.global_position, after_spawns, after_deaths)
+	var t = get_tree().create_tween()
+	t.set_loops()
+	t.tween_interval(3)
+	t.tween_callback(self, "spawn_floater", [after_deaths])
 	yield(after_spawns, "done")
 	print("SPAWNED")
 	yield(after_deaths, "done")
+	t.kill()
 	print("DEADS")
 	emit_signal("wave_complete")
 
-func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
+func spawn_basic(target: Vector2, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
+	onSpawn.enter()
+	onDie.enter()
 	yield(T.wait(rand_range(0, 5)), D.o)
 	var e = enemy.instance()
 	enemies.push_back(weakref(e))
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
 	e.global_position = $SpawnZone.point_in_zone()
-	e.target = target.position
+	e.target = target
 	e.connect("dead", onDie, "done")
 	onSpawn.done()
 
