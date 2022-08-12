@@ -43,8 +43,7 @@ func run_wave():
 
 func spawn_floater(onDie: AsyncSemaphore):
 	yield(T.wait(rand_range(1, 4)), D.o)
-	if onDie.value == 0:
-		return
+	onDie.enter()
 	var e = floater.instance()
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
@@ -53,7 +52,7 @@ func spawn_floater(onDie: AsyncSemaphore):
 	e.modulate = Color(0, 1, 1, 0.7)
 	e.global_position = $SpawnZone.point_in_zone()
 	e.target = $DiveZoneExtents.point_in_zone()
-	onDie.connect("done", e, "die")
+	e.connect("dead", onDie, "done")
 	var e_ref = weakref(e)
 	while e_ref.get_ref():
 		yield(e, "arrived")
@@ -65,19 +64,21 @@ func run_basic_wave():
 	var points = $GruntFormationPoints.get_children()
 	var after_spawns = AsyncSemaphore.new(0)
 	var after_deaths = AsyncSemaphore.new(0)
+	var floater_deaths = AsyncSemaphore.new(0)
 	for i in 12:
-		spawn_floater(after_deaths)
+		spawn_floater(floater_deaths)
 	for t in points:
 		spawn_basic(t.global_position, after_spawns, after_deaths)
 	shot_timer(after_deaths)
 	var t = get_tree().create_tween()
 	t.set_loops()
 	t.tween_interval(2)
-	t.tween_callback(self, "spawn_floater", [after_deaths])
+	t.tween_callback(self, "spawn_floater", [floater_deaths])
 	yield(after_spawns, "done")
 	print("SPAWNED")
 	yield(after_deaths, "done")
 	t.kill()
+	yield(floater_deaths.await(), D.o)
 	print("DEADS")
 	emit_signal("wave_complete")
 

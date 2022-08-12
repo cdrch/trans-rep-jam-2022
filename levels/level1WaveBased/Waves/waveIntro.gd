@@ -30,19 +30,19 @@ func _process(delta):
 func reinforce(t, e: WindsorShip, after_spawns, after_deaths: AsyncSemaphore):
 	after_deaths.enter()
 	yield(e, "dead")
-	yield(T.wait(rand_range(0.1, 0.5)), D.o)
 	
 	var ts = [
 		Vector2(0, 5),
 		Vector2(0, 5).rotated(2*PI/3),
 		Vector2(0, 5).rotated(-2*PI/3)
 	]
-	
+	var i = 0
 	for off in ts:
+		i += 1
 		var re = floater.instance()
 		re.speed = 100
 		re.hit_points = 10
-		spawn_basic(re, t.global_position + off, after_spawns, after_deaths)
+		spawn_basic(re, i / 5.0, t.global_position + off, after_spawns, after_deaths)
 	after_deaths.done()
 
 func run_basic_wave():
@@ -53,7 +53,7 @@ func run_basic_wave():
 
 	for t in points:
 		var e = enemy.instance()
-		spawn_basic(e, t.global_position, after_spawns, after_deaths)
+		spawn_basic(e, rand_range(1, 3), t.global_position, after_spawns, after_deaths)
 		reinforce(t, e, after_spawns, after_deaths)
 
 	shot_timer(after_deaths)
@@ -74,10 +74,10 @@ func shot_timer(onDie):
 				e.get_ref().fire_horizontal()
  
 
-func spawn_basic(e, target: Vector2, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
+func spawn_basic(e, delay, target: Vector2, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
 	onSpawn.enter()
 	onDie.enter()
-	yield(T.wait(rand_range(0, 5)), D.o)
+	yield(T.wait(delay), D.o)
 	enemies.push_back(weakref(e))
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"

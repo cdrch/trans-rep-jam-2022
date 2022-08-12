@@ -1,5 +1,5 @@
 class_name AsyncSemaphore
-
+extends Node
 var value: int = 0
 
 func _init(done_times):
@@ -17,5 +17,6 @@ func done():
 
 func await():
 	if value <= 0:
-		return
-	yield(self, "done")
+		yield(get_tree(), "idle_frame")
+	else:
+		yield(self, "done")
