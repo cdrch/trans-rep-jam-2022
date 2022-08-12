@@ -8,8 +8,9 @@ signal dead()
 export(float) var speed = 50
 export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
+export(Texture) var dead_tex
 
-onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
+# onready var dead_tex = preload("res://ships/enemies/enemy1/enemy-1-death.png")
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 onready var pellet_scn = preload("res://ships/projectiles/pellet.tscn")
 

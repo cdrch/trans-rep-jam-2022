@@ -2,16 +2,16 @@
 
 [ext_resource path="res://addons/easy_velocity_vector_display/vector_display_velocity_as_child.gd" type="Script" id=1]
 [ext_resource path="res://ships/enemies/enemy1/enemy_ship_type_a.gd" type="Script" id=2]
-[ext_resource path="res://ships/enemies/enemy1/enemy-2.png" type="Texture" id=3]
-[ext_resource path="res://ships/enemies/enemy1/enemy-1.png" type="Texture" id=4]
+[ext_resource path="res://ships/enemies/enemy1/floater1.png" type="Texture" id=3]
+[ext_resource path="res://ships/enemies/enemy1/floater2.png" type="Texture" id=4]
 [ext_resource path="res://ships/projectiles/warp.png" type="Texture" id=5]
-[ext_resource path="res://ships/enemies/enemy1/enemy-1-death.png" type="Texture" id=6]
+[ext_resource path="res://ships/enemies/enemy1/floater3.png" type="Texture" id=6]
 
 [sub_resource type="AnimatedTexture" id=1]
 frames = 2
 fps = 9.1
-frame_0/texture = ExtResource( 4 )
-frame_1/texture = ExtResource( 3 )
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 4 )
 frame_1/delay_sec = 0.0
 
 [sub_resource type="Animation" id=2]
@@ -61,11 +61,10 @@ script = ExtResource( 2 )
 dead_tex = ExtResource( 6 )
 
 [node name="tex" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 texture = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 14, 14, 9, 16, 4, 16, -2, 10, -6, 8, -13, 2, -13, -2, -5, -9, 6, -16, 13, -14, 5, -7, 6, 5 )
+polygon = PoolVector2Array( -12, 1, -12, -1, -6, -4, 6, -4, 6, 4, -6, 4 )
 
 [node name="VectorDisplay2DVelocityAsChild" type="Node2D" parent="."]
 script = ExtResource( 1 )
@@ -76,7 +75,9 @@ script = ExtResource( 1 )
 position = Vector2( -17, 0 )
 
 [node name="warp_tex" type="Sprite" parent="."]
-rotation = -6.28319
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+rotation = 6.28319
 texture = ExtResource( 5 )
 
 [node name="anim" type="AnimationPlayer" parent="."]

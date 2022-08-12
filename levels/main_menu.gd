@@ -23,7 +23,11 @@ func _process(delta):
 		shipArrived.done()
 
 
+var starting = false
 func _on_StartButton_pressed():
+	if starting:
+		return
+	starting = true
 	$PlayerShip.velocity_override = Vector2(1, 0)
 	yield(shipArrived, "done")
 	$PlayerShip.velocity_override = null

@@ -5,7 +5,7 @@ extends Node2D
 signal wave_complete()
 
 onready var enemy = preload("res://ships/enemies/enemy1/basic_enemy.tscn")
-
+onready var floater = preload("res://ships/enemies/enemy1/basic_floater.tscn")
 func _ready():
 	if not Engine.editor_hint:
 		$viewport_hint.queue_free()
@@ -43,11 +43,13 @@ func run_wave():
 
 func spawn_floater(onDie: AsyncSemaphore):
 	yield(T.wait(rand_range(1, 4)), D.o)
-	var e = enemy.instance()
+	if onDie.value == 0:
+		return
+	var e = floater.instance()
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
-	e.speed = 75
-	e.hit_points = 20
+	e.speed = 100
+	e.hit_points = 10
 	e.modulate = Color(0, 1, 1, 0.7)
 	e.global_position = $SpawnZone.point_in_zone()
 	e.target = $DiveZoneExtents.point_in_zone()
@@ -63,14 +65,14 @@ func run_basic_wave():
 	var points = $GruntFormationPoints.get_children()
 	var after_spawns = AsyncSemaphore.new(0)
 	var after_deaths = AsyncSemaphore.new(0)
-	shot_timer(after_deaths)
-	for i in 7:
+	for i in 12:
 		spawn_floater(after_deaths)
 	for t in points:
 		spawn_basic(t.global_position, after_spawns, after_deaths)
+	shot_timer(after_deaths)
 	var t = get_tree().create_tween()
 	t.set_loops()
-	t.tween_interval(3)
+	t.tween_interval(2)
 	t.tween_callback(self, "spawn_floater", [after_deaths])
 	yield(after_spawns, "done")
 	print("SPAWNED")

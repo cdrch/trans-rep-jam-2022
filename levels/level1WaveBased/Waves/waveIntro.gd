@@ -4,6 +4,7 @@ extends Node2D
 signal wave_complete()
 
 onready var enemy = preload("res://ships/enemies/enemy1/basic_enemy.tscn")
+onready var floater = preload("res://ships/enemies/enemy1/basic_floater.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -30,8 +31,18 @@ func reinforce(t, e: WindsorShip, after_spawns, after_deaths: AsyncSemaphore):
 	after_deaths.enter()
 	yield(e, "dead")
 	yield(T.wait(rand_range(0.1, 0.5)), D.o)
-	var re = enemy.instance()
-	spawn_basic(re, t, after_spawns, after_deaths)
+	
+	var ts = [
+		Vector2(0, 5),
+		Vector2(0, 5).rotated(2*PI/3),
+		Vector2(0, 5).rotated(-2*PI/3)
+	]
+	
+	for off in ts:
+		var re = floater.instance()
+		re.speed = 100
+		re.hit_points = 10
+		spawn_basic(re, t.global_position + off, after_spawns, after_deaths)
 	after_deaths.done()
 
 func run_basic_wave():
@@ -39,12 +50,13 @@ func run_basic_wave():
 	var points = $GruntFormationPoints.get_children()
 	var after_spawns = AsyncSemaphore.new(0)
 	var after_deaths = AsyncSemaphore.new(0)
-	shot_timer(after_deaths)
-	
+
 	for t in points:
 		var e = enemy.instance()
-		spawn_basic(e, t, after_spawns, after_deaths)
+		spawn_basic(e, t.global_position, after_spawns, after_deaths)
 		reinforce(t, e, after_spawns, after_deaths)
+
+	shot_timer(after_deaths)
 	
 	yield(after_spawns, "done")
 	yield(after_deaths, "done")
@@ -62,7 +74,7 @@ func shot_timer(onDie):
 				e.get_ref().fire_horizontal()
  
 
-func spawn_basic(e, target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
+func spawn_basic(e, target: Vector2, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore):
 	onSpawn.enter()
 	onDie.enter()
 	yield(T.wait(rand_range(0, 5)), D.o)
@@ -71,7 +83,7 @@ func spawn_basic(e, target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemapho
 	e.shot_mode = "None"
 	var start = rand_child($Spawners)
 	e.global_position = start.global_position
-	e.target = target.position
+	e.target = target
 	e.connect("dying", onDie, "done")
 	onSpawn.done()
 
