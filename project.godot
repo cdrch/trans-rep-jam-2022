@@ -146,6 +146,7 @@ D="*res://Autoloads/D.tscn"
 T="*res://Autoloads/T.tscn"
 Bullets="*res://Autoloads/Bullets.tscn"
 Globals="*res://Autoloads/Globals.tscn"
+MixingDeskMusic="*res://Autoloads/MixingDeskMusic.tscn"
 
 [display]
 
