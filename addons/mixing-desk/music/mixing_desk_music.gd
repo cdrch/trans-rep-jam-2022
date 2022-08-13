@@ -204,7 +204,7 @@ func _play_overlays(song):
 			if repeats == i.get_child_count():
 				seqtrk = 0
 				repeats = 0
-			_iplay(.get_child(seqtrk))
+			_iplay(i.get_child(seqtrk))
 		if i.cont == "concat":
 			if repeats < 1:
 				_play_concat(i)
