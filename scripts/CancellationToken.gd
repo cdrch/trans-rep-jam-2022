@@ -14,10 +14,22 @@ func on(sigable, _signal="completed"):
 		results[sigable] = ["completed", res, "done"]
 		cleanup(sigable)
 		return res
+	if sigable is Deferred and not done:
+		var res = Deferred.new()
+		sigable.connect("done", res, "done")
+		results[sigable] = ["done", res, "done"]
+		cleanup(sigable)
+		return res
+	if sigable is AsyncSemaphore and not done:
+		var res = Deferred.new()
+		sigable.connect("done", res, "done")
+		results[sigable] = ["done", res, "done"]
+		cleanup(sigable, "done")
+		return res
 	if not done:
 		var res = Deferred.new()
 		sigable.connect(_signal, res, "done")
-		cleanup(sigable)
+		cleanup(sigable, _signal)
 		results[sigable] = [_signal, res, "done"]
 		return res
 
@@ -31,7 +43,8 @@ func cancel():
 		done = true
 		for k in results.keys():
 			var r = results[k]
-			k.disconnect(r[0], r[1], r[2])
+			if is_instance_valid(k):
+				k.disconnect(r[0], r[1], r[2])
 		results.clear()
 		emit_signal("cancelled")
 

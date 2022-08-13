@@ -24,6 +24,7 @@ var direction = 1
 var lerp_weight = 0.5
 
 var SilverCord = AsyncSemaphore.new(0)
+var token = CancellationToken.new()
 
 func mode_time():
 	match shot_mode:
@@ -38,16 +39,20 @@ func _ready():
 	$gun_timer.start(mode_time())
 	warp_in()
 	
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		token.cancel()
+	
 
 func warp_in():
 	SilverCord.enter()
 	$anim.play("warp_in")
-	yield($anim, "animation_finished")
+	yield(token.on($anim, "animation_finished"), "done")
 	$warp_tex.queue_free()
 	SilverCord.done()
 	
 func wait(time: float):
-	return get_tree().create_timer(time)
+	return token.on(get_tree().create_timer(time), "timeout")
 	
 func _process(delta):
 	var modulate_factor = 1 - (clamp(hit_points, 0, 30) / 30)
@@ -89,17 +94,17 @@ func _on_gun_timer_timeout():
 		return
 	match shot_mode:
 		"None": return
-		"Horizontal": 
+		"Horizontal":
 			fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
 			$gun_timer.start(mode_time())
 		"Vertical": 
 			$gun_timer.start(mode_time())
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, -1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "timeout")
+			yield(wait(0.2), "done")
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, -0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "timeout")
+			yield(wait(0.2), "done")
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, 0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "timeout")
+			yield(wait(0.2), "done")
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, 1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
 		_: return -1
 	
@@ -121,14 +126,14 @@ func die():
 	visible = false
 	
 	for seen in [false, true, false, true, false, true, false, true,]:
-		yield(wait(0.05), "timeout")
+		yield(wait(0.05), "done")
 		visible = seen
-	yield(wait(0.25), "timeout")
+	yield(wait(0.25), "done")
 	emit_signal("dead")
 	async_free()
 
 func async_free():
 	if SilverCord.value == 0:
 		queue_free()
-	yield(SilverCord, "done")
+	yield(token.on(SilverCord), "done")
 	queue_free()

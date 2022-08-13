@@ -32,6 +32,8 @@ func _on_StartButton_pressed():
 	yield(shipArrived, "done")
 	$PlayerShip.velocity_override = null
 	$PlayerShip.gun_equipped = true
+	for i in 5:
+		Bullets.upgrade()
 	Globals.Starfield = $Background
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.Ship = $PlayerShip

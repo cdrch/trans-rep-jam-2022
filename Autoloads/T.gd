@@ -1,5 +1,8 @@
 extends Node
 
-func wait(time :float):
+func wait(time :float, token: CancellationToken = null):
 	var t = get_tree().create_timer(time)
-	yield(t, "timeout")
+	if token != null:
+		yield(token.on(t, "timeout"), "done")
+	else:
+		yield(t, "timeout")

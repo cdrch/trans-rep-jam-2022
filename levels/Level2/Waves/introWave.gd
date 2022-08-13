@@ -3,14 +3,19 @@ extends Node2D
 
 signal wave_complete()
 
-onready var enemy_scn = preload("res://ships/enemies/enemy1/basic_enemy.tscn")
+onready var floater_scn = preload("res://ships/enemies/enemy1/basic_floater.tscn")
 onready var gavel_scn = preload("res://ships/enemies/enemy2/Gavel.tscn")
 
 var SilverCord = AsyncSemaphore.new(0)
+var token = CancellationToken.new()
 
 func _ready():
 	if not Engine.editor_hint:
 		$viewport_hint.queue_free()
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		token.cancel()
 
 func run_wave():
 	run_basic_wave()
@@ -33,26 +38,38 @@ func run_basic_wave():
 	var after_deaths = AsyncSemaphore.new(0)
 	shot_timer(after_deaths)
 	
-	for i in 6:
-		var t = points.pop_at(randi() % points.size())
-		spawn_basic(t, after_spawns, after_deaths, points)
-	spawn_gavel(rand_child($GruntFormationPoints/C), after_deaths)
+	spawn_gavel($Spawners/C, after_deaths)
+	run_circuit(after_deaths)
 	
 	yield(after_deaths, "done")
-	var after_gavels = AsyncSemaphore.new(0)
 	
 	emit_signal("wave_complete")
 
-func spawn_background(bosses: AsyncSemaphore, points: Array):
-	var after_spawns = AsyncSemaphore.new(0)
-	var after_deaths = AsyncSemaphore.new(0)
-	while bosses.value > 0:
-		yield(T.wait(rand_range(1, 3)), D.o)
-		if points.size() > 0:
-			var pt = points.pop_at(randi() % points.size())
-			spawn_basic(pt, after_spawns, after_deaths, points)
-	
-	yield(after_deaths, "done")
+func run_circuit(sem):
+	while sem.value > 0:
+		yield(T.wait(rand_range(0.5, 1.5), token), D.o)
+		var e = floater_scn.instance()
+		$EnemyDump.add_child(e)
+		e.shot_mode = "None"
+		e.hit_points = 10
+		e.speed = 100
+		e.global_position = $track4.point_in_zone()
+		sem.connect("done", e, "die")
+		floater_circuit(e)
+
+func floater_circuit(floater):
+	var ref = weakref(floater)
+	var tok = floater.token
+	while ref.get_ref():
+		floater.target = $track1.point_in_zone()
+		yield(tok.on(floater, "arrived"), "done")
+		floater.target = $track2.point_in_zone()
+		yield(tok.on(floater, "arrived"), "done")
+		floater.target = $track3.point_in_zone()
+		yield(tok.on(floater, "arrived"), "done")
+		floater.target = $track4.point_in_zone()
+		yield(tok.on(floater, "arrived"), "done")
+
 
 var enemies = []
 
@@ -76,15 +93,14 @@ func gavel_dive(g):
 func gavel_shot(g: GavelShip):
 	SilverCord.enter()
 	var ref = weakref(g)
-	yield(T.wait(rand_range(3, 5)), D.o)
+	yield(T.wait(rand_range(3, 5), g.token), D.o)
 	while ref.get_ref() and not g.dying:
-		
 		var dir = g.global_position.direction_to(Globals.Ship.global_position)
 		var off = dir.rotated(PI/2) * 6
 		g.fire(g.global_position + off, dir, 200)
 		g.fire(g.global_position - off, dir, 200)
 		
-		yield(T.wait(rand_range(3, 5)), D.o)
+		yield(T.wait(rand_range(3, 5), g.token), D.o)
 		
 	SilverCord.done()
 	
@@ -108,26 +124,6 @@ func shot_timer(onDie):
 			var e = enemies[randi() % enemies.size()]
 			if e.get_ref():
 				e.get_ref().fire_horizontal()
-
-func spawn_basic(
-	target: Node2D, 
-	onSpawn: AsyncSemaphore, 
-	onDie: AsyncSemaphore,
-	pointMap: Array
-	):
-	onDie.enter()
-	onSpawn.enter()
-	yield(T.wait(rand_range(0, 5)), D.o)
-	var e = enemy_scn.instance()
-	enemies.push_back(weakref(e))
-	$EnemyDump.add_child(e)
-	e.shot_mode = "None"
-	var start = rand_child($Spawners)
-	e.global_position = start.global_position
-	e.target = target.global_position
-	e.connect("dead", onDie, "done")
-	e.connect("dying", self, "return_point", [pointMap, target])
-	onSpawn.done()
 
 func return_point(pointMap: Array, t):
 	pointMap.push_back(t)

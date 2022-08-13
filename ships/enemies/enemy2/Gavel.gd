@@ -12,7 +12,7 @@ export(bool) var warped = false
 
 onready var dead_tex = preload("res://ships/enemies/enemy2/sprite7.png")
 onready var pellet_scn = preload("res://ships/projectiles/pellet.tscn")
-
+var token = CancellationToken.new()
 var diving = false
 var hit_points = 180.0
 var can_shoot = false
@@ -20,6 +20,10 @@ var dying = false
 
 var target: Vector2
 var SilverCord = AsyncSemaphore.new(0)
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		token.cancel()
 
 func mode_time():
 	match shot_mode:
