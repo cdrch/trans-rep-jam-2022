@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Bassline - Picked Bass B.ogg-793f75267b6257f86495cec7f7e09db7.oggstr"
+
+[deps]
+
+source_file="res://audio/music/Bassline - Picked Bass B.ogg"
+dest_files=[ "res://.import/Bassline - Picked Bass B.ogg-793f75267b6257f86495cec7f7e09db7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Action Drums.ogg-e9308b1f3f227ea7273a5c9ea7ea22bc.oggstr"
+
+[deps]
+
+source_file="res://audio/music/Action Drums.ogg"
+dest_files=[ "res://.import/Action Drums.ogg-e9308b1f3f227ea7273a5c9ea7ea22bc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -107,8 +107,38 @@
 				"audio": {
 					"file_path": "res://audio",
 					"all": {
+						"music": {
+							"file_path": "res://audio/music",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						},
 						"projects": {
 							"file_path": "res://audio/projects",
+							"all": {
+
+							},
+							"files": [
+
+							],
+							"dirs": [
+
+							],
+							"show": true,
+							"open": true,
+							"tint": "1,1,1,1"
+						},
+						"sfx": {
+							"file_path": "res://audio/sfx",
 							"all": {
 
 							},
@@ -127,7 +157,9 @@
 
 					],
 					"dirs": [
-						"projects"
+						"music",
+						"projects",
+						"sfx"
 					],
 					"show": true,
 					"open": true,
