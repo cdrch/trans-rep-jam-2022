@@ -23,7 +23,7 @@ func _editor_process():
 func _editor_draw():
 	draw_rect(diveZoneRect, Color.aquamarine * Color(1, 1, 1, 0.3), true)
 	
-func _process(delta):
+func _process(_delta):
 	TopLeft = $TopLeft.position
 	BottomRight = $BottomRight.position
 	

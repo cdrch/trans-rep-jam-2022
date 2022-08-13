@@ -7,9 +7,12 @@ signal wave_complete()
 onready var enemy = preload("res://ships/enemies/enemy1/basic_enemy.tscn")
 onready var officer_scn = preload("res://ships/enemies/enemy1/basic_officer.tscn")
 
+var tok = CancellationToken.new()
+
 func _ready():
 	if not Engine.editor_hint:
 		$viewport_hint.queue_free()
+		connect("wave_complete", tok, "cancel")
 
 var enemies = []
 
@@ -97,9 +100,8 @@ func minion_die(officer: WeakRef):
 	if o and not o.dying:
 		o.hurt("bullet", 1)
 
-
 func reinforce(target, start, officer: WeakRef):
-	yield(T.wait(rand_range(0.25, 1.75)), D.o)
+	yield(tok.on(T.wait(rand_range(0.25, 1.75))), "done")
 	var o = officer.get_ref()
 	if o and not o.dying and o.hit_points > 20:
 		spawn_minion(target, start, o)
@@ -137,7 +139,7 @@ func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore,
 	start = start if start else rand_child($Spawners)
 	e.global_position = start.global_position
 	e.target = target.global_position
-	e.connect("dying", onDie, "done")
+	e.connect("dead", onDie, "done")
 	onSpawn.done()
 
 func rand_child(node: Node2D) -> Node2D: 

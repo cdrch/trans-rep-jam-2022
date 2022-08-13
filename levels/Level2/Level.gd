@@ -68,17 +68,14 @@ onready var main_menu_scn = load("res://levels/main_menu.tscn")
 func waveIntro_done():
 	yield(warp(), "done")
 	warping = false
-	Bullets.upgrade()
-	get_tree().change_scene_to(main_menu_scn)
-	#$Waves/introWave.queue_free()
-	#$Waves/wave1.show()
-	#$Waves/wave1.connect("wave_complete", self, "wave1_done")
-	#$Waves/wave1.run_wave()
+	$Waves/introWave.queue_free()
+	$Waves/wave1.show()
+	$Waves/wave1.connect("wave_complete", self, "wave1_done")
+	$Waves/wave1.run_wave()
 	
 func wave1_done():
 	yield(warp(), "done")
 	warping = false
-	Bullets.upgrade()
 
 	#$Waves/wave1.hide()
 	#$Waves/wave2.show()

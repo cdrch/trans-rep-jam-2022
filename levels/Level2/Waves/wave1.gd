@@ -40,6 +40,9 @@ func run_basic_wave():
 	
 	yield(after_deaths, "done")
 	var after_gavels = AsyncSemaphore.new(0)
+	for g in 3:
+		spawn_gavel(rand_child($GruntFormationPoints/C), after_gavels)
+	yield(spawn_background(after_gavels, points), D.o)
 	
 	emit_signal("wave_complete")
 
