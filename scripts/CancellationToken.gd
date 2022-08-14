@@ -48,5 +48,5 @@ func cancel():
 		results.clear()
 		emit_signal("cancelled")
 
-func _protec(value):
+func _protec(_value):
 	pass

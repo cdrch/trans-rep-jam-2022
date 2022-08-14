@@ -5,7 +5,7 @@ signal arrived()
 signal dying()
 signal dead()
 
-export(float) var speed = 50
+export(float) var speed = 50.0
 export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 export(Texture) var dead_tex
@@ -54,7 +54,7 @@ func warp_in():
 func wait(time: float):
 	return token.on(get_tree().create_timer(time), "timeout")
 	
-func _process(delta):
+func _process(_delta):
 	var modulate_factor = 1 - (clamp(hit_points, 0, 30) / 30)
 	var o = lerp(1, 0.5, modulate_factor)
 	modulate = Color(1, o, o)
@@ -66,7 +66,7 @@ func _physics_process(delta):
 		var dir = (target - position) 
 		if dir.length() > speed/10:
 			arrived = false
-			var collision = move_and_collide(dir.normalized() * speed * delta, true)
+			var _collision = move_and_collide(dir.normalized() * speed * delta, true)
 			look_at(target)
 			rotate(PI)
 		else:
@@ -76,14 +76,14 @@ func _physics_process(delta):
 				emit_signal("arrived")
 				
 	else:
-		var collision = move_and_collide(velocity * speed * delta, true)
+		var _collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
 	
-func fire(from: Vector2, velocity: Vector2, speed: float):
-	Bullets.fire(bullet_scn, "bullet", "player", from, velocity, speed)
+func fire(from: Vector2, direction: Vector2, speed: float):
+	Bullets.fire(bullet_scn, "bullet", "player", from, direction, speed)
 
-func fire_pellet_horizontal(from: Vector2, velocity: Vector2, speed: float):
-	Bullets.fire(pellet_scn, "bullet", "player", from, velocity, speed)
+func fire_pellet_horizontal(from: Vector2, direction: Vector2, speed: float):
+	Bullets.fire(pellet_scn, "bullet", "player", from, direction, speed)
 
 func fire_horizontal():
 	fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
@@ -109,7 +109,7 @@ func _on_gun_timer_timeout():
 		_: return -1
 	
 	
-func hurt(type, damage):
+func hurt(_type, damage):
 	if dying:
 		return
 	hit_points -= damage

@@ -28,33 +28,48 @@ func eye_attuned(eye: SpaceEye):
 	print("new target: ", t)
 	eye.visual_target = t
 
-func _process(delta):
+func _process(_delta):
 	pass
-	
+	 
 func run_basic_wave():
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints/B1.get_children()
 	var after_spawns = AsyncSemaphore.new(0)
 	var after_deaths = AsyncSemaphore.new(0)
+	after_deaths.enter()
 	shot_timer(after_deaths)
-	
+	run_circuit(after_deaths, 20)
+	yield(T.wait(3, token), D.o)
 	spawn_gavel($Spawners/C, after_deaths)
-	run_circuit(after_deaths)
-	
+	yield(T.wait(3, token), D.o)
+	spawn_gavel($Spawners/C, after_deaths)
+	after_deaths.done()
 	yield(after_deaths, "done")
 	
 	emit_signal("wave_complete")
 
-func run_circuit(sem):
-	while sem.value > 0:
-		yield(T.wait(rand_range(0.5, 1.5), token), D.o)
-		var e = floater_scn.instance()
-		$EnemyDump.add_child(e)
-		e.shot_mode = "None"
-		e.hit_points = 10
-		e.speed = 100
+func build_floater(sem):
+	var e = floater_scn.instance()
+	$EnemyDump.add_child(e)
+	e.shot_mode = "None"
+	e.hit_points = 10
+	e.speed = 200
+	sem.connect("done", e, "die")
+	return e
+
+func run_circuit(sem, n_open_burst):
+	var tok = CancellationToken.new()
+	sem.connect("done", tok, "cancel")
+	for i in n_open_burst:
+		var e = build_floater(sem)
 		e.global_position = $track4.point_in_zone()
-		sem.connect("done", e, "die")
+		floater_circuit(e)
+		yield(T.wait(0.1, tok), D.o)
+	
+	while sem.value > 0:
+		yield(T.wait(rand_range(0.1, 0.5), tok), D.o)
+		var e = build_floater(sem)
+		e.global_position = $track4.point_in_zone()
 		floater_circuit(e)
 
 func floater_circuit(floater):
@@ -115,6 +130,7 @@ func spawn_gavel(at, onDie):
 	g.connect("dead", onDie, "done")
 	gavel_dive(g)
 	gavel_shot(g)
+	return g
 
 func shot_timer(onDie):
 	while onDie.value > 0:
