@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://levels/level1WaveBased/DiveZoneExtents.gd" type="Script" id=1]
+[ext_resource path="res://levels/level1WaveBased/Debug.gd" type="Script" id=2]
+[ext_resource path="res://levels/Level2/Waves/introWave.gd" type="Script" id=3]
+
+[node name="waveStarter" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="viewport_hint" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -320, -180, -320, 180, 320, 180, 320, -180 )
+
+[node name="GruntFormationPoints" type="Node2D" parent="."]
+modulate = Color( 1, 0.913725, 0, 1 )
+
+[node name="B1" type="Node2D" parent="GruntFormationPoints"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -55, 6 )
+
+[node name="C" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 184, -113 )
+
+[node name="C2" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 150, -98 )
+
+[node name="C3" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 121, -71 )
+
+[node name="C4" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 109, -31 )
+
+[node name="C5" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 110, 13 )
+
+[node name="C6" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 134, 51 )
+
+[node name="C7" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 172, 69 )
+
+[node name="C8" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 206, 57 )
+
+[node name="C9" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 240, 37 )
+
+[node name="C10" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 253, 8 )
+
+[node name="C11" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 257, -32 )
+
+[node name="C12" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 245, -69 )
+
+[node name="C13" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 228, -92 )
+
+[node name="C14" type="Position2D" parent="GruntFormationPoints/B1"]
+position = Vector2( 210, -105 )
+
+[node name="DiveZoneExtents" type="Node2D" parent="."]
+position = Vector2( 0, -7 )
+script = ExtResource( 1 )
+TopLeft = Vector2( -319, -172 )
+BottomRight = Vector2( -190, 186 )
+
+[node name="TopLeft" type="Position2D" parent="DiveZoneExtents"]
+position = Vector2( -319, -172 )
+
+[node name="BottomRight" type="Position2D" parent="DiveZoneExtents"]
+position = Vector2( -190, 186 )
+
+[node name="EyeZone" type="Node2D" parent="."]
+position = Vector2( 0, -7 )
+script = ExtResource( 1 )
+TopLeft = Vector2( 64, -170 )
+BottomRight = Vector2( 162, 189 )
+
+[node name="TopLeft" type="Position2D" parent="EyeZone"]
+position = Vector2( 64, -170 )
+
+[node name="BottomRight" type="Position2D" parent="EyeZone"]
+position = Vector2( 162, 189 )
+
+[node name="Spawners" type="Node2D" parent="."]
+modulate = Color( 0.992157, 0.0823529, 1, 1 )
+
+[node name="C" type="Position2D" parent="Spawners"]
+position = Vector2( 115, -1 )
+
+[node name="EnemyDump" type="Node2D" parent="."]
+
+[node name="BulletsDump" type="Node2D" parent="."]
+
+[node name="Debug" type="Label" parent="."]
+anchor_left = -0.488
+anchor_top = -0.486
+anchor_right = -0.488
+anchor_bottom = -0.486
+margin_left = 178.0
+margin_top = -177.0
+margin_right = 307.0
+margin_bottom = -163.0
+script = ExtResource( 2 )
+
+[node name="shot_timer" type="Timer" parent="."]

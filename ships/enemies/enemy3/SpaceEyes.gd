@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 signal attuned()
 signal arrived()
+signal player_found(at)
 signal rot_mode(mode)
 
 var up_extent_dir
@@ -33,8 +34,8 @@ func _ready():
 	$"%seek_beam".connect("found_player", self, "_on_found_player")
 
 func _on_found_player(p):
-	print(p)
 	emit_signal("rot_mode", "FOUND PLAYER")
+	emit_signal("player_found", p.global_position)
 
 var checking = false
 func check_location():

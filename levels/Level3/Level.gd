@@ -14,8 +14,6 @@ func _ready():
 		
 	Bullets.bullets_parent = $BulletDump
 	Bullets.weapon = $PlayerShip/Gunpoint
-	$Barrier.hide()
-	$Barrier.global_position = Vector2(-5000, -5000)
 	$PlayerShip.connect("velocity_changed", self, "_on_player_velocity_changed")
 	call_deferred("start_waves")
 

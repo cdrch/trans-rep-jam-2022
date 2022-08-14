@@ -70,9 +70,7 @@ func _physics_process(delta):
 			look_at(target)
 			rotate(PI)
 		else:
-			if not arrived:
-				arrived = true
-				emit_signal("arrived")
+			emit_signal("arrived")
 			look_at(position + Vector2(1, 0))
 			$anim.play("RESET")
 	else:
@@ -99,12 +97,12 @@ func async_free():
 	queue_free()
 
 func die():
+	dying = true
 	emit_signal("dying")
 	$tex.texture = dead_tex
 	# Disable collision
 	collision_layer = 0
 	collision_mask = 0
-	dying = true
 	visible = false
 	
 	for seen in [false, true, false, true, false, true, false, true,]:

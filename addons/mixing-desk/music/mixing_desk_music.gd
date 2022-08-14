@@ -106,7 +106,7 @@ func _process(delta):
 	if suppress_beat > 0:
 		suppress_beat -= delta
 		return
-	if playing:
+	if playing and is_instance_valid(ref_track):
 		time = ref_track.get_playback_position()
 		beat = int(floor(((time/beats_in_sec) * 1000.0) + 1.0))
 		if beat != last_beat && (beat - 1) % int(bars * beats_in_bar) + 1 != last_beat:

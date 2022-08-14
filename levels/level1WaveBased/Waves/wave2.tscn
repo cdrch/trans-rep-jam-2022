@@ -16,7 +16,7 @@ polygon = PoolVector2Array( -320, -180, -320, 180, 320, 180, 320, -180 )
 modulate = Color( 1, 0.913725, 0, 1 )
 
 [node name="C" type="Position2D" parent="GruntFormationPoints"]
-position = Vector2( 262, 0 )
+position = Vector2( 210, 1 )
 
 [node name="UpperZone" type="Node2D" parent="GruntFormationPoints/C"]
 position = Vector2( -252, 91 )
@@ -46,16 +46,16 @@ position = Vector2( 257, -40 )
 position = Vector2( -7, 1 )
 
 [node name="C2" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -91, -23 )
+position = Vector2( -84, -24 )
 
 [node name="C3" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -88, 17 )
+position = Vector2( -84, 16 )
 
 [node name="C4" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -65, 44 )
+position = Vector2( -61, 44 )
 
 [node name="C5" type="Position2D" parent="GruntFormationPoints/C/rally"]
-position = Vector2( -67, -48 )
+position = Vector2( -66, -57 )
 
 [node name="DiveZoneExtents" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
@@ -68,6 +68,18 @@ position = Vector2( -321, -174 )
 
 [node name="BottomRight" type="Position2D" parent="DiveZoneExtents"]
 position = Vector2( -296, 187 )
+
+[node name="WanderZone" type="Node2D" parent="."]
+position = Vector2( 0, -7 )
+script = ExtResource( 2 )
+TopLeft = Vector2( 17, -172 )
+BottomRight = Vector2( 318, 186 )
+
+[node name="TopLeft" type="Position2D" parent="WanderZone"]
+position = Vector2( 17, -172 )
+
+[node name="BottomRight" type="Position2D" parent="WanderZone"]
+position = Vector2( 318, 186 )
 
 [node name="Spawners" type="Node2D" parent="."]
 modulate = Color( 0.992157, 0.0823529, 1, 1 )

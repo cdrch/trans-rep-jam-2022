@@ -32,6 +32,7 @@ func on(sigable, _signal="completed"):
 		cleanup(sigable, _signal)
 		results[sigable] = [_signal, res, "done"]
 		return res
+	return Deferred.new()
 
 func cleanup(sigable, _signal="completed"):
 	yield(sigable, _signal)

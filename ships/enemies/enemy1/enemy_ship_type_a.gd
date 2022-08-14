@@ -18,7 +18,7 @@ var hit_points = null setget set_hp
 var can_shoot = false
 var dying = false
 
-var target: Vector2
+var target
 
 var direction = 1
 var lerp_weight = 0.5
@@ -65,20 +65,22 @@ func wait(time: float):
 
 var arrived = false
 func _physics_process(delta):
+	var target_pos
+	if is_instance_valid(target) and target is Node2D:
+		target_pos = target.global_position
+	elif target is Vector2:
+		target_pos = target
 	# zig_zag(delta)
-	if target:
-		var dir = (target - position) 
+	if target_pos:
+		var dir = (target_pos - position) 
 		if dir.length() > speed/10:
 			arrived = false
 			var _collision = move_and_collide(dir.normalized() * speed * delta, true)
-			look_at(target)
+			look_at(target_pos)
 			rotate(PI)
 		else:
 			look_at(position + Vector2(1, 0))
-			if not arrived:
-				arrived = true
-				emit_signal("arrived")
-				
+			emit_signal("arrived")
 	else:
 		var _collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
