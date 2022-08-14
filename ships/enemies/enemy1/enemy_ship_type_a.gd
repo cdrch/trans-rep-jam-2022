@@ -14,7 +14,7 @@ export(Texture) var dead_tex
 onready var bullet_scn = preload("res://ships/projectiles/bullet.tscn")
 onready var pellet_scn = preload("res://ships/projectiles/pellet.tscn")
 
-var hit_points = 30
+var hit_points = null setget set_hp
 var can_shoot = false
 var dying = false
 
@@ -33,6 +33,16 @@ func mode_time():
 		"Horizontal": return rand_range(2, 4)
 		_: return -1
 
+var base_hp
+func set_hp(value):
+	hit_points = value
+	if base_hp == null:
+		base_hp = value
+	var modulate_factor = 1 - (clamp(hit_points, 0, base_hp) / base_hp)
+	var o = lerp(1, 0.5, modulate_factor)
+	modulate = Color(1, o, o)
+	
+
 func _ready():
 	$tex.modulate = Color(1,1,1,0)
 	$warp_tex.visible = true
@@ -42,7 +52,6 @@ func _ready():
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
 		token.cancel()
-	
 
 func warp_in():
 	SilverCord.enter()
@@ -53,11 +62,6 @@ func warp_in():
 	
 func wait(time: float):
 	return token.on(get_tree().create_timer(time), "timeout")
-	
-func _process(_delta):
-	var modulate_factor = 1 - (clamp(hit_points, 0, 30) / 30)
-	var o = lerp(1, 0.5, modulate_factor)
-	modulate = Color(1, o, o)
 
 var arrived = false
 func _physics_process(delta):
@@ -88,7 +92,6 @@ func fire_pellet_horizontal(from: Vector2, direction: Vector2, speed: float):
 func fire_horizontal():
 	fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
 
-
 func _on_gun_timer_timeout():
 	if dying:
 		return
@@ -112,11 +115,12 @@ func _on_gun_timer_timeout():
 func hurt(_type, damage):
 	if dying:
 		return
-	hit_points -= damage
+	set_hp(hit_points - damage)
 	if hit_points <= 0:
 		die()
-		
+
 func die():
+	set_hp(0)
 	$tex.texture = dead_tex
 	# Disable collision
 	collision_layer = 0

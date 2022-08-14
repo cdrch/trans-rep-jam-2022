@@ -53,6 +53,7 @@ func run_basic_wave():
 
 	for t in points:
 		var e = enemy.instance()
+		e.hit_points = 30
 		spawn_basic(e, rand_range(1, 3), t.global_position, after_spawns, after_deaths)
 		reinforce(t, e, after_spawns, after_deaths)
 

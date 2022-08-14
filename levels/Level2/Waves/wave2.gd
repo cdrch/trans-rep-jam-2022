@@ -15,7 +15,6 @@ func _ready():
 func run_wave():
 	run_basic_wave()
 
-	
 func run_basic_wave():
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints/B1.get_children()

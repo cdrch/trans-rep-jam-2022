@@ -89,6 +89,7 @@ func reinforce(target, start, officer: WeakRef):
 func spawn_minion(target: Node2D, start, boss: WindsorOfficerShip):
 	var e = enemy.instance()
 	$EnemyDump.add_child(e)
+	e.hit_points = 30
 	e.shot_mode = "None"
 	e.global_position = start.global_position
 	e.target = target.global_position
@@ -114,6 +115,7 @@ func spawn_basic(target: Node2D, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore,
 	var e = enemy.instance()
 	enemies.push_back(weakref(e))
 	e.bullets_node = $BulletsDump.get_path()
+	e.hit_points = 30
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
 	start = start if start else rand_child($Spawners)

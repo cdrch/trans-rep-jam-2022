@@ -55,7 +55,7 @@ position = Vector2( 114, 66 )
 position = Vector2( 147, 88 )
 
 [node name="C12" type="Position2D" parent="GruntFormationPoints/B1"]
-position = Vector2( 91, 39 )
+position = Vector2( 95, 36 )
 
 [node name="C10" type="Position2D" parent="GruntFormationPoints/B1"]
 position = Vector2( 93, 10 )
@@ -93,11 +93,11 @@ position = Vector2( 0, 186 )
 [node name="track2" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
 script = ExtResource( 2 )
-TopLeft = Vector2( 218, 97 )
+TopLeft = Vector2( 232, 96 )
 BottomRight = Vector2( 316, 184 )
 
 [node name="TopLeft" type="Position2D" parent="track2"]
-position = Vector2( 218, 97 )
+position = Vector2( 232, 96 )
 
 [node name="BottomRight" type="Position2D" parent="track2"]
 position = Vector2( 316, 184 )
@@ -105,26 +105,26 @@ position = Vector2( 316, 184 )
 [node name="track3" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
 script = ExtResource( 2 )
-TopLeft = Vector2( 224, -171 )
-BottomRight = Vector2( 321, -56 )
+TopLeft = Vector2( 232, -172 )
+BottomRight = Vector2( 317, -82 )
 
 [node name="TopLeft" type="Position2D" parent="track3"]
-position = Vector2( 224, -171 )
+position = Vector2( 232, -172 )
 
 [node name="BottomRight" type="Position2D" parent="track3"]
-position = Vector2( 321, -56 )
+position = Vector2( 317, -82 )
 
 [node name="track4" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
 script = ExtResource( 2 )
-TopLeft = Vector2( -81, -172 )
-BottomRight = Vector2( 5, -67 )
+TopLeft = Vector2( -85, -173 )
+BottomRight = Vector2( -2, -89 )
 
 [node name="TopLeft" type="Position2D" parent="track4"]
-position = Vector2( -81, -172 )
+position = Vector2( -85, -173 )
 
 [node name="BottomRight" type="Position2D" parent="track4"]
-position = Vector2( 5, -67 )
+position = Vector2( -2, -89 )
 
 [node name="Spawners" type="Node2D" parent="."]
 modulate = Color( 0.992157, 0.0823529, 1, 1 )

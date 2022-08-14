@@ -68,7 +68,6 @@ position = Vector2( 142, -180 )
 position = Vector2( 320, 183 )
 
 [node name="Spawners" type="Node2D" parent="."]
-modulate = Color( 0.992157, 0.0823529, 1, 1 )
 
 [node name="Position2D3" type="Position2D" parent="Spawners"]
 position = Vector2( 192, 88 )

@@ -49,7 +49,6 @@ func spawn_floater(onDie: AsyncSemaphore):
 	e.shot_mode = "None"
 	e.speed = 100
 	e.hit_points = 10
-	e.modulate = Color(0, 1, 1, 0.7)
 	e.global_position = $SpawnZone.point_in_zone()
 	e.target = $DiveZoneExtents.point_in_zone()
 	e.connect("dead", onDie, "done")
@@ -87,6 +86,7 @@ func spawn_basic(target: Vector2, onSpawn: AsyncSemaphore, onDie: AsyncSemaphore
 	onDie.enter()
 	yield(T.wait(rand_range(0, 5)), D.o)
 	var e = enemy.instance()
+	e.hit_points = 30
 	enemies.push_back(weakref(e))
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"

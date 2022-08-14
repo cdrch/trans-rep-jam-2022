@@ -10,7 +10,7 @@ export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 export(bool) var warped = false
 
-onready var dead_tex = preload("res://ships/enemies/enemy2/sprite7.png")
+onready var dead_tex = preload("res://ships/enemies/enemy2/carrier7.png")
 onready var pellet_scn = preload("res://ships/projectiles/pellet.tscn")
 var token = CancellationToken.new()
 var diving = false
@@ -39,8 +39,8 @@ func wait(time: float):
 	return get_tree().create_timer(time)
 	
 func _process(delta):
-	var modulate_factor = 1 - (clamp(hit_points, 0, 30) / 30)
-	var o = lerp(1, 0.5, modulate_factor)
+	var modulate_factor = 1 - (clamp(hit_points, 0, 180) / 180)
+	var o = lerp(1, 0.2, modulate_factor)
 	modulate = Color(1, o, o)
 
 var arrived = false
@@ -82,9 +82,6 @@ func _physics_process(delta):
 func fire(from: Vector2, velocity: Vector2, speed: float):
 	Bullets.fire(pellet_scn, "bullet", "player", from, velocity, speed)
 
-func _on_gun_timer_timeout():
-	if dying:
-		return
 	
 func hurt(type, damage):
 	if dying:

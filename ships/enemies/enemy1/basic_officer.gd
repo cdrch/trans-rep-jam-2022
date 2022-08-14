@@ -54,7 +54,7 @@ func wait(time: float):
 	return get_tree().create_timer(time)
 	
 func _process(delta):
-	var modulate_factor = 1 - (clamp(hit_points, 0, 30) / 30)
+	var modulate_factor = 1 - (clamp(hit_points, 0, 90) / 90)
 	var o = lerp(1, 0.5, modulate_factor)
 	modulate = Color(base_modulate.r, base_modulate.g * o, base_modulate.b * o)
 
