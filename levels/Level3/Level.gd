@@ -15,6 +15,17 @@ func _ready():
 	Bullets.bullets_parent = $BulletDump
 	Bullets.weapon = $PlayerShip/Gunpoint
 	$PlayerShip.connect("velocity_changed", self, "_on_player_velocity_changed")
+	var t = get_tree().create_tween()
+	t.tween_property(
+		$Barrier, "global_position", $BarrierTarget.global_position, 2
+	).set_ease(Tween.EASE_IN_OUT
+	).set_trans(Tween.TRANS_QUAD)
+	t.tween_callback(self, "shield_tutorial")
+
+func shield_tutorial():
+	$"%tutorial1".show()
+	yield($Barrier, "grabbed")
+	$"%tutorial1".queue_free()
 	call_deferred("start_waves")
 
 var player_velocity = "static"
@@ -66,9 +77,9 @@ func waveIntro_done():
 	yield(warp(), "done")
 	warping = false
 	$Waves/introWave.queue_free()
-	$Waves/wave1.show()
-	$Waves/wave1.connect("wave_complete", self, "wave1_done")
-	$Waves/wave1.run_wave()
+	#$Waves/wave1.show()
+	#$Waves/wave1.connect("wave_complete", self, "wave1_done")
+	#$Waves/wave1.run_wave()
 	
 func wave1_done():
 	yield(warp(), "done")

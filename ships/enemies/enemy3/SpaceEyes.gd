@@ -5,6 +5,7 @@ signal attuned()
 signal arrived()
 signal player_found(at)
 signal rot_mode(mode)
+signal left()
 
 var up_extent_dir
 var down_extent_dir
@@ -25,10 +26,17 @@ func set_move_target(val):
 func set_visual_target(val):
 	visual_target = val
 	attuned = false
-	
+
+func warp_out():
+	$anim.play_backwards("warp_in")
+	yield($anim, "animation_finished")
+	emit_signal("left")
+	queue_free()
+
 func _ready():
 	move_target = position
 	visual_target = Vector2(-10, 0)
+	global_rotation = PI
 	$"%seek_beam".visible = false
 	$"%seek_beam".beam_length = 0
 	$"%seek_beam".connect("found_player", self, "_on_found_player")

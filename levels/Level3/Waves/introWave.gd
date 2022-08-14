@@ -4,7 +4,7 @@ extends Node2D
 signal wave_complete()
 
 onready var floater_scn = preload("res://ships/enemies/enemy1/basic_floater.tscn")
-onready var gavel_scn = preload("res://ships/enemies/enemy2/Gavel.tscn")
+onready var eye_scn = preload("res://ships/enemies/enemy3/SpaceEyes.tscn")
 
 var SilverCord = AsyncSemaphore.new(0)
 var token = CancellationToken.new()
@@ -36,55 +36,74 @@ func run_basic_wave():
 	var points = $GruntFormationPoints/B1.get_children()
 	var after_spawns = AsyncSemaphore.new(0)
 	var after_deaths = AsyncSemaphore.new(0)
+	var eye = spawn_eye($GruntFormationPoints/B1/C)
+	
 	after_deaths.enter()
 	shot_timer(after_deaths)
-	run_circuit(after_deaths, 20)
-	yield(T.wait(3, token), D.o)
-	spawn_gavel($Spawners/C, after_deaths)
-	yield(T.wait(3, token), D.o)
-	spawn_gavel($Spawners/C, after_deaths)
+	run_circuit(after_deaths, 40, eye)
 	after_deaths.done()
 	yield(after_deaths, "done")
+	eye.warp_out()
+	yield(eye, "left")
 	
 	emit_signal("wave_complete")
 
 func build_floater(sem):
 	var e = floater_scn.instance()
+	sem.enter()
 	$EnemyDump.add_child(e)
 	e.shot_mode = "None"
 	e.hit_points = 10
 	e.speed = 200
-	sem.connect("done", e, "die")
+	e.connect("dead", sem, "done")
 	return e
 
-func run_circuit(sem, n_open_burst):
+var floaters = []
+
+func bezerk(at, sem, tok):
+	for i in 10:
+		var e = build_floater(sem)
+		floaters.push_back(weakref(e))
+		e.global_position = $GruntFormationPoints/B1/C14.global_position
+		floater_circuit(e)
+		yield(T.wait(0.1, tok), D.o)
+	floaters = D.clear_freed(floaters)
+	for f in floaters:
+		var q = f.get_ref()
+		q.fire(q.global_position, $DiveZoneExtents.point_in_zone(), 100)
+
+func run_circuit(sem, n_open_burst, eye):
 	var tok = CancellationToken.new()
 	sem.connect("done", tok, "cancel")
+	eye.connect("player_found", self, "bezerk", [sem, tok])
 	for i in n_open_burst:
 		var e = build_floater(sem)
-		e.global_position = $track4.point_in_zone()
+		floaters.push_back(weakref(e))
+		e.global_position = $GruntFormationPoints/B1/C14.global_position
 		floater_circuit(e)
 		yield(T.wait(0.1, tok), D.o)
 	
 	while sem.value > 0:
-		yield(T.wait(rand_range(0.1, 0.5), tok), D.o)
-		var e = build_floater(sem)
-		e.global_position = $track4.point_in_zone()
-		floater_circuit(e)
+		yield(T.wait(rand_range(3, 5), tok), D.o)
+		if sem.value > 0:
+			var e = build_floater(sem)
+			floaters.push_back(weakref(e))
+			e.global_position = $GruntFormationPoints/B1/C14.global_position
+			floater_circuit(e)
 
 func floater_circuit(floater):
 	var ref = weakref(floater)
 	var tok = floater.token
+	
+	var path = $GruntFormationPoints/B1.get_children()
+	if rand_range(0, 1) > 0.5:
+		path.invert()
 	while ref.get_ref():
-		floater.target = $track1.point_in_zone()
-		yield(tok.on(floater, "arrived"), "done")
-		floater.target = $track2.point_in_zone()
-		yield(tok.on(floater, "arrived"), "done")
-		floater.target = $track3.point_in_zone()
-		yield(tok.on(floater, "arrived"), "done")
-		floater.target = $track4.point_in_zone()
-		yield(tok.on(floater, "arrived"), "done")
-
+		for p in path:
+			if ref.get_ref():
+				floater.target = p.global_position + Vector2(rand_range(-5, 5), rand_range(-5, 5))
+				yield(tok.on(floater, "arrived"), "done")
+		
 
 var enemies = []
 
@@ -92,45 +111,16 @@ func gavel_arrived(g):
 	if not g.dying and not g.diving:
 		g.target = rand_child($GruntFormationPoints/B1).global_position
 
-func gavel_dive(g):
-	SilverCord.enter()
-	var ref = weakref(g)
-	yield(T.wait(rand_range(3, 5)), D.o)
-	while ref.get_ref() and not g.dying:
-		g.diving = true
-		g.target = $DiveZoneExtents.point_in_zone()
-		yield(g, "arrived")
-		g.diving = false
-		g.target = rand_child($GruntFormationPoints/B1).global_position
-		yield(T.wait(rand_range(5,10)), D.o)
-	SilverCord.done()
 
-func gavel_shot(g: GavelShip):
-	SilverCord.enter()
-	var ref = weakref(g)
-	yield(T.wait(rand_range(3, 5), g.token), D.o)
-	while ref.get_ref() and not g.dying:
-		var dir = g.global_position.direction_to(Globals.Ship.global_position)
-		var off = dir.rotated(PI/2) * 6
-		g.fire(g.global_position + off, dir, 200)
-		g.fire(g.global_position - off, dir, 200)
-		
-		yield(T.wait(rand_range(3, 5), g.token), D.o)
-		
-	SilverCord.done()
-	
-
-func spawn_gavel(at, onDie):
-	var g = gavel_scn.instance()
-	onDie.enter()
-	$EnemyDump.add_child(g)
-	g.global_position = at.global_position
-	g.target = rand_child($GruntFormationPoints/B1).global_position
-	g.connect("arrived", self, "gavel_arrived", [g])
-	g.connect("dead", onDie, "done")
-	gavel_dive(g)
-	gavel_shot(g)
-	return g
+func spawn_eye(at):
+	var e = eye_scn.instance()
+	$EnemyDump.add_child(e)
+	e.global_position = at.global_position
+	eye_arrived(e)
+	eye_attuned(e)
+	e.connect("arrived", self, "eye_arrived", [e])
+	e.connect("attuned", self, "eye_attuned", [e])
+	return e
 
 func shot_timer(onDie):
 	while onDie.value > 0:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://levels/Level3/Level.gd" type="Script" id=1]
+[ext_resource path="res://levels/Level3/Waves/introWave.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/barrier/barrier.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=5]
@@ -106,9 +107,25 @@ position = Vector2( -617, 305 )
 shape = SubResource( 6 )
 
 [node name="Barrier" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( -39, -19 )
+position = Vector2( 175, -202 )
+
+[node name="tutorial1" type="Label" parent="Level/Barrier"]
+unique_name_in_owner = true
+visible = false
+margin_left = -57.0
+margin_top = 17.0
+margin_right = 66.0
+margin_bottom = 46.0
+text = "M or RMB
+to grab shield"
 
 [node name="Waves" type="Node2D" parent="Level"]
+
+[node name="introWave" parent="Level/Waves" instance=ExtResource( 2 )]
+visible = false
+
+[node name="BarrierTarget" type="Node2D" parent="Level"]
+position = Vector2( -42, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 current = true

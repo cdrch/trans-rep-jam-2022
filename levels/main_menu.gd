@@ -11,6 +11,7 @@ export(PackedScene) var scene_on_options
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	MixingDeskMusic.stop("Main Menu")
 	$PlayerShip.velocity_override = Vector2(0, 0)
 	# Grab focus to enable keyboard control
 	$Menu/VBoxContainer/StartButton.grab_focus()
@@ -36,6 +37,8 @@ func _on_StartButton_pressed():
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.Ship = $PlayerShip
 	Globals.stash()
+	#for i in 4:
+	#	Bullets.upgrade()
 	get_tree().change_scene_to(scene_on_start)
 
 

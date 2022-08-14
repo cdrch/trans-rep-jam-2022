@@ -2,7 +2,7 @@
 
 [ext_resource path="res://levels/level1WaveBased/DiveZoneExtents.gd" type="Script" id=1]
 [ext_resource path="res://levels/level1WaveBased/Debug.gd" type="Script" id=2]
-[ext_resource path="res://levels/Level2/Waves/introWave.gd" type="Script" id=3]
+[ext_resource path="res://levels/Level3/Waves/introWave.gd" type="Script" id=3]
 
 [node name="waveStarter" type="Node2D"]
 script = ExtResource( 3 )
@@ -64,13 +64,13 @@ position = Vector2( 210, -105 )
 position = Vector2( 0, -7 )
 script = ExtResource( 1 )
 TopLeft = Vector2( -319, -172 )
-BottomRight = Vector2( -190, 186 )
+BottomRight = Vector2( -208, 186 )
 
 [node name="TopLeft" type="Position2D" parent="DiveZoneExtents"]
 position = Vector2( -319, -172 )
 
 [node name="BottomRight" type="Position2D" parent="DiveZoneExtents"]
-position = Vector2( -190, 186 )
+position = Vector2( -208, 186 )
 
 [node name="EyeZone" type="Node2D" parent="."]
 position = Vector2( 0, -7 )

@@ -1,6 +1,7 @@
 class_name Barrier
 extends Area2D
-# 
+#
+signal grabbed()
 
 export(bool) var held = false
 
@@ -11,6 +12,7 @@ const free_mask = [1,1,1,1]
 
 
 func grab():
+	emit_signal("grabbed")
 	var barrier = $Barrier
 	for i in 4:
 		barrier.set_collision_layer_bit(i, held_layers[i] == 1)

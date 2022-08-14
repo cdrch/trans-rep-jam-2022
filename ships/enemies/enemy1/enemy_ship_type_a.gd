@@ -79,11 +79,16 @@ func _physics_process(delta):
 			look_at(target_pos)
 			rotate(PI)
 		else:
-			look_at(position + Vector2(1, 0))
 			emit_signal("arrived")
+			look_after(position)
 	else:
 		var _collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
+func look_after(at):
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	if position == at:
+		look_at(position + Vector2(1, 0))
 	
 func fire(from: Vector2, direction: Vector2, speed: float):
 	Bullets.fire(bullet_scn, "bullet", "player", from, direction, speed)

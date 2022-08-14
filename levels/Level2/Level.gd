@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var main_menu_scn = load("res://levels/main_menu.tscn")
+onready var next_level = load("res://levels/Level3/level3WaveBased.tscn")
 
 func _ready():
 	if Globals.Starfield != null:
@@ -83,5 +84,7 @@ func wave1_done():
 func wave2_done():
 	yield(warp(), "done")
 	warping = false
-	
-	get_tree().change_scene_to(main_menu_scn)
+		
+	Globals.Ship_Pos = $PlayerShip.global_position
+	Globals.stash()
+	get_tree().change_scene_to(next_level)
