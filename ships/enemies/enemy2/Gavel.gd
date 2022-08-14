@@ -9,8 +9,8 @@ export(float) var speed = 50
 export(Vector2) var velocity = Vector2(-1, 0)
 export(String, "None", "Vertical", "Horizontal") var shot_mode = "None"
 export(bool) var warped = false
+export (Texture) var dead_tex
 
-onready var dead_tex = preload("res://ships/enemies/enemy2/carrier7.png")
 onready var pellet_scn = preload("res://ships/projectiles/pellet.tscn")
 var token = CancellationToken.new()
 var diving = false

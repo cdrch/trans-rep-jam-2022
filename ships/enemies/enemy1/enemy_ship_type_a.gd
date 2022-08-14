@@ -85,8 +85,8 @@ func _physics_process(delta):
 		var _collision = move_and_collide(velocity * speed * delta, true)
 	# TODO: handle collision
 func look_after(at):
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	yield(token.on(get_tree(), "idle_frame"), "done")
+	yield(token.on(get_tree(), "idle_frame"), "done")
 	if position == at:
 		look_at(position + Vector2(1, 0))
 	

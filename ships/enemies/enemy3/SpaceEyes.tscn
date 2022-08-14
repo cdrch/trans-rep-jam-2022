@@ -132,6 +132,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("warp_tex:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.0
@@ -149,18 +161,17 @@ anims/eye_open = SubResource( 3 )
 anims/warp_in = SubResource( 5 )
 
 [node name="tex" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 
 [node name="seek_beam" parent="." instance=ExtResource( 6 )]
-polygon = PoolVector2Array( 0, 0, 997.199, -74.7899, 997.199, 74.7899 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="warp_tex" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -3.5, 3 )
-rotation = 6.28319
+rotation = -6.28319
 scale = Vector2( 1.84375, 1.6875 )
 texture = ExtResource( 7 )

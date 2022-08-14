@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://levels/Level2/Waves/wave2.gd"
 }, {
+"base": "Node2D",
+"class": "Level3Wave2",
+"language": "GDScript",
+"path": "res://levels/Level3/Waves/wave2.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PlayerShip",
 "language": "GDScript",
@@ -122,6 +127,7 @@ _global_script_class_icons={
 "GameCamera": "",
 "GavelShip": "",
 "Level2Wave2": "",
+"Level3Wave2": "",
 "PlayerShip": "",
 "RectZone": "",
 "SceneManagerConstants": "",

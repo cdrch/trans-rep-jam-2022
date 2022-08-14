@@ -60,7 +60,7 @@ func check_location():
 	checking = false
 
 func _process(delta):
-	if attuned and arrived and not checking:
+	if attuned and arrived and not checking and not $warp_tex.visible:
 		check_location()
 
 func _physics_process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ships/enemies/enemy2/Gavel.gd" type="Script" id=1]
 [ext_resource path="res://ships/enemies/enemy2/carrier1.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ships/enemies/enemy2/sprite5.png" type="Texture" id=6]
 [ext_resource path="res://ships/enemies/enemy2/sprite6.png" type="Texture" id=7]
 [ext_resource path="res://ships/projectiles/warp.png" type="Texture" id=8]
+[ext_resource path="res://ships/enemies/enemy2/carrier7.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Dive"
@@ -152,6 +153,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 1 )
 warped = true
+dead_tex = ExtResource( 9 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/Dive = SubResource( 3 )

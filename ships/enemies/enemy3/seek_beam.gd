@@ -33,7 +33,6 @@ func _on_light_area_body_entered(body):
 	ray.cast_to = (body.global_position - ray.global_position) * 2
 	ray.force_raycast_update()
 	var hit = ray.get_collider() as KinematicBody2D
-	print("HIT: ", hit, "| GROUPS: ", hit.get_groups())
 	if hit != null and hit.get_groups().has("player"):
 		print("XXDD")
 		emit_signal("found_player", hit)

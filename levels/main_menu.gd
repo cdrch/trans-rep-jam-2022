@@ -3,13 +3,6 @@ extends Node2D
 export(PackedScene) var scene_on_start
 export(PackedScene) var scene_on_options
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	MixingDeskMusic.stop("Main Menu")
 	$PlayerShip.velocity_override = Vector2(0, 0)
@@ -22,7 +15,6 @@ var shipArrived = Deferred.new()
 func _process(delta):
 	if $PlayerShip.global_position.x >= $"End position".global_position.x:
 		shipArrived.done()
-
 
 var starting = false
 func _on_StartButton_pressed():
@@ -37,8 +29,8 @@ func _on_StartButton_pressed():
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.Ship = $PlayerShip
 	Globals.stash()
-	#for i in 4:
-	#	Bullets.upgrade()
+	for i in 4:
+		Bullets.upgrade()
 	get_tree().change_scene_to(scene_on_start)
 
 

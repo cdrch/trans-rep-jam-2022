@@ -13,6 +13,7 @@ func _physics_process(delta):
 		shieldNode.drop()
 		
 	if shieldNode and Input.is_action_pressed("interaction"):
+		shieldNode.grab()
 		shieldNode.global_position = global_position
 	
 func _on_ShieldGrabPoint_area_entered(area: Area2D):
