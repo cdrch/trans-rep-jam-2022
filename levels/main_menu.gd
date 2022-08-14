@@ -29,8 +29,8 @@ func _on_StartButton_pressed():
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.Ship = $PlayerShip
 	Globals.stash()
-	for i in 4:
-		Bullets.upgrade()
+	#for i in 4:
+	#	Bullets.upgrade()
 	get_tree().change_scene_to(scene_on_start)
 
 

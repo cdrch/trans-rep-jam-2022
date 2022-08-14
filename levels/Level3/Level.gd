@@ -27,7 +27,7 @@ func shield_tutorial():
 	$"%tutorial1".show()
 	yield($Barrier, "grabbed")
 	$"%tutorial1".queue_free()
-	call_deferred("wave1_done")
+	call_deferred("start_waves")
 
 var player_velocity = "static"
 

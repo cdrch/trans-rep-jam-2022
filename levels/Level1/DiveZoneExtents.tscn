@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://levels/level1WaveBased/DiveZoneExtents.gd" type="Script" id=1]
+[ext_resource path="res://levels/Level1/DiveZoneExtents.gd" type="Script" id=1]
 
 [node name="DiveZoneExtents" type="Node2D"]
 script = ExtResource( 1 )
