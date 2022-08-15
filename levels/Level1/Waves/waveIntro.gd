@@ -17,14 +17,6 @@ func _ready():
 func run_wave():
 	run_basic_wave()
 
-func eye_arrived(eye: SpaceEye):
-	eye.move_target = $EyeZone.point_in_zone()
-
-func eye_attuned(eye: SpaceEye):
-	var t = $DiveZoneExtents.point_in_zone()
-	print("new target: ", t)
-	eye.visual_target = t
-
 func _process(delta):
 	pass
 

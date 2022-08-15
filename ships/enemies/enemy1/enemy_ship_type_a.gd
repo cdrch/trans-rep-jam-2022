@@ -4,6 +4,7 @@ extends KinematicBody2D
 signal arrived()
 signal dying()
 signal dead()
+signal tick()
 
 export(float) var speed = 50.0
 export(Vector2) var velocity = Vector2(-1, 0)
@@ -56,12 +57,12 @@ func _notification(what):
 func warp_in():
 	SilverCord.enter()
 	$anim.play("warp_in")
-	yield(token.on($anim, "animation_finished"), "done")
+	yield($anim, "animation_finished")
 	$warp_tex.queue_free()
 	SilverCord.done()
 	
 func wait(time: float):
-	return token.on(get_tree().create_timer(time), "timeout")
+	return T.wait(time)
 
 var arrived = false
 func _physics_process(delta):
@@ -83,10 +84,11 @@ func _physics_process(delta):
 			look_after(position)
 	else:
 		var _collision = move_and_collide(velocity * speed * delta, true)
+	emit_signal("tick")
 	# TODO: handle collision
 func look_after(at):
-	yield(token.on(get_tree(), "idle_frame"), "done")
-	yield(token.on(get_tree(), "idle_frame"), "done")
+	yield(self, "tick")
+	yield(self, "tick")
 	if position == at:
 		look_at(position + Vector2(1, 0))
 	
@@ -110,11 +112,11 @@ func _on_gun_timer_timeout():
 		"Vertical": 
 			$gun_timer.start(mode_time())
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, -1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "done")
+			yield(wait(0.2), D.o)
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, -0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "done")
+			yield(wait(0.2), D.o)
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, 0.25).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
-			yield(wait(0.2), "done")
+			yield(wait(0.2), D.o)
 			fire($BulletSpawnPos.global_position, Vector2(-0.5, 1).normalized().rotated(deg2rad(rand_range(-15, 15))), 45)
 		_: return -1
 	
@@ -137,14 +139,14 @@ func die():
 	visible = false
 	
 	for seen in [false, true, false, true, false, true, false, true,]:
-		yield(wait(0.05), "done")
+		yield(wait(0.05), D.o)
 		visible = seen
-	yield(wait(0.25), "done")
+	yield(wait(0.25), D.o)
 	emit_signal("dead")
 	async_free()
 
 func async_free():
 	if SilverCord.value == 0:
 		queue_free()
-	yield(token.on(SilverCord), "done")
+	yield(SilverCord, "done")
 	queue_free()

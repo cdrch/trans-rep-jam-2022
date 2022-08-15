@@ -22,7 +22,7 @@ func _ready():
 
 var player_velocity = "static"
 
-var background_tween: SceneTreeTween
+var background_tween
 var warping = false
 func tween_background_to(vel, dur):
 	if warping:

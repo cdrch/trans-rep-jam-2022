@@ -44,7 +44,8 @@ func cancel():
 		done = true
 		for k in results.keys():
 			var r = results[k]
-			if is_instance_valid(k):
+			if is_instance_valid(k) and is_instance_valid(r[1]):
+				print("Calling disconnect on:", k, r[1])
 				k.disconnect(r[0], r[1], r[2])
 		results.clear()
 		emit_signal("cancelled")

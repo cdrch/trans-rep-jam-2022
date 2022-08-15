@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ships/player_ship.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "RectZone",
 "language": "GDScript",
 "path": "res://levels/Level1/DiveZoneExtents.gd"
@@ -158,8 +158,8 @@ D="*res://Autoloads/D.tscn"
 T="*res://Autoloads/T.tscn"
 Bullets="*res://Autoloads/Bullets.tscn"
 Globals="*res://Autoloads/Globals.tscn"
-MixingDeskMusic="*res://Autoloads/MixingDeskMusic.tscn"
 Pause="*res://Autoloads/Pause.tscn"
+MixingDeskMusic="*res://Autoloads/MixingDeskMusic.tscn"
 
 [display]
 
