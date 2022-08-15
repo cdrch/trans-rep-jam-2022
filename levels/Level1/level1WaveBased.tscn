@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://levels/Level1/Waves/waveIntro.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/barrier/barrier.tscn" type="PackedScene" id=3]
@@ -26,6 +26,18 @@ extents = Vector2( 2963.75, 120 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 168.75, 369 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 320.5, 10 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 29, 191 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 323, 15.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 23.5, 206.5 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_dialogue_up"
@@ -128,6 +140,25 @@ visible = false
 
 [node name="wave3" parent="Level/Waves" instance=ExtResource( 14 )]
 visible = false
+
+[node name="ScreenWalls" type="StaticBody2D" parent="Level"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ScreenWalls"]
+position = Vector2( 0.5, -192 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/ScreenWalls"]
+position = Vector2( -350, -6 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/ScreenWalls"]
+position = Vector2( -3.5, 195.5 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/ScreenWalls"]
+position = Vector2( 343.5, 3.5 )
+shape = SubResource( 10 )
 
 [node name="DialogueUI" type="Control" parent="."]
 visible = false

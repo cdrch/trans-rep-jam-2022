@@ -5,6 +5,7 @@ extends KinematicBody2D
 
 # Signals
 signal velocity_changed(velocity)
+signal physics_tick()
 
 onready var ded_tex = preload("res://ships/ded.png")
 
@@ -121,17 +122,17 @@ func async_free():
 	queue_free()
 
 func _physics_process(delta: float) -> void:
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		if not collision.collider is Node:
-			velocity = velocity.slide(collision.normal)
-			return
-		else:
-			var collision_node: Node = collision.collider
-			var groups = collision_node.get_groups()
-			if groups.has("solid"):
-				velocity = velocity.slide(collision.normal)
-				return
+	var collision = move_and_slide(velocity, Vector2.UP)
+	#if collision:
+	#	if not collision.collider is Node:
+#			velocity = velocity.slide(collision.normal)
+	#		return
+	#	else:
+#			var collision_node: Node = collision.collider
+	#		var groups = collision_node.get_groups()
+	#		if groups.has("solid"):
+	#			velocity = velocity.slide(collision.normal)
+	#			return
 
 
 func _on_Button_pressed():
