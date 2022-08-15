@@ -38,6 +38,7 @@ func bezerk(at, onDie):
 			q.fire(q.global_position, $Zones/DiveZone.point_in_zone(), 100)
 
 func run_basic_wave():
+	print("3-1")
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints/B1.get_children()
 	var after_spawns = AsyncSemaphore.new(0)

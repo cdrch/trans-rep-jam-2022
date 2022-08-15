@@ -36,6 +36,7 @@ func run_wave():
 	run_officer_wave($GruntFormationPoints/C, boss_list)
 	
 func run_officer_wave(from, officer_list):
+	print("1-2")
 	var up = from.get_node("UpperZone")
 	var down = from.get_node("LowerZone")
 	var spawns = from.get_node("rally").get_children()

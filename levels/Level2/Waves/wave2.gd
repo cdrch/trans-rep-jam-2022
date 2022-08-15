@@ -36,6 +36,7 @@ func run_wave():
 	run_officer_wave($GruntFormationPoints/C, boss_list)
 	
 func run_officer_wave(from, officer_list):
+	print("2-2")
 	var spawns = from.get_children()
 	
 	yield(T.wait(0.5), D.o)

@@ -16,6 +16,7 @@ func run_wave():
 	run_basic_wave()
 
 func run_basic_wave():
+	print("2-1")
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints/B1.get_children()
 	var after_spawns = AsyncSemaphore.new(0)

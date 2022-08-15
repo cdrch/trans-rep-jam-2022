@@ -52,6 +52,7 @@ func bezerk(at, onDie):
 			q.fire(q.global_position, $Zones/DiveZone.point_in_zone(), 100)
 
 func run_wave():
+	print("3-2")
 	var sem = AsyncSemaphore.new(0)
 	run_officer_wave($GruntFormationPoints/C, boss_list, sem)
 	run_officer_wave($GruntFormationPoints/C, boss_list, sem)

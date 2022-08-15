@@ -1,6 +1,7 @@
 tool
 extends Node2D
 
+signal wave_started()
 signal wave_complete()
 
 onready var enemy = preload("res://ships/enemies/enemy1/basic_enemy.tscn")
@@ -46,11 +47,13 @@ func reinforce(t, e: WindsorShip, after_spawns, after_deaths: AsyncSemaphore):
 	after_deaths.done()
 
 func run_basic_wave():
+	print("1-0")
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints.get_children()
 	var after_spawns = AsyncSemaphore.new(0)
 	var after_deaths = AsyncSemaphore.new(0)
-
+	
+	emit_signal("wave_started")
 	for t in points:
 		var e = enemy.instance()
 		e.hit_points = 30

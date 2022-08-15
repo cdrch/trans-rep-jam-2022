@@ -59,6 +59,7 @@ func spawn_floater(onDie: AsyncSemaphore):
 			e.target = $DiveZoneExtents.point_in_zone()
 	
 func run_basic_wave():
+	print("1-1")
 	yield(T.wait(3), D.o)
 	var points = $GruntFormationPoints.get_children()
 	var after_spawns = AsyncSemaphore.new(0)

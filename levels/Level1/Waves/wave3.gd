@@ -32,6 +32,7 @@ func _process(delta):
 			$Debug.text += "HP: %d\n" % b.get_ref().hit_points
 	
 func run_wave():
+	print("1-3")
 	var waves = AsyncSemaphore.new(0)
 	run_wall_wave($GruntFormationPoints/B1, waves)
 	yield(T.wait(6), D.o)
