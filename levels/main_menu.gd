@@ -4,6 +4,7 @@ export(PackedScene) var scene_on_start
 export(PackedScene) var scene_on_options
 
 func _ready():
+	Pause.enabled = false
 	MixingDeskMusic.stop("Main Menu")
 	$PlayerShip.velocity_override = Vector2(0, 0)
 	# Grab focus to enable keyboard control
@@ -29,8 +30,7 @@ func _on_StartButton_pressed():
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.Ship = $PlayerShip
 	Globals.stash()
-	#for i in 4:
-	#	Bullets.upgrade()
+	Pause.enabled = true
 	get_tree().change_scene_to(scene_on_start)
 
 

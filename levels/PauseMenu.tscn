@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://levels/PauseMenu.gd" type="Script" id=1]
+
+[node name="PauseMenu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="BtnResume" type="Button" parent="."]
+margin_left = -36.0
+margin_top = -25.0
+margin_right = 36.0
+margin_bottom = -6.0
+text = "Resume"
+flat = true
+
+[node name="BtnMainMenu" type="Button" parent="."]
+margin_left = -57.0
+margin_top = 4.0
+margin_right = 58.0
+margin_bottom = 23.0
+text = "Quit to menu"
+flat = true
+
+[connection signal="pressed" from="BtnResume" to="." method="_on_BtnResume_pressed"]
+[connection signal="pressed" from="BtnMainMenu" to="." method="_on_BtnMainMenu_pressed"]
