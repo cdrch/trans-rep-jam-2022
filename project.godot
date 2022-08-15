@@ -146,7 +146,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Trans Rep Jam 2022"
+config/name="Star Sea"
 run/main_scene="res://levels/main_menu.tscn"
 config/icon="res://art/icon.png"
 

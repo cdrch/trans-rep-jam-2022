@@ -5,7 +5,6 @@ export(PackedScene) var scene_on_options
 
 func _ready():
 	Pause.enabled = false
-	MixingDeskMusic.stop("Main Menu")
 	$PlayerShip.velocity_override = Vector2(0, 0)
 	# Grab focus to enable keyboard control
 	$Menu/VBoxContainer/StartButton.grab_focus()
