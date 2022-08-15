@@ -126,5 +126,15 @@ scale_amount_random = 0.09
 scale_amount_curve = SubResource( 6 )
 color_ramp = SubResource( 4 )
 
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = -91.0
+margin_top = 16.0
+margin_right = 91.0
+margin_bottom = 35.0
+text = "(space): Back to menu"
+flat = true
+
 [connection signal="area_entered" from="ShieldGrabPoint" to="ShieldGrabPoint" method="_on_ShieldGrabPoint_area_entered"]
 [connection signal="area_exited" from="ShieldGrabPoint" to="ShieldGrabPoint" method="_on_ShieldGrabPoint_area_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

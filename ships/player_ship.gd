@@ -23,11 +23,15 @@ func set_gun_equipped(value):
 var particles_amount 
 
 func _ready() -> void:
+	$Button.hide()
 	# Slightly awkard on account of wanting to be editor-friendly
 	particles_amount = $particles.amount
 
 func _process(delta: float) -> void:
 	velocity = Vector2()
+	if not alive and Input.is_action_just_pressed("fire"):
+		get_tree().change_scene("res://levels/main_menu.tscn")
+		return 
 	if not alive:
 		return
 	
@@ -100,6 +104,7 @@ func hurt(type, amount):
 func die():
 	if hurt_tween != null:
 		hurt_tween.stop()
+	$Button.show()
 	alive = false
 	collision_mask = 0
 	collision_layer = 0
@@ -127,3 +132,8 @@ func _physics_process(delta: float) -> void:
 			if groups.has("solid"):
 				velocity = velocity.slide(collision.normal)
 				return
+
+
+func _on_Button_pressed():
+	if not alive:
+		get_tree().change_scene("res://levels/main_menu.tscn")
