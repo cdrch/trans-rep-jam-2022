@@ -75,7 +75,7 @@ func carrier_shoot(g: GavelShip):
 		g.fire(g.global_position - off, dir.rotated(deg2rad(-3)), 200)
 		g.fire(g.global_position + off + dir*12, dir, 200)
 		g.fire(g.global_position - off + dir*12, dir, 200)
-		
+		g.shoot()
 		yield(T.wait(rand_range(0.5, 1)), D.o)
 		cnt += 1
 		if cnt >= 3:

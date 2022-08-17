@@ -16,10 +16,11 @@ func wait(time: float):
 func fire(from):
 	if not equipped:
 		return
+	$anim.play(str(Bullets.fire_amt))
 	for i in Bullets.fire_amt:
 		var dir = Vector2(1, 0).rotated(deg2rad(rand_range(-i, i)))
-		Bullets.fire(bullet, "bullet", "enemy", from, dir, 400)
-		yield(wait(0.15 / Bullets.fire_amt), "timeout")
+		Bullets.fire(bullet, "bullet", "enemy", global_position, dir, 400)
+		yield(wait(0.15), "timeout")
 
 func _process(delta: float):
 	if Input.is_action_pressed("fire") and chambered:

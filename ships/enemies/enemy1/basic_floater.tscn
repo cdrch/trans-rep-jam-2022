@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://audio/sfx/Enemy Shot A x1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://ships/enemies/enemy1/enemy_ship_type_a.gd" type="Script" id=2]
 [ext_resource path="res://ships/enemies/enemy1/floater1.png" type="Texture" id=3]
 [ext_resource path="res://ships/enemies/enemy1/floater2.png" type="Texture" id=4]
@@ -53,6 +54,23 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "shoot"
+tracks/0/type = "audio"
+tracks/0/path = NodePath("snd/shoot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.48,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
 [node name="EnemyShipTypeA" type="KinematicBody2D" groups=["enemy", "windsor"]]
 collision_layer = 2
 collision_mask = 5
@@ -60,7 +78,7 @@ script = ExtResource( 2 )
 dead_tex = ExtResource( 6 )
 
 [node name="tex" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.3 )
+modulate = Color( 1, 1, 1, 0.9 )
 texture = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -73,11 +91,18 @@ position = Vector2( -17, 0 )
 
 [node name="warp_tex" type="Sprite" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0.7 )
-rotation = -2.51327
+modulate = Color( 1, 1, 1, 0.1 )
+rotation = 5.02655
 texture = ExtResource( 5 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/warp_in = SubResource( 2 )
+
+[node name="snd" type="AnimationPlayer" parent="."]
+anims/shoot = SubResource( 3 )
+
+[node name="shoot" type="AudioStreamPlayer" parent="snd"]
+stream = ExtResource( 1 )
+bus = "SFX"
 
 [connection signal="timeout" from="gun_timer" to="." method="_on_gun_timer_timeout"]

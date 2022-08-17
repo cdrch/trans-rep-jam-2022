@@ -113,6 +113,7 @@ func gavel_shot(g: GavelShip):
 	while ref.get_ref() and not g.dying:
 		var dir = g.global_position.direction_to(Globals.Ship.global_position)
 		var off = dir.rotated(PI/2) * 6
+		g.shoot()
 		g.fire(g.global_position + off, dir, 200)
 		g.fire(g.global_position - off, dir, 200)
 		

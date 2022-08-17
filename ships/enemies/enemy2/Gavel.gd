@@ -52,6 +52,9 @@ func warp_in():
 	$warp_tex.queue_free()
 	SilverCord.done()
 
+func shoot():
+	$snd.play("shoot")
+
 func _physics_process(delta):
 	var nu_speed = speed
 	if diving:

@@ -58,7 +58,6 @@ func run_basic_wave():
 	e.warp_out()
 	e2.warp_out()
 	yield(e, "left")
-	yield(e2, "left")
 	
 	emit_signal("wave_complete")
 
@@ -118,7 +117,7 @@ func gavel_shot(g: GavelShip):
 		var off = dir.rotated(PI/2) * 6
 		g.fire(g.global_position + off, dir, 200)
 		g.fire(g.global_position - off, dir, 200)
-		
+		g.shoot()
 		g.fire(g.global_position + off + dir*12, dir, 200)
 		g.fire(g.global_position - off + dir*12, dir, 200)
 		

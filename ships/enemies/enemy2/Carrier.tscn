@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ships/enemies/enemy2/Gavel.gd" type="Script" id=1]
 [ext_resource path="res://ships/enemies/enemy2/carrier1.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ships/enemies/enemy2/sprite6.png" type="Texture" id=7]
 [ext_resource path="res://ships/projectiles/warp.png" type="Texture" id=8]
 [ext_resource path="res://ships/enemies/enemy2/carrier7.png" type="Texture" id=9]
+[ext_resource path="res://audio/sfx/Enemy Shot B x2x2.ogg" type="AudioStream" id=10]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Dive"
@@ -148,6 +149,23 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "shoot"
+tracks/0/type = "audio"
+tracks/0/path = NodePath("snd/shoot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 1.43,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
 [node name="Carrier" type="KinematicBody2D" groups=["enemy", "gavel"]]
 collision_layer = 2
 collision_mask = 5
@@ -173,3 +191,10 @@ position = Vector2( -3.5, 3 )
 rotation = 6.28319
 scale = Vector2( 1.84375, 1.6875 )
 texture = ExtResource( 8 )
+
+[node name="snd" type="AnimationPlayer" parent="."]
+anims/shoot = SubResource( 5 )
+
+[node name="shoot" type="AudioStreamPlayer" parent="snd"]
+stream = ExtResource( 10 )
+pitch_scale = 2.08

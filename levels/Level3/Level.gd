@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var main_menu_scn = load("res://levels/main_menu.tscn")
+onready var main_menu_scn = load("res://levels/credits.tscn")
 
 func _ready():
 	if Globals.Starfield != null:

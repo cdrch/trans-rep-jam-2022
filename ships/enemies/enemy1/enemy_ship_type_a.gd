@@ -93,12 +93,15 @@ func look_after(at):
 		look_at(position + Vector2(1, 0))
 	
 func fire(from: Vector2, direction: Vector2, speed: float):
+	$snd.play("shoot")
 	Bullets.fire(bullet_scn, "bullet", "player", from, direction, speed)
 
 func fire_pellet_horizontal(from: Vector2, direction: Vector2, speed: float):
+	$snd.play("shoot")
 	Bullets.fire(pellet_scn, "bullet", "player", from, direction, speed)
 
 func fire_horizontal():
+	$snd.play("shoot")
 	fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
 
 func _on_gun_timer_timeout():

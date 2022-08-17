@@ -71,7 +71,7 @@ func gavel_shot(g: GavelShip):
 		var off = dir.rotated(PI/2) * 6
 		g.fire(g.global_position + off, dir, 200)
 		g.fire(g.global_position - off, dir, 200)
-		
+		g.shoot()
 		g.fire(g.global_position + off + dir*12, dir, 200)
 		g.fire(g.global_position - off + dir*12, dir, 200)
 		

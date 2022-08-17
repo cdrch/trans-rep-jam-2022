@@ -79,9 +79,11 @@ func _physics_process(delta):
 	# TODO: handle collision
 	
 func fire(from: Vector2, velocity: Vector2, speed: float):
+	$snd.play("shoot")
 	Bullets.fire(bullet_scn, "bullet", "player", from, velocity, speed)
 
 func fire_horizontal():
+	$snd.play("shoot")
 	fire($BulletSpawnPos.global_position, Vector2(-1, 0).rotated(deg2rad(rand_range(-5, 5))), 120)
 	
 func hurt(type, damage):

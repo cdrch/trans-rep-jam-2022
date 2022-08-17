@@ -2,6 +2,7 @@ extends Node2D
 
 export(PackedScene) var scene_on_start
 export(PackedScene) var scene_on_options
+export(PackedScene) var scene_on_credits
 
 func _ready():
 	Pause.enabled = false
@@ -47,7 +48,7 @@ func _on_Continue_pressed():
 
 
 func _on_Credits_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to(scene_on_credits)
 
 
 const PRIDE_RED = Color(228, 3, 3)

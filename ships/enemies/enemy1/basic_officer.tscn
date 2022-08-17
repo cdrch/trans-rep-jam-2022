@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://audio/sfx/Enemy Shot A x1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://ships/enemies/enemy1/basic_officer.gd" type="Script" id=2]
 [ext_resource path="res://ships/enemies/enemy1/enemy-2.png" type="Texture" id=3]
 [ext_resource path="res://ships/enemies/enemy1/enemy-1.png" type="Texture" id=4]
@@ -52,13 +53,60 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "shoot"
+length = 0.95
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/path = NodePath("shot1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 1.12,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("shot2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 1.04,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0.05 )
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("shot3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.65,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
+
 [node name="EnemyShipTypeA" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="tex" type="Sprite" parent="."]
-modulate = Color( 0, 0.929412, 1, 1 )
+modulate = Color( 0, 1, 0.905882, 1 )
 texture = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -71,10 +119,25 @@ position = Vector2( -17, 0 )
 
 [node name="warp_tex" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-rotation = 18.8496
+rotation = 6.28319
 texture = ExtResource( 5 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/warp_in = SubResource( 2 )
+
+[node name="shot1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="shot2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="shot3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="snd" type="AnimationPlayer" parent="."]
+anims/shoot = SubResource( 3 )
 
 [connection signal="timeout" from="gun_timer" to="." method="_on_gun_timer_timeout"]
