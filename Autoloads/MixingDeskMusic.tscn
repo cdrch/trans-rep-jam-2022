@@ -3,12 +3,12 @@
 [ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
-[ext_resource path="res://audio/music/Intro Drums.ogg" type="AudioStream" id=4]
-[ext_resource path="res://audio/music/Bassline - Picked Bass C.ogg" type="AudioStream" id=5]
-[ext_resource path="res://audio/music/Bassline - Picked Bass B.ogg" type="AudioStream" id=6]
-[ext_resource path="res://audio/music/Bassline - Picked Bass A.ogg" type="AudioStream" id=7]
-[ext_resource path="res://audio/music/Bassline - Picked Bass End.ogg" type="AudioStream" id=8]
-[ext_resource path="res://addons/mixing-desk/music/containers/seq_cont.gd" type="Script" id=9]
+[ext_resource path="res://audio/music/Space Pilot Chill.ogg" type="AudioStream" id=4]
+[ext_resource path="res://audio/music/The Swords Shield.ogg" type="AudioStream" id=5]
+[ext_resource path="res://audio/music/Foreboding Feeling.ogg" type="AudioStream" id=6]
+[ext_resource path="res://audio/music/Forward Into Battle.ogg" type="AudioStream" id=7]
+[ext_resource path="res://audio/music/End Of Some Things.ogg" type="AudioStream" id=8]
+[ext_resource path="res://audio/music/Monarchs Battle.ogg" type="AudioStream" id=9]
 
 [node name="MixingDeskMusic" type="Node" groups=["scene_manager_entity_nodes"]]
 script = ExtResource( 2 )
@@ -17,37 +17,102 @@ __meta__ = {
 }
 play_mode = 1
 autoplay = true
-autoplay_song = NodePath("Main Menu")
+autoplay_song = NodePath("Space Pilot Chill")
 
-[node name="Main Menu" type="Node" parent="."]
+[node name="Space Pilot Chill" type="Node" parent="."]
 script = ExtResource( 1 )
 tempo = 182
-bars = 8
+bars = 25
 beats_in_bar = 4
-transition_type = "Beat"
+transition_type = "Bar"
 
-[node name="CoreContainer" type="Node" parent="Main Menu"]
+[node name="CoreContainer" type="Node" parent="Space Pilot Chill"]
 script = ExtResource( 3 )
 
-[node name="Intro Drums" type="AudioStreamPlayer" parent="Main Menu/CoreContainer"]
+[node name="Space Pilot Chill" type="AudioStreamPlayer" parent="Space Pilot Chill/CoreContainer"]
 stream = ExtResource( 4 )
 bus = "Music"
 
-[node name="SeqContainer" type="Node" parent="Main Menu"]
-script = ExtResource( 9 )
+[node name="Forward Into Battle" type="Node" parent="."]
+script = ExtResource( 1 )
+tempo = 182
+bars = 73
+beats_in_bar = 4
+transition_type = "Bar"
 
-[node name="Bass A" type="AudioStreamPlayer" parent="Main Menu/SeqContainer"]
+[node name="CoreContainer" type="Node" parent="Forward Into Battle"]
+script = ExtResource( 3 )
+
+[node name="Forward Into Battle" type="AudioStreamPlayer" parent="Forward Into Battle/CoreContainer"]
 stream = ExtResource( 7 )
 bus = "Music"
 
-[node name="Bass B" type="AudioStreamPlayer" parent="Main Menu/SeqContainer"]
+[node name="Warp Again" type="Node" parent="."]
+script = ExtResource( 1 )
+tempo = 182
+bars = 17
+beats_in_bar = 4
+transition_type = "Beat"
+
+[node name="CoreContainer" type="Node" parent="Warp Again"]
+script = ExtResource( 3 )
+
+[node name="Warp Again" type="AudioStreamPlayer" parent="Warp Again/CoreContainer"]
 stream = ExtResource( 6 )
 bus = "Music"
 
-[node name="Bass C" type="AudioStreamPlayer" parent="Main Menu/SeqContainer"]
+[node name="Foreboding Feeling" type="Node" parent="."]
+script = ExtResource( 1 )
+tempo = 182
+bars = 44
+beats_in_bar = 4
+transition_type = "Beat"
+
+[node name="CoreContainer" type="Node" parent="Foreboding Feeling"]
+script = ExtResource( 3 )
+
+[node name="Foreboding Feeling" type="AudioStreamPlayer" parent="Foreboding Feeling/CoreContainer"]
+stream = ExtResource( 6 )
+bus = "Music"
+
+[node name="Monarch\'s Battle" type="Node" parent="."]
+script = ExtResource( 1 )
+tempo = 182
+bars = 73
+beats_in_bar = 4
+transition_type = "Bar"
+
+[node name="CoreContainer" type="Node" parent="Monarch\'s Battle"]
+script = ExtResource( 3 )
+
+[node name="Monarch\'s Battle" type="AudioStreamPlayer" parent="Monarch\'s Battle/CoreContainer"]
+stream = ExtResource( 9 )
+bus = "Music"
+
+[node name="The Sword\'s Shield" type="Node" parent="."]
+script = ExtResource( 1 )
+tempo = 182
+bars = 48
+beats_in_bar = 4
+transition_type = "Beat"
+
+[node name="CoreContainer" type="Node" parent="The Sword\'s Shield"]
+script = ExtResource( 3 )
+
+[node name="The Sword\'s Shield" type="AudioStreamPlayer" parent="The Sword\'s Shield/CoreContainer"]
 stream = ExtResource( 5 )
 bus = "Music"
 
-[node name="Bass End" type="AudioStreamPlayer" parent="Main Menu/SeqContainer"]
+[node name="End Of Some Things" type="Node" parent="."]
+script = ExtResource( 1 )
+tempo = 182
+bars = 24
+beats_in_bar = 4
+transition_type = "Bar"
+
+[node name="CoreContainer" type="Node" parent="End Of Some Things"]
+script = ExtResource( 3 )
+
+[node name="End Of Some Things" type="AudioStreamPlayer" parent="End Of Some Things/CoreContainer"]
 stream = ExtResource( 8 )
 bus = "Music"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/End Of Some Things.ogg-e22e2ec60e58ff2c8b9405878111d7c1.oggstr"
+
+[deps]
+
+source_file="res://audio/music/End Of Some Things.ogg"
+dest_files=[ "res://.import/End Of Some Things.ogg-e22e2ec60e58ff2c8b9405878111d7c1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/The Swords Shield.ogg-afeb334137d3b72435bf0fe5bd4779a5.oggstr"
+
+[deps]
+
+source_file="res://audio/music/The Swords Shield.ogg"
+dest_files=[ "res://.import/The Swords Shield.ogg-afeb334137d3b72435bf0fe5bd4779a5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

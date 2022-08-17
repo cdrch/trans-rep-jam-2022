@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Forward Into Battle.ogg-60bd5ef3a2a64df3442fb5f6cfaab23e.oggstr"
+
+[deps]
+
+source_file="res://audio/music/Forward Into Battle.ogg"
+dest_files=[ "res://.import/Forward Into Battle.ogg-60bd5ef3a2a64df3442fb5f6cfaab23e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
