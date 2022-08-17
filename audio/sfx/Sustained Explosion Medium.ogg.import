@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Sustained Explosion Medium.ogg-af0c8bfff6d44988ad693cb6acd4087c.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/Sustained Explosion Medium.ogg"
+dest_files=[ "res://.import/Sustained Explosion Medium.ogg-af0c8bfff6d44988ad693cb6acd4087c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
