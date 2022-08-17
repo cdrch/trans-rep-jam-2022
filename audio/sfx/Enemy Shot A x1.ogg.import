@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Enemy Shot A x1.ogg-d2cfd13f12d995708982052b21c4b1d6
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
