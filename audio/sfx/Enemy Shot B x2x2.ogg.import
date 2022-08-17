@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Enemy Shot B x2x2.ogg-49d446e2de84a619fcee210746a2b3a4.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/Enemy Shot B x2x2.ogg"
+dest_files=[ "res://.import/Enemy Shot B x2x2.ogg-49d446e2de84a619fcee210746a2b3a4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
