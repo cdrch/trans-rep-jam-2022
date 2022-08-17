@@ -54,15 +54,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ships/player_ship.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "RectZone",
 "language": "GDScript",
 "path": "res://levels/Level1/DiveZoneExtents.gd"
-}, {
-"base": "Object",
-"class": "SceneManagerConstants",
-"language": "GDScript",
-"path": "res://addons/scene_manager/SceneManagerConstants.gd"
 }, {
 "base": "Polygon2D",
 "class": "SeekBeam",
@@ -73,26 +68,6 @@ _global_script_classes=[ {
 "class": "SpaceEye",
 "language": "GDScript",
 "path": "res://ships/enemies/enemy3/SpaceEyes.gd"
-}, {
-"base": "Control",
-"class": "TE_Editor",
-"language": "GDScript",
-"path": "res://addons/text_editor/TE_Editor.gd"
-}, {
-"base": "Resource",
-"class": "TE_ExtensionHelper",
-"language": "GDScript",
-"path": "res://addons/text_editor/ext/TE_ExtensionHelper.gd"
-}, {
-"base": "Reference",
-"class": "TE_StopWords",
-"language": "GDScript",
-"path": "res://addons/text_editor/TE_StopWords.gd"
-}, {
-"base": "Reference",
-"class": "TE_Util",
-"language": "GDScript",
-"path": "res://addons/text_editor/TE_Util.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "WindsorOfficerShip",
@@ -130,13 +105,8 @@ _global_script_class_icons={
 "Level3Wave2": "",
 "PlayerShip": "",
 "RectZone": "",
-"SceneManagerConstants": "",
 "SeekBeam": "",
 "SpaceEye": "",
-"TE_Editor": "",
-"TE_ExtensionHelper": "",
-"TE_StopWords": "",
-"TE_Util": "",
 "WindsorOfficerShip": "",
 "WindsorShip": "",
 "wave1": "",
@@ -152,7 +122,6 @@ config/icon="res://art/icon.png"
 
 [autoload]
 
-SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 DialogManager="*res://scripts/dialog_manager.gd"
 D="*res://Autoloads/D.tscn"
 T="*res://Autoloads/T.tscn"
@@ -172,7 +141,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/ProjectResolution/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/mixing-desk/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/text_editor/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/ProjectResolution/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/mixing-desk/plugin.cfg" )
 
 [global]
 

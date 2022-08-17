@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/title.png" type="Texture" id=2]
+[ext_resource path="res://fonts/Kenney Rocket.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://levels/credits.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="ShortCut" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="CreditsAndLicenses" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+width = 640.0
+height = 360.0
+
+[node name="credits" type="Label" parent="."]
+margin_left = -129.0
+margin_top = 61.0
+margin_right = 130.0
+margin_bottom = 124.0
+custom_fonts/font = SubResource( 1 )
+text = "Developed by:
+yumaikas and cdrch
+THanks for playing!"
+
+[node name="Title" type="Sprite" parent="credits"]
+position = Vector2( 129, -141 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="credits"]
+margin_left = -61.0
+margin_top = 123.0
+margin_right = 233.0
+margin_bottom = 157.0
+custom_fonts/font = SubResource( 2 )
+text = "Powered by Godot"
+autowrap = true
+
+[node name="menuBtn" type="Button" parent="credits"]
+margin_left = 2.0
+margin_top = 72.0
+margin_right = 122.0
+margin_bottom = 91.0
+text = "back to menu"
+flat = true
+
+[node name="licenseBtn" type="Label" parent="credits"]
+margin_left = 134.0
+margin_top = 72.0
+margin_right = 254.0
+margin_bottom = 91.0
+text = "w/s to view licenses"
+align = 1
+valign = 1
+
+[node name="LinkButton" type="LinkButton" parent="credits"]
+margin_left = -64.0
+margin_top = 151.0
+margin_right = 353.0
+margin_bottom = 170.0
+custom_fonts/font = SubResource( 3 )
+shortcut = SubResource( 4 )
+text = "https://godotengine.org/license"
+
+[node name="Label2" type="Label" parent="credits"]
+margin_left = -173.0
+margin_top = 191.0
+margin_right = 433.0
+margin_bottom = 1178.0
+custom_fonts/font = SubResource( 5 )
+text = "Portions of this software are copyright © 1996-2022 The FreeType Project (www.freetype.org). All rights reserved.
+
+Godot Plugins:
+
+Mixing Desk Music: 
+Copyright (c) 2018 kyzfrintin, MIT License
+
+Project Resolution:
+Copyright (c) 2022 David Boucher, MIT License 
+
+Godot libraries:
+
+ENet:
+Copyright (c) 2002-2020 Lee Salzman, MIT LICENSE
+
+Mbed:
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+MIT LICENSE:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE."
+autowrap = true
+
+[connection signal="pressed" from="credits/menuBtn" to="." method="_on_menuBtn_pressed"]
+[connection signal="pressed" from="credits/LinkButton" to="." method="_on_LinkButton_pressed"]
