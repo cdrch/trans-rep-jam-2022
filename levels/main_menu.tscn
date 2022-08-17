@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://levels/Level1/level1WaveBased.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=2]
@@ -13,9 +13,88 @@
 [ext_resource path="res://animations/button_rainbow_animation.tres" type="Animation" id=11]
 [ext_resource path="res://styles/pink_button_focus_style.tres" type="StyleBox" id=12]
 [ext_resource path="res://styles/blue_button_focus_style.tres" type="StyleBox" id=13]
+[ext_resource path="res://levels/title-export.png" type="Texture" id=14]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title-export:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 239, 168 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Title-export:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 239, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Title-export:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 168, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Menu/VBoxContainer:rect_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 472, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Menu/VBoxContainer:rect_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( -135, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "start"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Title-export:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 168, -0.25, 0, 0.6, 21.5245, -136, -0.3, 298.776, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Menu/VBoxContainer:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -135, -0.25, 0, 0.4, -63.3288, 27.8098, -0.5, -166.717, 0.4, -8.10341 ),
+"times": PoolRealArray( 2.79397e-07, 1 )
+}
 
 [node name="Basis" type="Node2D"]
 position = Vector2( -320, -180 )
@@ -38,10 +117,10 @@ margin_bottom = 360.0
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = -136.0
-margin_right = 155.0
-margin_bottom = -25.0
+margin_left = 472.0
+margin_top = -135.0
+margin_right = 612.0
+margin_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -113,6 +192,14 @@ position = Vector2( -81, 194 )
 
 [node name="End position" type="Node2D" parent="."]
 position = Vector2( 236, 198 )
+
+[node name="Title-export" type="Sprite" parent="."]
+position = Vector2( 239, 168 )
+texture = ExtResource( 14 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/start = SubResource( 4 )
 
 [connection signal="mouse_entered" from="Menu/VBoxContainer/StartButton" to="Menu/VBoxContainer/StartButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]

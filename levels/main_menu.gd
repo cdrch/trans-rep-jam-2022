@@ -22,6 +22,7 @@ func _on_StartButton_pressed():
 		return
 	starting = true
 	$PlayerShip.velocity_override = Vector2(1, 0)
+	$anim.play("start")
 	yield(shipArrived, "done")
 	$PlayerShip.velocity_override = null
 	$PlayerShip.gun_equipped = true
