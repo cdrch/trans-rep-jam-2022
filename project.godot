@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ships/player_ship.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "RectZone",
 "language": "GDScript",
 "path": "res://levels/Level1/DiveZoneExtents.gd"
@@ -119,6 +119,10 @@ _global_script_class_icons={
 config/name="Star Sea"
 run/main_scene="res://levels/main_menu.tscn"
 config/icon="res://art/icon.png"
+
+[audio]
+
+default_bus_layout="res://audio/default_bus_layout.tres"
 
 [autoload]
 
