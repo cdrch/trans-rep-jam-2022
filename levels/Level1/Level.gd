@@ -81,7 +81,7 @@ func _on_player_velocity_changed(to):
 
 
 func start_waves():
-	yield(MixingDeskMusic, "bar")
+	# yield(MixingDeskMusic, "bar")
 	#MixingDeskMusic.queue_bar_transition("Warp Again")
 	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
@@ -96,7 +96,7 @@ func start_waves():
 	$Waves/introWave.run_wave()
 
 func waveIntro_done():
-	yield(MixingDeskMusic, "bar")
+	# yield(MixingDeskMusic, "bar")
 	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape1_1), "done")
@@ -112,7 +112,7 @@ func waveIntro_done():
 	$Waves/wave1.run_wave()
 	
 func wave1_done():
-	yield(MixingDeskMusic, "bar")
+	# yield(MixingDeskMusic, "bar")
 	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape1_2), "done")
@@ -130,7 +130,7 @@ func wave1_done():
 	
 func wave2_done():
 	# MixingDeskMusic.stop("Warp Again")
-	yield(MixingDeskMusic, "bar")
+	# yield(MixingDeskMusic, "bar")
 	SongRequester.request_song("Foreboding Feeling")
 	yield(start_warp(), "done")
 	# MixingDeskMusic.play("Foreboding Feeling")

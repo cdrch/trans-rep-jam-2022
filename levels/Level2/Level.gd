@@ -84,19 +84,22 @@ func _on_player_velocity_changed(to):
 
 func start_waves():
 	# MixingDeskMusic.play("Foreboding Feeling")
-	SongRequester.request_song("Foreboding Feeling")
+	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_0), "done")
 	yield(end_warp(), "done")
+	SongRequester.request_song("Forward Into Battle")
 	warping = false
 	$Waves/introWave.show()
 	$Waves/introWave.connect("wave_complete", self, "waveIntro_done")
 	$Waves/introWave.run_wave()
 	
 func waveIntro_done():
+	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_1), "done")
 	yield(end_warp(), "done")
+	SongRequester.request_song("Forward Into Battle")
 	warping = false
 	$Waves/introWave.queue_free()
 	$Waves/wave1.show()
@@ -104,9 +107,11 @@ func waveIntro_done():
 	$Waves/wave1.run_wave()
 	
 func wave1_done():
+	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_2), "done")
 	yield(end_warp(), "done")
+	SongRequester.request_song("Monarch's Battle")
 	warping = false
 	$Waves/wave1.hide()
 	$Waves/wave2.show()
@@ -114,6 +119,7 @@ func wave1_done():
 	$Waves/wave2.run_wave()
 
 func wave2_done():
+	SongRequester.request_song("Foreboding Feeling")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_3), "done")
 	yield(end_warp(), "done")

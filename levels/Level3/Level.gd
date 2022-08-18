@@ -96,18 +96,22 @@ func _on_player_velocity_changed(to):
 			_: pass
 
 func start_waves():
+	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape3_0), "done")
 	yield(end_warp(), "done")
+	SongRequester.request_song("Forward Into Battle")
 	warping = false
 	$Waves/introWave.show()
 	$Waves/introWave.connect("wave_complete", self, "waveIntro_done")
 	$Waves/introWave.run_wave()
 	
 func waveIntro_done():
+	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape3_1), "done")
 	yield(end_warp(), "done")
+	SongRequester.request_song("Forward Into Battle")
 	warping = false
 	$Waves/introWave.queue_free()
 	$Waves/wave1.show()
@@ -115,13 +119,14 @@ func waveIntro_done():
 	$Waves/wave1.run_wave()
 	
 func wave1_done():
+	SongRequester.request_song("The Sword's Shield")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape3_2), "done")
 	yield(end_warp(), "done")
+	SongRequester.request_song("Monarch's Battle")
 	warping = false
 	# MixingDeskMusic.stop("The Sword's Shield")
 	# MixingDeskMusic.play("End Of Some Things")
-	SongRequester.request_song("End Of Some Things")
 	Bullets.level_up()
 	$Waves/wave1.hide()
 	$Waves/wave2.show()
@@ -129,11 +134,11 @@ func wave1_done():
 	$Waves/wave2.run_wave()
 
 func wave2_done():
+	SongRequester.request_song("End Of Some Things")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape3_3), "done")
 	yield(end_warp(), "done")
 	warping = false
 	# MixingDeskMusic.stop("End Of Some Things")
 	# MixingDeskMusic.play("Monarch's Battle")
-	SongRequester.request_song("Monarch's Battle")
 	get_tree().change_scene_to(main_menu_scn)
