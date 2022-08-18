@@ -139,6 +139,7 @@ Bullets="*res://Autoloads/Bullets.tscn"
 Globals="*res://Autoloads/Globals.tscn"
 Pause="*res://Autoloads/Pause.tscn"
 MixingDeskMusic="*res://Autoloads/MixingDeskMusic.tscn"
+SongRequester="*res://Autoloads/SongRequester.gd"
 
 [display]
 

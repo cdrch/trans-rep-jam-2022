@@ -5,7 +5,11 @@ export(PackedScene) var scene_on_options
 export(PackedScene) var scene_on_credits
 
 func _ready():
-	MixingDeskMusic.quickplay("Space Pilot Chill")
+	# MixingDeskMusic.init_song("Space Pilot Chill")
+	# MixingDeskMusic.play("Space Pilot Chill")
+	# MixingDeskMusic.queue_bar_transition("Space Pilot Chill")
+	# MixingDeskMusic.quickplay("Space Pilot Chill")
+	SongRequester.request_song("Space Pilot Chill")
 	Pause.enabled = false
 	$PlayerShip.velocity_override = Vector2(0, 0)
 	# Grab focus to enable keyboard control
