@@ -83,7 +83,8 @@ func _on_player_velocity_changed(to):
 			_: pass
 
 func start_waves():
-	MixingDeskMusic.play("Foreboding Feeling")
+	# MixingDeskMusic.play("Foreboding Feeling")
+	SongRequester.request_song("Foreboding Feeling")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_0), "done")
 	yield(end_warp(), "done")
@@ -120,5 +121,5 @@ func wave2_done():
 		
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.stash()
-	MixingDeskMusic.stop("Foreboding Feeling")
+	# MixingDeskMusic.stop("Foreboding Feeling")
 	get_tree().change_scene_to(next_level)

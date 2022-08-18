@@ -89,10 +89,12 @@ func _ready():
 func init_song(track):
 	if playing:
 		get_child(current_song_num).playing = false
-	playing_tracks.clear()
+	# playing_tracks.clear()
+	# print("playing_tracks.clear()")
 	track = _songname_to_int(track)
 	var song = songs[track]
 	var root = song._get_core()
+	print("Changing current_song_num in init_song()")
 	current_song_num = track
 	current_song = songs[track]._get_core()
 	repeats= 0
@@ -134,6 +136,7 @@ func start_alone(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
 	current_song_num = song
+	print("Changing current_song_num in start_alone()")
 	current_song = songs[song]._get_core()
 	for i in current_song.get_children():
 		i.set_volume_db(-60.0)
@@ -341,11 +344,16 @@ func fade_out(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
 	songs[song]._get_core().get_child(layer).volume_db = -65.0
+	print(song)
+	print(playing_tracks)
+	print(layer)
 	var target = playing_tracks[layer]
 	var tween = target.get_node("Tween")
 	var in_from = target.get_volume_db()
 	tween.interpolate_property(target, 'volume_db', in_from, -65.0, transition_beats, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.start()
+	playing_tracks.clear()	
+	print("playing_tracks.clear()")
 
 #fades a track in if silent, fades out if not
 func toggle_fade(song, layer):	
@@ -359,10 +367,14 @@ func toggle_fade(song, layer):
 
 #change to the specified song at the next bar
 func queue_bar_transition(song):
+	print("QUEUEING ")
+	print("Current song: " + str(current_song_num))	
 	song = _songname_to_int(song)
 	old_song = current_song_num
 	songs[old_song].fading_out = true
 	new_song = song
+	print("Old song: " + str(old_song))
+	print("New song: " + str(new_song))
 	bar_tran = true
 	
 #change to the specified song at the next beat
@@ -397,9 +409,11 @@ func queue_sequence(sequence : Array, type : String, on_end : String):
 
 #unload and stops the current song, then initialises and plays the new one
 func _change_song(song):
+	print("CHANGING SONG")
 	old_song = current_song_num
 	song = _songname_to_int(song)
 	if song != current_song_num:
+		print("IS A NEW SONG")
 		emit_signal("song_changed", [old_song, song])
 		init_song(song)
 		for i in songs[old_song].get_children():
@@ -460,19 +474,24 @@ func _core_finished():
 
 #called every bar
 func _bar():
+	print("BAR")
 	if can_bar:
+		print("CAN BAR")
 		can_bar = false
 		if bar_tran:
+			print("bar_tran")
 			if current_song_num != new_song:
+				print("PROPER TRANSITION")
 				_change_song(new_song)
 			else:
+				print("NEW SONG")
 				play(new_song)
 		yield(get_tree().create_timer(0.1), "timeout")
 		can_bar = true
 	
 #called every beat
 func _beat():
-	print("BEAT")
+	print("BEAT (Current song: " + str(current_song_num) + ")")
 	if beat_tran:
 		if current_song_num != new_song:
 			_change_song(new_song)

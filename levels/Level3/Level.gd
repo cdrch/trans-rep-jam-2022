@@ -27,7 +27,8 @@ func _ready():
 	Bullets.level_up()
 
 func shield_tutorial():
-	MixingDeskMusic.play("The Sword's Shield")
+	# MixingDeskMusic.play("The Sword's Shield")
+	SongRequester.request_song("The Sword's Shield")
 	$"%tutorial1".show()
 	yield($Barrier, "grabbed")
 	$"%tutorial1".queue_free()
@@ -48,7 +49,8 @@ func tween_background_to(vel, dur):
 	
 func start_warp():
 	warping = true
-	MixingDeskMusic.queue_bar_transition("Forward Into Battle")
+	# MixingDeskMusic.queue_bar_transition("Forward Into Battle")
+	SongRequester.request_song("Forward Into Battle")
 	var sig = Deferred.new()
 	var t = get_tree().create_tween()
 	t.tween_property($Background, "warp", 20, 3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
@@ -117,8 +119,9 @@ func wave1_done():
 	yield(scroll_text(story.ticker_tape3_2), "done")
 	yield(end_warp(), "done")
 	warping = false
-	MixingDeskMusic.stop("The Sword's Shield")
-	MixingDeskMusic.play("End Of Some Things")
+	# MixingDeskMusic.stop("The Sword's Shield")
+	# MixingDeskMusic.play("End Of Some Things")
+	SongRequester.request_song("End Of Some Things")
 	Bullets.level_up()
 	$Waves/wave1.hide()
 	$Waves/wave2.show()
@@ -130,6 +133,7 @@ func wave2_done():
 	yield(scroll_text(story.ticker_tape3_3), "done")
 	yield(end_warp(), "done")
 	warping = false
-	MixingDeskMusic.stop("End Of Some Things")
-	MixingDeskMusic.play("Monarch's Battle")
+	# MixingDeskMusic.stop("End Of Some Things")
+	# MixingDeskMusic.play("Monarch's Battle")
+	SongRequester.request_song("Monarch's Battle")
 	get_tree().change_scene_to(main_menu_scn)
