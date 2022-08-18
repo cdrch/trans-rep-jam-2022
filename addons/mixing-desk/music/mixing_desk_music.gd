@@ -348,7 +348,7 @@ func fade_out(song, layer):
 	tween.start()
 
 #fades a track in if silent, fades out if not
-func toggle_fade(song, layer):
+func toggle_fade(song, layer):	
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
 	var target = songs[song]._get_core().get_child(layer)
@@ -467,7 +467,7 @@ func _bar():
 				_change_song(new_song)
 			else:
 				play(new_song)
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(0.1), "timeout")
 		can_bar = true
 	
 #called every beat

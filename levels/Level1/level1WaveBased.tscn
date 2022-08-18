@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
+[ext_resource path="res://fonts/Kenney Rocket.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://levels/Level1/Waves/waveIntro.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ships/barrier/barrier.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ships/PlayerShip.tscn" type="PackedScene" id=4]
@@ -38,6 +39,14 @@ extents = Vector2( 323, 15.5 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 23.5, 206.5 )
+
+[sub_resource type="DynamicFont" id=11]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_dialogue_up"
@@ -159,6 +168,15 @@ shape = SubResource( 9 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/ScreenWalls"]
 position = Vector2( 343.5, 3.5 )
 shape = SubResource( 10 )
+
+[node name="tickerTape" type="Label" parent="Level"]
+margin_left = 321.0
+margin_top = 148.0
+margin_right = 1433.0
+margin_bottom = 177.0
+custom_fonts/font = SubResource( 11 )
+custom_styles/normal = SubResource( 14 )
+text = "breaking news: trans smuggler ACAI jane is rumored to be delivering hrt supplies"
 
 [node name="DialogueUI" type="Control" parent="."]
 visible = false

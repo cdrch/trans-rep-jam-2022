@@ -3,6 +3,9 @@ extends Node2D
 onready var main_menu_scn = load("res://levels/main_menu.tscn")
 onready var next_level = load("res://levels/Level3/level3WaveBased.tscn")
 
+onready var story: StoryData = preload("res://story.tres")
+onready var reset_pos = $tickerTape.rect_global_position
+
 func _ready():
 	if Globals.Starfield != null:
 		var b_pos = $Background.global_position
@@ -33,21 +36,43 @@ func tween_background_to(vel, dur):
 	t.tween_property($Background, "scroll_speed", vel, dur).set_trans(Tween.TRANS_LINEAR)
 	background_tween = t
 	
-func warp():
+func start_warp():
 	warping = true
+	MixingDeskMusic.queue_bar_transition("Forward Into Battle")
 	var sig = Deferred.new()
 	var t = get_tree().create_tween()
 	t.tween_property($Background, "warp", 20, 3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	t.tween_property($Background, "warp", 20, 3)
-	t.tween_property($Background, "warp", 1, 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	t.tween_callback(sig, "done")
+	
 	var q = get_tree().create_tween()
 	q.tween_property($Background, "scroll_speed", -240, 3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	q.tween_property($Background, "scroll_speed", -240, 3)
-	q.tween_property($Background, "scroll_speed", -20, 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	
 	print("START_WARP")
 	return sig
+
+func end_warp():
+	var sig = Deferred.new()
+	var t = get_tree().create_tween()
+	var q = get_tree().create_tween()
+	t.tween_property($Background, "warp", 1, 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	q.tween_property($Background, "scroll_speed", -20, 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	q.tween_callback(sig, "done")
+	return sig
+
+func scroll_text(txt: String):
+	$tickerTape.rect_global_position = reset_pos
+	$tickerTape.text = txt
+	var w = $tickerTape.get_minimum_size().x
+	var q = get_tree().create_tween()
+	$tickerTape.rect_global_position
+	var dist = $tickerTape.rect_global_position.x - w - 640
+	q.tween_property($tickerTape, "rect_global_position:x", dist, (w+640) / 100)
+	var sig = Deferred.new()
+	q.tween_callback(sig, "done")
+	return sig
+
 
 func _on_player_velocity_changed(to):
 	if to != player_velocity:
@@ -59,14 +84,18 @@ func _on_player_velocity_changed(to):
 			_: pass
 
 func start_waves():
-	yield(warp(), "done")
+	yield(start_warp(), "done")
+	yield(scroll_text(story.ticker_tape2_0), "done")
+	yield(end_warp(), "done")
 	warping = false
 	$Waves/introWave.show()
 	$Waves/introWave.connect("wave_complete", self, "waveIntro_done")
 	$Waves/introWave.run_wave()
 	
 func waveIntro_done():
-	yield(warp(), "done")
+	yield(start_warp(), "done")
+	yield(scroll_text(story.ticker_tape2_1), "done")
+	yield(end_warp(), "done")
 	warping = false
 	$Waves/introWave.queue_free()
 	$Waves/wave1.show()
@@ -74,7 +103,9 @@ func waveIntro_done():
 	$Waves/wave1.run_wave()
 	
 func wave1_done():
-	yield(warp(), "done")
+	yield(start_warp(), "done")
+	yield(scroll_text(story.ticker_tape2_2), "done")
+	yield(end_warp(), "done")
 	warping = false
 	$Waves/wave1.hide()
 	$Waves/wave2.show()
@@ -82,7 +113,9 @@ func wave1_done():
 	$Waves/wave2.run_wave()
 
 func wave2_done():
-	yield(warp(), "done")
+	yield(start_warp(), "done")
+	yield(scroll_text(story.ticker_tape2_3), "done")
+	yield(end_warp(), "done")
 	warping = false
 		
 	Globals.Ship_Pos = $PlayerShip.global_position
