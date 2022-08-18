@@ -11,5 +11,5 @@ dest_files=[ "res://.import/End Of Some Things.ogg-e22e2ec60e58ff2c8b9405878111d
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

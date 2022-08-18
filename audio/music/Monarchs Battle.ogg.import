@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Monarchs Battle.ogg-5d3f6e16621d18036d30e67498a7e384
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
