@@ -36,7 +36,7 @@ func _on_StartButton_pressed():
 
 
 func _on_OptionsButton_pressed():
-	pass # Replace with an options menu, instanced as a child
+	get_tree().change_scene_to(scene_on_options)
 
 
 func _on_QuitButton_pressed():

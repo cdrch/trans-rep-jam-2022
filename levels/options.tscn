@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://levels/backgrounds/starfield.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/backgrounds/Background.gd" type="Script" id=2]
+[ext_resource path="res://base_theme.tres" type="Theme" id=3]
+[ext_resource path="res://levels/audioSlider.gd" type="Script" id=4]
+[ext_resource path="res://levels/options.gd" type="Script" id=5]
+[ext_resource path="res://audio/sfx/Player Shots x4.ogg" type="AudioStream" id=6]
+[ext_resource path="res://fonts/Kenney Rocket.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 10
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[node name="settings" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Node2D" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+scroll_speed = -20
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = -64.0
+margin_top = -40.0
+margin_right = 81.0
+margin_bottom = 62.0
+custom_constants/separation = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 159.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+text = "options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 29.0
+margin_right = 159.0
+margin_bottom = 67.0
+custom_constants/separation = -7
+
+[node name="lblMusic" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_right = 159.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 2 )
+text = "MUSIC VOLUME"
+
+[node name="musicSlider" type="HSlider" parent="VBoxContainer/VBoxContainer"]
+margin_top = 6.0
+margin_right = 159.0
+margin_bottom = 38.0
+theme = ExtResource( 3 )
+max_value = 1.0
+step = 0.1
+script = ExtResource( 4 )
+audio_bus_name = "Music"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 71.0
+margin_right = 159.0
+margin_bottom = 109.0
+custom_constants/separation = -7
+
+[node name="lblSfx" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_right = 159.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 2 )
+text = "SFX VOLUME"
+
+[node name="sfxSlider" type="HSlider" parent="VBoxContainer/VBoxContainer2"]
+margin_top = 6.0
+margin_right = 159.0
+margin_bottom = 38.0
+theme = ExtResource( 3 )
+max_value = 1.0
+step = 0.1
+script = ExtResource( 4 )
+audio_bus_name = "SFX"
+
+[node name="btnBackToMenu" type="ToolButton" parent="VBoxContainer"]
+margin_top = 113.0
+margin_right = 159.0
+margin_bottom = 134.0
+text = "back to main menu"
+
+[node name="sfxTest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[connection signal="mouse_exited" from="VBoxContainer/VBoxContainer/musicSlider" to="VBoxContainer/VBoxContainer/musicSlider" method="release_focus"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/musicSlider" to="VBoxContainer/VBoxContainer/musicSlider" method="_on_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/VBoxContainer2/sfxSlider" to="." method="play_sfx_test"]
+[connection signal="mouse_exited" from="VBoxContainer/VBoxContainer2/sfxSlider" to="VBoxContainer/VBoxContainer2/sfxSlider" method="release_focus"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer2/sfxSlider" to="VBoxContainer/VBoxContainer2/sfxSlider" method="_on_value_changed"]
+[connection signal="pressed" from="VBoxContainer/btnBackToMenu" to="." method="_on_back_to_menu_pressed"]

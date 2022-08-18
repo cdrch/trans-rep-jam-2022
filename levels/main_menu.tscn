@@ -15,6 +15,7 @@
 [ext_resource path="res://styles/blue_button_focus_style.tres" type="StyleBox" id=13]
 [ext_resource path="res://levels/title-export.png" type="Texture" id=14]
 [ext_resource path="res://levels/credits.tscn" type="PackedScene" id=15]
+[ext_resource path="res://levels/options.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -98,6 +99,7 @@ tracks/1/keys = {
 position = Vector2( -320, -180 )
 script = ExtResource( 4 )
 scene_on_start = ExtResource( 1 )
+scene_on_options = ExtResource( 16 )
 scene_on_credits = ExtResource( 15 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

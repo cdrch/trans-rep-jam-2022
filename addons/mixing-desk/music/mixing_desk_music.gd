@@ -1,3 +1,4 @@
+
 extends Node
 
 var tempo
@@ -43,7 +44,22 @@ signal end
 signal shuffle
 signal song_changed
 
+onready var _music_bus := AudioServer.get_bus_index("Music")
+onready var _sfx_bus := AudioServer.get_bus_index("SFX")
+func load_volume_config():
+	var conf = ConfigFile.new()
+	var err = conf.load("user://settings.cfg")
+	if err != OK:
+		return
+	var music_value = conf.get_value("Sound", "MusicVolume", 1)
+	AudioServer.set_bus_volume_db(_music_bus, linear2db(music_value))
+	
+	var sfx_value = conf.get_value("Sound", "SfxVolume", 1)
+	AudioServer.set_bus_volume_db(_sfx_bus, linear2db(sfx_value))
+	
+	
 func _ready():
+	load_volume_config()
 	for i in songs:
 		if i.ignore:
 			songs.remove(songs.find(i))
