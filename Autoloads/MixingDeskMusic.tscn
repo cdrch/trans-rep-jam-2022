@@ -24,7 +24,7 @@ script = ExtResource( 1 )
 tempo = 182
 bars = 24
 beats_in_bar = 4
-transition_beats = 8.0
+transition_beats = 4.0
 transition_type = "Bar"
 
 [node name="CoreContainer" type="Node" parent="Space Pilot Chill"]
@@ -39,7 +39,7 @@ script = ExtResource( 1 )
 tempo = 182
 bars = 73
 beats_in_bar = 4
-transition_beats = 4.0
+transition_beats = 2.0
 transition_type = "Bar"
 
 [node name="CoreContainer" type="Node" parent="Forward Into Battle"]
@@ -54,7 +54,7 @@ script = ExtResource( 1 )
 tempo = 182
 bars = 17
 beats_in_bar = 4
-transition_beats = 4.0
+transition_beats = 2.0
 transition_type = "Beat"
 
 [node name="CoreContainer" type="Node" parent="Warp Again"]
