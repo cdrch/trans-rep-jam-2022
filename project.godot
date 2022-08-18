@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ships/player_ship.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "RectZone",
 "language": "GDScript",
 "path": "res://levels/Level1/DiveZoneExtents.gd"
