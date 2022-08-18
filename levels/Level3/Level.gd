@@ -17,8 +17,7 @@ func _ready():
 	Bullets.bullets_parent = $BulletDump
 	Bullets.weapon = $PlayerShip/Gunpoint
 	$PlayerShip.connect("velocity_changed", self, "_on_player_velocity_changed")
-	MixingDeskMusic.queue_bar_transition("The Sword's Shield")
-	yield(MixingDeskMusic, "bar")
+
 	var t = get_tree().create_tween()
 	t.tween_property(
 		$Barrier, "global_position", $BarrierTarget.global_position, 5
@@ -28,6 +27,7 @@ func _ready():
 	Bullets.level_up()
 
 func shield_tutorial():
+	MixingDeskMusic.play("The Sword's Shield")
 	$"%tutorial1".show()
 	yield($Barrier, "grabbed")
 	$"%tutorial1".queue_free()
@@ -117,6 +117,8 @@ func wave1_done():
 	yield(scroll_text(story.ticker_tape3_2), "done")
 	yield(end_warp(), "done")
 	warping = false
+	MixingDeskMusic.stop("The Sword's Shield")
+	MixingDeskMusic.play("End Of Some Things")
 	Bullets.level_up()
 	$Waves/wave1.hide()
 	$Waves/wave2.show()
@@ -128,5 +130,6 @@ func wave2_done():
 	yield(scroll_text(story.ticker_tape3_3), "done")
 	yield(end_warp(), "done")
 	warping = false
-	
+	MixingDeskMusic.stop("End Of Some Things")
+	MixingDeskMusic.play("Monarch's Battle")
 	get_tree().change_scene_to(main_menu_scn)

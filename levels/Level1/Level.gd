@@ -35,7 +35,6 @@ func tween_background_to(vel, dur):
 	
 func start_warp():
 	warping = true
-	MixingDeskMusic.queue_bar_transition("Forward Into Battle")
 	var sig = Deferred.new()
 	var t = get_tree().create_tween()
 	t.tween_property($Background, "warp", 20, 3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
@@ -62,10 +61,11 @@ func scroll_text(txt: String):
 	$tickerTape.rect_global_position = reset_pos
 	$tickerTape.text = txt
 	var w = $tickerTape.get_minimum_size().x
+	$tickerTape.rect_size.x = w
 	var q = get_tree().create_tween()
 	$tickerTape.rect_global_position
 	var dist = $tickerTape.rect_global_position.x - w - 640
-	q.tween_property($tickerTape, "rect_global_position:x", dist, (w+640) / 100)
+	q.tween_property($tickerTape, "rect_global_position:x", dist, (w+640) / 200)
 	var sig = Deferred.new()
 	q.tween_callback(sig, "done")
 	return sig
@@ -82,12 +82,11 @@ func _on_player_velocity_changed(to):
 
 func start_waves():
 	yield(MixingDeskMusic, "bar")
-	MixingDeskMusic.start_alone("Warp Again", 0)
+	#MixingDeskMusic.queue_bar_transition("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape1_0), "done")
 	yield(end_warp(), "done")
 	yield(MixingDeskMusic, "bar")
-	MixingDeskMusic.start_alone("Forward Into Battle", 0)
 	warping = false
 	$Waves/introWave.show()
 	$Waves/introWave.connect("wave_complete", self, "waveIntro_done")
@@ -117,7 +116,9 @@ func wave1_done():
 	$Waves/wave2.run_wave()
 	
 func wave2_done():
+	MixingDeskMusic.stop("Warp Again")
 	yield(start_warp(), "done")
+	MixingDeskMusic.play("Foreboding Feeling")
 	yield(scroll_text(story.ticker_tape1_3), "done")
 	yield(end_warp(), "done")
 	warping = false

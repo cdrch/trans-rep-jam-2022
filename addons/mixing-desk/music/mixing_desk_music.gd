@@ -472,6 +472,7 @@ func _bar():
 	
 #called every beat
 func _beat():
+	print("BEAT")
 	if beat_tran:
 		if current_song_num != new_song:
 			_change_song(new_song)
@@ -497,6 +498,10 @@ func _beat():
 
 func get_current_song():
 	return get_child(current_song_num)
+
+func stop_current_song():
+	if current_song_num >= 0:
+		stop(get_children()[current_song_num].name)
 
 #gets a random track from a song and returns it
 func _get_rantrk(song):

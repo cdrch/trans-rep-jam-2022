@@ -62,7 +62,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "4"
-length = 0.8
+length = 0.59
 tracks/0/type = "audio"
 tracks/0/path = NodePath("gun")
 tracks/0/interp = 1
@@ -71,7 +71,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "clips": [ {
-"end_offset": 0.48,
+"end_offset": 0.62,
 "start_offset": 0.0,
 "stream": ExtResource( 5 )
 } ],

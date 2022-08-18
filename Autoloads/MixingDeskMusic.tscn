@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://audio/music/Forward Into Battle.ogg" type="AudioStream" id=7]
 [ext_resource path="res://audio/music/End Of Some Things.ogg" type="AudioStream" id=8]
 [ext_resource path="res://audio/music/Monarchs Battle.ogg" type="AudioStream" id=9]
+[ext_resource path="res://audio/music/Warp Again.ogg" type="AudioStream" id=10]
 
 [node name="MixingDeskMusic" type="Node" groups=["scene_manager_entity_nodes"]]
 script = ExtResource( 2 )
@@ -16,13 +17,12 @@ __meta__ = {
 "entity_name": "MixingDeskMusic"
 }
 play_mode = 1
-autoplay = true
 autoplay_song = NodePath("Space Pilot Chill")
 
 [node name="Space Pilot Chill" type="Node" parent="."]
 script = ExtResource( 1 )
 tempo = 182
-bars = 25
+bars = 24
 beats_in_bar = 4
 transition_type = "Bar"
 
@@ -38,6 +38,7 @@ script = ExtResource( 1 )
 tempo = 182
 bars = 73
 beats_in_bar = 4
+transition_beats = 4.0
 transition_type = "Bar"
 
 [node name="CoreContainer" type="Node" parent="Forward Into Battle"]
@@ -58,7 +59,7 @@ transition_type = "Beat"
 script = ExtResource( 3 )
 
 [node name="Warp Again" type="AudioStreamPlayer" parent="Warp Again/CoreContainer"]
-stream = ExtResource( 6 )
+stream = ExtResource( 10 )
 bus = "Music"
 
 [node name="Foreboding Feeling" type="Node" parent="."]

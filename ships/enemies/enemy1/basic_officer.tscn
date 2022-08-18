@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://audio/sfx/Enemy Shot A x1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://ships/enemies/enemy1/basic_officer.gd" type="Script" id=2]
 [ext_resource path="res://ships/enemies/enemy1/enemy-2.png" type="Texture" id=3]
 [ext_resource path="res://ships/enemies/enemy1/enemy-1.png" type="Texture" id=4]
 [ext_resource path="res://ships/projectiles/warp.png" type="Texture" id=5]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=6]
+[ext_resource path="res://audio/sfx/Explosion High.ogg" type="AudioStream" id=7]
+[ext_resource path="res://audio/sfx/Explosion Medium-High.ogg" type="AudioStream" id=8]
 
 [sub_resource type="AnimatedTexture" id=1]
 frames = 2
@@ -139,5 +142,20 @@ bus = "SFX"
 
 [node name="snd" type="AnimationPlayer" parent="."]
 anims/shoot = SubResource( 3 )
+
+[node name="boom" type="Node" parent="snd"]
+script = ExtResource( 6 )
+spawn_node = NodePath("..")
+
+[node name="explosion" type="AudioStreamPlayer" parent="snd/boom"]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="explosion2" type="AudioStreamPlayer" parent="snd/boom"]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="explosion3" type="AudioStreamPlayer" parent="snd/boom"]
+bus = "SFX"
 
 [connection signal="timeout" from="gun_timer" to="." method="_on_gun_timer_timeout"]

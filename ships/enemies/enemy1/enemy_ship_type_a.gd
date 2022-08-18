@@ -132,6 +132,7 @@ func hurt(_type, damage):
 		die()
 
 func die():
+	$snd/boom.play()
 	set_hp(0)
 	$tex.texture = dead_tex
 	# Disable collision

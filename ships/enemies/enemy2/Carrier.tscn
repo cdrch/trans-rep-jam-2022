@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ships/enemies/enemy2/Gavel.gd" type="Script" id=1]
 [ext_resource path="res://ships/enemies/enemy2/carrier1.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://ships/projectiles/warp.png" type="Texture" id=8]
 [ext_resource path="res://ships/enemies/enemy2/carrier7.png" type="Texture" id=9]
 [ext_resource path="res://audio/sfx/Enemy Shot B x2x2.ogg" type="AudioStream" id=10]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=11]
+[ext_resource path="res://audio/sfx/Sustained Explosion Medium.ogg" type="AudioStream" id=12]
+[ext_resource path="res://audio/sfx/Explosion Low.ogg" type="AudioStream" id=13]
+[ext_resource path="res://audio/sfx/Sustained Explosion Low.ogg" type="AudioStream" id=14]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Dive"
@@ -198,3 +202,20 @@ anims/shoot = SubResource( 5 )
 [node name="shoot" type="AudioStreamPlayer" parent="snd"]
 stream = ExtResource( 10 )
 pitch_scale = 2.08
+bus = "SFX"
+
+[node name="RanSoundContainer" type="Node" parent="snd"]
+script = ExtResource( 11 )
+spawn_node = NodePath("../..")
+
+[node name="boom" type="AudioStreamPlayer" parent="snd/RanSoundContainer"]
+stream = ExtResource( 14 )
+bus = "SFX"
+
+[node name="boom2" type="AudioStreamPlayer" parent="snd/RanSoundContainer"]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[node name="boom3" type="AudioStreamPlayer" parent="snd/RanSoundContainer"]
+stream = ExtResource( 13 )
+bus = "SFX"

@@ -38,7 +38,6 @@ func tween_background_to(vel, dur):
 	
 func start_warp():
 	warping = true
-	MixingDeskMusic.queue_bar_transition("Forward Into Battle")
 	var sig = Deferred.new()
 	var t = get_tree().create_tween()
 	t.tween_property($Background, "warp", 20, 3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
@@ -84,6 +83,7 @@ func _on_player_velocity_changed(to):
 			_: pass
 
 func start_waves():
+	MixingDeskMusic.play("Foreboding Feeling")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_0), "done")
 	yield(end_warp(), "done")
@@ -120,4 +120,5 @@ func wave2_done():
 		
 	Globals.Ship_Pos = $PlayerShip.global_position
 	Globals.stash()
+	MixingDeskMusic.stop("Foreboding Feeling")
 	get_tree().change_scene_to(next_level)
