@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Forward Into Battle.ogg-60bd5ef3a2a64df3442fb5f6cfaa
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
