@@ -16,3 +16,6 @@ func _on_ResumeButton_pressed():
 	get_tree().paused = false
 	emit_signal("unpaused")
 	queue_free()
+
+func _on_QuitButton_pressed():
+	get_tree().quit()

@@ -101,6 +101,7 @@ func async_free():
 
 func die():
 	dying = true
+	$snd/RanSoundContainer.play()
 	emit_signal("dying")
 	$tex.texture = dead_tex
 	# Disable collision

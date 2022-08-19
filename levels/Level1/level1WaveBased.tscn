@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://fonts/Kenney Rocket.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://levels/Level1/Waves/waveIntro.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://levels/Level1/Level.gd" type="Script" id=13]
 [ext_resource path="res://levels/Level1/Waves/wave3.tscn" type="PackedScene" id=14]
 [ext_resource path="res://fonts/Main Text Font.tres" type="DynamicFont" id=15]
+[ext_resource path="res://levels/Button Prompt.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.25, 191.25 )
@@ -178,6 +179,13 @@ custom_fonts/font = SubResource( 11 )
 custom_styles/normal = SubResource( 14 )
 text = "breaking news: trans smuggler ACAI jane is rumored to be delivering hrt supplies"
 
+[node name="Button Prompt" parent="Level" instance=ExtResource( 16 )]
+visible = false
+margin_left = -71.0
+margin_top = 49.0
+margin_right = 70.0
+margin_bottom = 124.0
+
 [node name="DialogueUI" type="Control" parent="."]
 visible = false
 script = ExtResource( 6 )
@@ -187,9 +195,9 @@ anchor_left = 8.0
 anchor_top = 4.5
 anchor_right = 8.0
 anchor_bottom = 4.5
-margin_top = 80.0
+margin_top = 180.0
 margin_right = 320.0
-margin_bottom = 180.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 320, 100 )
 texture = ExtResource( 8 )
 patch_margin_left = 10
