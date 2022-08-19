@@ -44,7 +44,6 @@ custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = ExtResource( 9 )
 custom_styles/focus = ExtResource( 9 )
 custom_styles/normal = ExtResource( 6 )
-text = "Options"
 script = ExtResource( 2 )
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
@@ -65,7 +64,6 @@ custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = ExtResource( 9 )
 custom_styles/focus = ExtResource( 9 )
 custom_styles/normal = ExtResource( 6 )
-text = "Credits"
 script = ExtResource( 2 )
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
@@ -90,3 +88,4 @@ anims/rainbow_pause_anim = ExtResource( 10 )
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/CreditsButton" to="VBoxContainer/CreditsButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

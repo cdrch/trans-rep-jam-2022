@@ -122,7 +122,7 @@ func async_free():
 	queue_free()
 
 func _physics_process(delta: float) -> void:
-	var collision = move_and_slide(velocity, Vector2.UP)
+	var collision = move_and_slide(velocity, Vector2(0,0))
 	#if collision:
 	#	if not collision.collider is Node:
 #			velocity = velocity.slide(collision.normal)

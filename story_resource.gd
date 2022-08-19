@@ -102,7 +102,7 @@ export (String, MULTILINE) var ticker_tape3_1=(
 	"NOTICE OF RESIGNATION."
 )
 
-export (String, MULTILINE) var ticker_tape3_2=(
+export (String, MULTILINE) var ticker_tape3_2 = (
 	"BREAKING NEWS: BREAKING NEWS NEWS MEDIA "+
 	"UNDER NEW OWNERSHIP. ANTI-HORMONE LAWS "+
 	"REVERSED AFTER PRESIDENT POLONIUS FORCED "+

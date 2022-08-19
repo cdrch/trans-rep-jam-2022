@@ -38,6 +38,8 @@ func tween_background_to(vel, dur):
 	
 func start_warp():
 	warping = true
+	
+	$PlayerShip.gun_equipped = false
 	var sig = Deferred.new()
 	var t = get_tree().create_tween()
 	t.tween_property($Background, "warp", 20, 3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
@@ -58,20 +60,46 @@ func end_warp():
 	t.tween_property($Background, "warp", 1, 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	q.tween_property($Background, "scroll_speed", -20, 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	q.tween_callback(sig, "done")
+	q.tween_property(self, "warping", false, 0)
+	
+	$PlayerShip.gun_equipped = true
 	return sig
 
+var ticker_tween
+var ticker_sig
 func scroll_text(txt: String):
 	$tickerTape.rect_global_position = reset_pos
 	$tickerTape.text = txt
 	var w = $tickerTape.get_minimum_size().x
+	$tickerTape.rect_size.x = w
 	var q = get_tree().create_tween()
-	$tickerTape.rect_global_position
 	var dist = $tickerTape.rect_global_position.x - w - 640
-	q.tween_property($tickerTape, "rect_global_position:x", dist, (w+640) / 100)
-	var sig = Deferred.new()
-	q.tween_callback(sig, "done")
-	return sig
+	q.tween_property($tickerTape, "rect_global_position:x", dist, (w+640) / 200)
+	ticker_sig = Deferred.new()
+	q.tween_callback(ticker_sig, "done")
+	ticker_tween = q
+	return ticker_sig
 
+var skipping = false
+func skip_text():
+	skipping = true
+	ticker_tween.kill()
+	var q = get_tree().create_tween()
+	var w = $tickerTape.get_minimum_size().x
+	var dist = $tickerTape.rect_global_position.x - w - 640
+	q.tween_property($tickerTape, "rect_global_position:x", dist, 2)
+	var sig = Deferred.new()
+	q.tween_callback(ticker_sig, "done")
+	$"Button Prompt".hide()
+	yield(ticker_sig, "done")
+	ticker_tween = null
+	skipping = false
+	
+func _process(_delta):
+	if ticker_tween and warping and Input.is_action_just_pressed("fire") and $"Button Prompt".visible:
+		skip_text()
+	if not skipping and ticker_tween and warping and Input.is_action_just_pressed("fire"):
+		$"Button Prompt".show()
 
 func _on_player_velocity_changed(to):
 	if to != player_velocity:
@@ -83,7 +111,6 @@ func _on_player_velocity_changed(to):
 			_: pass
 
 func start_waves():
-	# MixingDeskMusic.play("Foreboding Feeling")
 	SongRequester.request_song("Warp Again")
 	yield(start_warp(), "done")
 	yield(scroll_text(story.ticker_tape2_0), "done")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://levels/Level2/Waves/wave1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/Level2/Waves/introWave.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://levels/Level1/FPS.gd" type="Script" id=11]
 [ext_resource path="res://levels/Level2/Waves/wave2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://fonts/Kenney Rocket.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://levels/Button Prompt.tscn" type="PackedScene" id=14]
 [ext_resource path="res://fonts/Main Text Font.tres" type="DynamicFont" id=15]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -170,6 +171,13 @@ margin_bottom = 177.0
 custom_fonts/font = SubResource( 11 )
 custom_styles/normal = SubResource( 14 )
 text = "DEBUG DEBUG DEBUG"
+
+[node name="Button Prompt" parent="Level" instance=ExtResource( 14 )]
+visible = false
+margin_left = -71.0
+margin_top = 49.0
+margin_right = 70.0
+margin_bottom = 124.0
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 current = true

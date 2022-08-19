@@ -47,9 +47,8 @@ func _on_OptionsButton_pressed():
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
-
 func _on_Continue_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://levels/explainer.tscn")
 
 
 func _on_Credits_pressed():

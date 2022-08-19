@@ -8,9 +8,7 @@ func _ready():
 func _on_LinkButton_pressed():
 	OS.shell_open("https://godotengine.org/license")
 
-
 func _on_menuBtn_pressed():
-	MixingDeskMusic.stop_current_song()
 	get_tree().change_scene("res://levels/main_menu.tscn")
 
 var velocity = 0
